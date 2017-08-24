@@ -12,10 +12,10 @@ import RxSwift
 import MJRefresh
 
 //MARK : - Reactive to Handle pull refreshes
-extension Reactive where Base : UITableView
+public extension Reactive where Base : UITableView
 {
     /// PullDown request Driver
-    var pullDownRefreshing : ControlEvent<Void>
+    public var pullDownRefreshing : ControlEvent<Void>
     {
         let pullDownDriver = PublishSubject<Void>()
         if base.mj_header == nil
@@ -34,7 +34,7 @@ extension Reactive where Base : UITableView
     }
     
     /// PullUp request Driver
-    var pullUpRefreshing : ControlEvent<Void>
+    public var pullUpRefreshing : ControlEvent<Void>
     {
         let pullUpDriver = PublishSubject<Void>()
         if base.mj_footer == nil

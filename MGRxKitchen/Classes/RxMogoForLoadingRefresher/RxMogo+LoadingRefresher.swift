@@ -11,7 +11,7 @@ import RxCocoa
 import RxSwift
 
 //MARK : - Extension For PublishSubject to display loading Views
-extension PublishSubject
+public extension PublishSubject
 {
     /// loading convertation
     ///
@@ -20,7 +20,7 @@ extension PublishSubject
     ///   - startAnimation: Start
     ///   - endAnimation: End
     /// - Returns: Response
-    func asLoadingAnimated<DataSouce>(
+    public func asLoadingAnimated<DataSouce>(
         mapTo observableDataSource : Observable<DataSouce> ,
         startWithAnimation  startAnimation : (()->Void)? = nil ,
         endWithAnimation  endAnimation : (()->Void)? = nil)
