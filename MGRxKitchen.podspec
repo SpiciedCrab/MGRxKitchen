@@ -8,8 +8,8 @@
 
 Pod::Spec.new do |s|
   s.name             = 'MGRxKitchen'
-  s.version          = '0.1.0'
-  s.summary          = 'A short description of MGRxKitchen.'
+  s.version          = '0.0.1'
+  s.summary          = 'Rx plugins for Mogo'
 
 # This description is used to generate tags and improve search results.
 #   * Think: What does it do? Why did you write it? What is the focus?
@@ -29,8 +29,19 @@ TODO: Add long description of the pod here.
   # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 
   s.ios.deployment_target = '8.0'
+  s.dependency 'RxSwift'
+  s.dependency 'RxCocoa'
 
-  s.source_files = 'MGRxKitchen/Classes/**/*'
+
+  s.subspec 'RxMogoForLoadingRefresher' do |loadingExtension|
+      loadingExtension.source_files = 'MGRxKitchen/Classes/RxMogoForLoadingRefresher/**/*{.swift}'
+
+  end
+
+  s.subspec 'RxMogoForMJRefresher' do |mjExtension|
+      mjExtension.source_files = 'MGRxKitchen/Classes/RxMogoForMJRefresher/**/*{.swift}'
+      mjExtension.dependency 'MJRefresh'
+  end
   
   # s.resource_bundles = {
   #   'MGRxKitchen' => ['MGRxKitchen/Assets/*.png']
