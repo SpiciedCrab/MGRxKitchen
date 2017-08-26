@@ -89,14 +89,22 @@ strip_invalid_archs() {
 
 
 if [[ "$CONFIGURATION" == "Debug" ]]; then
+  install_framework "$BUILT_PRODUCTS_DIR/HandyJSON/HandyJSON.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/MGBricks/MGBricks.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/MGProgressHUD/MGProgressHUD.framework"
   install_framework "$BUILT_PRODUCTS_DIR/MGRxKitchen/MGRxKitchen.framework"
   install_framework "$BUILT_PRODUCTS_DIR/MJRefresh/MJRefresh.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/Result/Result.framework"
   install_framework "$BUILT_PRODUCTS_DIR/RxCocoa/RxCocoa.framework"
   install_framework "$BUILT_PRODUCTS_DIR/RxSwift/RxSwift.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
+  install_framework "$BUILT_PRODUCTS_DIR/HandyJSON/HandyJSON.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/MGBricks/MGBricks.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/MGProgressHUD/MGProgressHUD.framework"
   install_framework "$BUILT_PRODUCTS_DIR/MGRxKitchen/MGRxKitchen.framework"
   install_framework "$BUILT_PRODUCTS_DIR/MJRefresh/MJRefresh.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/Result/Result.framework"
   install_framework "$BUILT_PRODUCTS_DIR/RxCocoa/RxCocoa.framework"
   install_framework "$BUILT_PRODUCTS_DIR/RxSwift/RxSwift.framework"
 fi

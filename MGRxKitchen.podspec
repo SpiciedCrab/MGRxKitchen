@@ -33,6 +33,18 @@ TODO: Add long description of the pod here.
   s.dependency 'RxCocoa'
 
 
+  s.subspec 'RxMogoForMGProgressErrors' do |mgProgress|
+      mgProgress.source_files = 'MGRxKitchen/Classes/RxMogoForMGProgressErrors/**/*{.swift}'
+      mgProgress.dependency 'MGProgressHUD'
+  end
+
+  s.subspec 'RxMogoForNetworkingProcessing' do |networking|
+      networking.source_files = 'MGRxKitchen/Classes/RxMogoForNetworkingProcessing/**/*{.swift}'
+      networking.dependency 'Result'
+      networking.dependency 'MGBricks'
+      networking.dependency 'HandyJSON'
+  end
+
   s.subspec 'RxMogoForLoadingRefresher' do |loadingExtension|
       loadingExtension.source_files = 'MGRxKitchen/Classes/RxMogoForLoadingRefresher/**/*{.swift}'
 

@@ -4,16 +4,31 @@ PODS:
   - FBSnapshotTestCase/Core (2.1.4)
   - FBSnapshotTestCase/SwiftSupport (2.1.4):
     - FBSnapshotTestCase/Core
-  - MGRxKitchen (0.0.1):
-    - MGRxKitchen/RxMogoForLoadingRefresher (= 0.0.1)
-    - MGRxKitchen/RxMogoForMJRefresher (= 0.0.1)
+  - HandyJSON (1.7.2)
+  - MGBricks (0.1.0)
+  - MGProgressHUD (2.1.9)
+  - MGRxKitchen (0.0.2):
+    - MGRxKitchen/RxMogoForLoadingRefresher (= 0.0.2)
+    - MGRxKitchen/RxMogoForMGProgressErrors (= 0.0.2)
+    - MGRxKitchen/RxMogoForMJRefresher (= 0.0.2)
+    - MGRxKitchen/RxMogoForNetworkingProcessing (= 0.0.2)
     - RxCocoa
     - RxSwift
-  - MGRxKitchen/RxMogoForLoadingRefresher (0.0.1):
+  - MGRxKitchen/RxMogoForLoadingRefresher (0.0.2):
     - RxCocoa
     - RxSwift
-  - MGRxKitchen/RxMogoForMJRefresher (0.0.1):
+  - MGRxKitchen/RxMogoForMGProgressErrors (0.0.2):
+    - MGProgressHUD
+    - RxCocoa
+    - RxSwift
+  - MGRxKitchen/RxMogoForMJRefresher (0.0.2):
     - MJRefresh
+    - RxCocoa
+    - RxSwift
+  - MGRxKitchen/RxMogoForNetworkingProcessing (0.0.2):
+    - HandyJSON
+    - MGBricks
+    - Result
     - RxCocoa
     - RxSwift
   - MJRefresh (3.1.12)
@@ -25,6 +40,7 @@ PODS:
     - Nimble
     - Quick
   - Quick (1.0.0)
+  - Result (3.2.3)
   - RxCocoa (3.6.1):
     - RxSwift (~> 3.6)
   - RxSwift (3.6.1)
@@ -42,14 +58,18 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   FBSnapshotTestCase: 094f9f314decbabe373b87cc339bea235a63e07a
-  MGRxKitchen: f6545f8329f41467536a9c68378eace0d65fceb3
+  HandyJSON: e7ad0483005826baba1d1c251cd98d0aa8bd8cce
+  MGBricks: 6422597b7cf9c6fad530a01357632e3118b90453
+  MGProgressHUD: a9bdbc7e7df39f691043af39d06fca4838144178
+  MGRxKitchen: bef8a5c73b4188258baa20711146aed0b279f97a
   MJRefresh: b96cdb21c4aa75a7b07654311ab2f315c497e806
   Nimble: 415e3aa3267e7bc2c96b05fa814ddea7bb686a29
   Nimble-Snapshots: e743439f26c2fa99d8f7e0d7c01c99bcb40aa6f2
   Quick: 8024e4a47e6cc03a9d5245ef0948264fc6d27cff
+  Result: 128640a6347e8d2ae48b142556739a2d13f90ce6
   RxCocoa: 84a08739ab186248c7f31ce4ee92d6f8a947d690
   RxSwift: f9de85ea20cd2f7716ee5409fc13523dc638e4e4
 
-PODFILE CHECKSUM: af467d7cbdd1b8d71b795d51034c2718f437ccf9
+PODFILE CHECKSUM: a51ce962e7b4a14288f76a0994e71df7112a198f
 
 COCOAPODS: 1.2.1

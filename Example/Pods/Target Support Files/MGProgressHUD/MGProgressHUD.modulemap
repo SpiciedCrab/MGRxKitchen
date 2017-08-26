@@ -1,0 +1,6 @@
+framework module MGProgressHUD {
+  umbrella header "MGProgressHUD-umbrella.h"
+
+  export *
+  module * { export * }
+}

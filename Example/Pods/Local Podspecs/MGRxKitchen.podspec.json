@@ -1,9 +1,9 @@
 {
   "name": "MGRxKitchen",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "summary": "Rx plugins for Mogo",
   "description": "TODO: Add long description of the pod here.",
-  "homepage": "https://github.com/magic_harly@hotmail.com/MGRxKitchen",
+  "homepage": "https://github.com/SpiciedCrab/MGRxKitchen",
   "license": {
     "type": "MIT",
     "file": "LICENSE"
@@ -12,8 +12,8 @@
     "magic_harly@hotmail.com": "magic_harly@hotmail.com"
   },
   "source": {
-    "git": "https://github.com/magic_harly@hotmail.com/MGRxKitchen.git",
-    "tag": "0.0.1"
+    "git": "https://github.com/SpiciedCrab/MGRxKitchen.git",
+    "tag": "0.0.2"
   },
   "platforms": {
     "ios": "8.0"
@@ -27,6 +27,30 @@
     ]
   },
   "subspecs": [
+    {
+      "name": "RxMogoForMGProgressErrors",
+      "source_files": "MGRxKitchen/Classes/RxMogoForMGProgressErrors/**/*{.swift}",
+      "dependencies": {
+        "MGProgressHUD": [
+
+        ]
+      }
+    },
+    {
+      "name": "RxMogoForNetworkingProcessing",
+      "source_files": "MGRxKitchen/Classes/RxMogoForNetworkingProcessing/**/*{.swift}",
+      "dependencies": {
+        "Result": [
+
+        ],
+        "MGBricks": [
+
+        ],
+        "HandyJSON": [
+
+        ]
+      }
+    },
     {
       "name": "RxMogoForLoadingRefresher",
       "source_files": "MGRxKitchen/Classes/RxMogoForLoadingRefresher/**/*{.swift}"

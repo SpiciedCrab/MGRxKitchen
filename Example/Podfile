@@ -1,5 +1,8 @@
 use_frameworks!
 
+source 'https://github.com/CocoaPods/Specs.git'
+source 'http://git.mogo.com/NexT/MGPod.git'
+
 target 'MGRxKitchen_Example' do
   pod 'MGRxKitchen', :path => '../'
 
