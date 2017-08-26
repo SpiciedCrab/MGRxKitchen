@@ -37,6 +37,7 @@ TODO: Add long description of the pod here.
       mgProgress.source_files = 'MGRxKitchen/Classes/RxMogoForMGProgressErrors/**/*{.swift}'
       mgProgress.dependency 'MGProgressHUD'
       mgProgress.dependency 'MGBricks'
+      mgProgress.dependency 'MGRxKitchen/RxMogoForNetworkingProcessing'
   end
 
   s.subspec 'RxMogoForNetworkingProcessing' do |networking|
