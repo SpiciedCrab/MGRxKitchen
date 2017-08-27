@@ -12,27 +12,42 @@ import RxSwift
 import MGProgressHUD
 import MGBricks
 
-
-/// 给你一个显示错误信息的error view呗
-public protocol NeedHandlErrorOnView
+public extension Reactive where Base : UIView
 {
-    /// 显示Error message toast的 Signal
-    ///
-    /// - Parameter view: view
-    /// - Returns: Toast signal
-    func errorViewProvider(on view : UIView) -> PublishSubject<RxMGError>
-}
-
-public extension NeedHandlErrorOnView
-{
-    func errorViewProvider(on view : UIView) -> PublishSubject<RxMGError>
-    {
-        let errorSb = PublishSubject<RxMGError>()
-        errorSb.subscribe(onNext: { (error) in
+    /// 展示个普通toast
+    var toastOnMe: UIBindingObserver<Base, String> {
+        
+        return UIBindingObserver(UIElement: self.base, binding: { (view, message) in
+            MGProgressHUD.hiddenAllhubToView(view, animated: true)
+            MGProgressHUD.showTextAndHiddenView(message)
+        })
+    }
+    
+    /// 展示个错误toast
+    var toastErrorOnMe: UIBindingObserver<Base, RxMGError> {
+        
+        return UIBindingObserver(UIElement: self.base, binding: { (view, error) in
             MGProgressHUD.hiddenAllhubToView(view, animated: true)
             MGProgressHUD.showTextAndHiddenView(error.apiError.message)
-        }).disposed(by: DisposeBag())
+        })
+    }
+
+    /// 展示个空态页面
+    var emptyViewOnMe: UIBindingObserver<Base, String> {
         
-        return errorSb
+        return UIBindingObserver(UIElement: self.base, binding: { (view, message) in
+            MGProgressHUD.hiddenAllhubToView(view, animated: true)
+            MGProgressHUD.showFillView(view, icon: "", message: message, detailText: nil)
+        })
+    }
+    
+    /// 展示个空态页面
+    var emptyErrorViewOnMe: UIBindingObserver<Base, RxMGError> {
+        
+        return UIBindingObserver(UIElement: self.base, binding: { (view, error) in
+            MGProgressHUD.hiddenAllhubToView(view, animated: true)
+            MGProgressHUD.showFillView(view, icon: "", message: error.apiError.message, detailText: nil)
+        })
     }
 }
+
