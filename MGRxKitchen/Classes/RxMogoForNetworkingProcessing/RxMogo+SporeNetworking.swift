@@ -30,14 +30,14 @@ public protocol HaveRequestRx : class
     ///
     /// - Parameter requestSignal: Wings层来的请求
     /// - Returns: 你想要的请求砖头
-    func pureRequest(withResultSignal requestSignal : Observable<Result<MGResponse,MGAPIError>>) -> Observable<MGResponse>
+    func pureRequest<Element>(withResultSignal requestSignal : Observable<Result<Element,MGAPIError>>) -> Observable<Element>
 }
 
 
 // HaveRequestRx 实现咯
 public extension HaveRequestRx
 {
-    func pureRequest(withResultSignal requestSignal : Observable<Result<MGResponse,MGAPIError>>) -> Observable<MGResponse>
+    func pureRequest<Element>(withResultSignal requestSignal : Observable<Result<Element,MGAPIError>>) -> Observable<Element>
     {
         return requestSignal.filter({ (result) -> Bool in
             switch result
@@ -47,7 +47,7 @@ public extension HaveRequestRx
             case .failure :
                 return false
             }
-        }).map { (result) -> MGResponse? in
+        }).map { (result) -> Element? in
             switch result
             {
             case .success (let obj):
@@ -73,15 +73,15 @@ public protocol NeedHandleRequestError
     ///   - requestSignal: Wings层来的请求
     ///   - key: 错误标识
     /// - Returns: 你想要的请求
-    func requestAfterErrorFilterd(withResultSignal requestSignal : Observable<Result<MGResponse,MGAPIError>> , withFlag key : String?) -> Observable<MGResponse>
+    func requestAfterErrorFilterd<Element>(withResultSignal requestSignal : Observable<Result<Element,MGAPIError>> , withFlag key : String?) -> Observable<Element>
 }
 
 // 处理错误的方法
 public extension NeedHandleRequestError where Self : HaveRequestRx
 {
-    func requestAfterErrorFilterd(withResultSignal
-        requestSignal : Observable<Result<MGResponse,MGAPIError>> ,
-                                  withFlag key : String? = nil) -> Observable<MGResponse>
+    func requestAfterErrorFilterd<Element>(withResultSignal
+        requestSignal : Observable<Result<Element,MGAPIError>> ,
+                                  withFlag key : String? = nil) -> Observable<Element>
     {
         let filteredResult = requestSignal.do(onNext: {[weak self]result in
             
