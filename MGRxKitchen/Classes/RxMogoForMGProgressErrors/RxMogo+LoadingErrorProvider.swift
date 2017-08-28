@@ -49,5 +49,16 @@ public extension Reactive where Base : UIView
             MGProgressHUD.showFillView(view, icon: "", message: error.apiError.message, detailText: nil)
         })
     }
+    
+    /// 是否需要loading呐
+    var isLoadingOnMe: UIBindingObserver<Base, Bool> {
+        return UIBindingObserver(UIElement: self.base) { view, isVisible in
+            if isVisible {
+                MGProgressHUD.showProgressLoadingView(view, message: nil)
+            } else {
+                MGProgressHUD.hiddenAllhubToView(view, animated: true)
+            }
+        }
+    }
 }
 

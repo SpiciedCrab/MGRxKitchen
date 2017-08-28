@@ -12,4 +12,13 @@ public class MGPage {
     public var currentPage: Int = 1
     public var totalPage: Int = 0
     public var totalAccount: Int = 0
+    
+    public init()
+    {
+    }
 }
+
+public protocol PageDividing {
+    var page: MGPage { get set }
+}
+

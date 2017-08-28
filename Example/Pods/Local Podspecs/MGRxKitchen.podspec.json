@@ -1,6 +1,6 @@
 {
   "name": "MGRxKitchen",
-  "version": "0.0.2",
+  "version": "0.0.5",
   "summary": "Rx plugins for Mogo",
   "description": "TODO: Add long description of the pod here.",
   "homepage": "https://github.com/SpiciedCrab/MGRxKitchen",
@@ -13,7 +13,7 @@
   },
   "source": {
     "git": "https://github.com/SpiciedCrab/MGRxKitchen.git",
-    "tag": "0.0.2"
+    "tag": "0.0.5"
   },
   "platforms": {
     "ios": "8.0"
@@ -33,6 +33,12 @@
       "dependencies": {
         "MGProgressHUD": [
 
+        ],
+        "MGBricks": [
+
+        ],
+        "MGRxKitchen/RxMogoForNetworkingProcessing": [
+
         ]
       }
     },
@@ -47,6 +53,9 @@
 
         ],
         "HandyJSON": [
+
+        ],
+        "RxSwiftUtilities": [
 
         ]
       }

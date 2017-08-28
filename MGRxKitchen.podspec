@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'MGRxKitchen'
-  s.version          = '0.0.4'
+  s.version          = '0.0.5'
   s.summary          = 'Rx plugins for Mogo'
 
 # This description is used to generate tags and improve search results.
@@ -45,6 +45,7 @@ TODO: Add long description of the pod here.
       networking.dependency 'Result'
       networking.dependency 'MGBricks'
       networking.dependency 'HandyJSON'
+      networking.dependency 'RxSwiftUtilities'
   end
 
   s.subspec 'RxMogoForLoadingRefresher' do |loadingExtension|

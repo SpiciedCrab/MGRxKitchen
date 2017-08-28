@@ -5,32 +5,36 @@ PODS:
   - FBSnapshotTestCase/SwiftSupport (2.1.4):
     - FBSnapshotTestCase/Core
   - HandyJSON (1.7.2)
-  - MGBricks (0.1.0)
+  - MGBricks (0.1.3):
+    - HandyJSON
   - MGProgressHUD (2.1.9)
-  - MGRxKitchen (0.0.2):
-    - MGRxKitchen/RxMogoForLoadingRefresher (= 0.0.2)
-    - MGRxKitchen/RxMogoForMGProgressErrors (= 0.0.2)
-    - MGRxKitchen/RxMogoForMJRefresher (= 0.0.2)
-    - MGRxKitchen/RxMogoForNetworkingProcessing (= 0.0.2)
+  - MGRxKitchen (0.0.5):
+    - MGRxKitchen/RxMogoForLoadingRefresher (= 0.0.5)
+    - MGRxKitchen/RxMogoForMGProgressErrors (= 0.0.5)
+    - MGRxKitchen/RxMogoForMJRefresher (= 0.0.5)
+    - MGRxKitchen/RxMogoForNetworkingProcessing (= 0.0.5)
     - RxCocoa
     - RxSwift
-  - MGRxKitchen/RxMogoForLoadingRefresher (0.0.2):
+  - MGRxKitchen/RxMogoForLoadingRefresher (0.0.5):
     - RxCocoa
     - RxSwift
-  - MGRxKitchen/RxMogoForMGProgressErrors (0.0.2):
+  - MGRxKitchen/RxMogoForMGProgressErrors (0.0.5):
+    - MGBricks
     - MGProgressHUD
+    - MGRxKitchen/RxMogoForNetworkingProcessing
     - RxCocoa
     - RxSwift
-  - MGRxKitchen/RxMogoForMJRefresher (0.0.2):
+  - MGRxKitchen/RxMogoForMJRefresher (0.0.5):
     - MJRefresh
     - RxCocoa
     - RxSwift
-  - MGRxKitchen/RxMogoForNetworkingProcessing (0.0.2):
+  - MGRxKitchen/RxMogoForNetworkingProcessing (0.0.5):
     - HandyJSON
     - MGBricks
     - Result
     - RxCocoa
     - RxSwift
+    - RxSwiftUtilities
   - MJRefresh (3.1.12)
   - Nimble (5.1.1)
   - Nimble-Snapshots (4.4.0):
@@ -44,6 +48,9 @@ PODS:
   - RxCocoa (3.6.1):
     - RxSwift (~> 3.6)
   - RxSwift (3.6.1)
+  - RxSwiftUtilities (1.0.1):
+    - RxCocoa (~> 3.0)
+    - RxSwift (~> 3.0)
 
 DEPENDENCIES:
   - FBSnapshotTestCase
@@ -59,9 +66,9 @@ EXTERNAL SOURCES:
 SPEC CHECKSUMS:
   FBSnapshotTestCase: 094f9f314decbabe373b87cc339bea235a63e07a
   HandyJSON: e7ad0483005826baba1d1c251cd98d0aa8bd8cce
-  MGBricks: 6422597b7cf9c6fad530a01357632e3118b90453
+  MGBricks: 6dadbf0903afe11fc66a421ad221da83e574e970
   MGProgressHUD: a9bdbc7e7df39f691043af39d06fca4838144178
-  MGRxKitchen: bef8a5c73b4188258baa20711146aed0b279f97a
+  MGRxKitchen: 4459a5128654c20da19f20ce63e59e7b5d34119c
   MJRefresh: b96cdb21c4aa75a7b07654311ab2f315c497e806
   Nimble: 415e3aa3267e7bc2c96b05fa814ddea7bb686a29
   Nimble-Snapshots: e743439f26c2fa99d8f7e0d7c01c99bcb40aa6f2
@@ -69,6 +76,7 @@ SPEC CHECKSUMS:
   Result: 128640a6347e8d2ae48b142556739a2d13f90ce6
   RxCocoa: 84a08739ab186248c7f31ce4ee92d6f8a947d690
   RxSwift: f9de85ea20cd2f7716ee5409fc13523dc638e4e4
+  RxSwiftUtilities: 57e77c17b885931c37aa038f114f14fd1f478ac2
 
 PODFILE CHECKSUM: a51ce962e7b4a14288f76a0994e71df7112a198f
 

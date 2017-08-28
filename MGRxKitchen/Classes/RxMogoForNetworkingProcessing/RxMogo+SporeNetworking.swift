@@ -11,6 +11,7 @@ import RxCocoa
 import RxSwift
 import Result
 import MGBricks
+import RxSwiftUtilities
 
 //MARK: - RxMogo自定义Error
 public struct RxMGError
@@ -31,6 +32,8 @@ public protocol HaveRequestRx : class
     /// - Parameter requestSignal: Wings层来的请求
     /// - Returns: 你想要的请求砖头
     func pureRequest<Element>(withResultSignal requestSignal : Observable<Result<Element,MGAPIError>>) -> Observable<Element>
+    
+    var loadingActivity : ActivityIndicator { get set }
 }
 
 
@@ -39,7 +42,8 @@ public extension HaveRequestRx
 {
     func pureRequest<Element>(withResultSignal requestSignal : Observable<Result<Element,MGAPIError>>) -> Observable<Element>
     {
-        return requestSignal.filter({ (result) -> Bool in
+        return trackRequest(signal: requestSignal)
+            .filter({ (result) -> Bool in
             switch result
             {
             case .success :
@@ -57,6 +61,17 @@ public extension HaveRequestRx
                 return nil
             }
         }.map { $0! }
+    }
+    
+    
+    /// 跟踪某个请求
+    ///
+    /// - Parameter signal: 信号
+    /// - Returns: 原封不动还给你
+    func trackRequest<Element>(signal : Observable<Result<Element,MGAPIError>>) -> Observable<Result<Element,MGAPIError>>
+    {
+        return signal
+            .trackActivity(self.loadingActivity)
     }
 }
 
@@ -83,7 +98,7 @@ public extension NeedHandleRequestError where Self : HaveRequestRx
         requestSignal : Observable<Result<Element,MGAPIError>> ,
                                   withFlag key : String? = nil) -> Observable<Element>
     {
-        let filteredResult = requestSignal.do(onNext: {[weak self]result in
+        let filteredResult = trackRequest(signal: requestSignal).trackActivity(self.loadingActivity).do(onNext: {[weak self]result in
             
             guard let strongSelf = self else { return }
             

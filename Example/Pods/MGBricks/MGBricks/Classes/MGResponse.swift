@@ -7,8 +7,9 @@
 //
 
 import Foundation
+import HandyJSON
 
-public struct MGResponse {
+public struct MGResponse : HandyJSON {
     
     public var urlResponse: URLResponse?
     public var rawData: [String : Any] = [:]
