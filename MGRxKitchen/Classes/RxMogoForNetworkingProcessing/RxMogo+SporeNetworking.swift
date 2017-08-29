@@ -34,12 +34,19 @@ public protocol HaveRequestRx : class
     func pureRequest<Element>(withResultSignal requestSignal : Observable<Result<Element,MGAPIError>>) -> Observable<Element>
     
     var loadingActivity : ActivityIndicator { get set }
+    
+    func trackLoadMySelf() -> Bool
 }
 
 
 // HaveRequestRx 实现咯
 public extension HaveRequestRx
 {
+    func trackLoadMySelf() -> Bool
+    {
+        return false
+    }
+    
     func pureRequest<Element>(withResultSignal requestSignal : Observable<Result<Element,MGAPIError>>) -> Observable<Element>
     {
         return trackRequest(signal: requestSignal)
@@ -70,8 +77,7 @@ public extension HaveRequestRx
     /// - Returns: 原封不动还给你
     func trackRequest<Element>(signal : Observable<Result<Element,MGAPIError>>) -> Observable<Result<Element,MGAPIError>>
     {
-        return signal
-            .trackActivity(self.loadingActivity)
+        return self.trackLoadMySelf() ? signal : signal.trackActivity(self.loadingActivity)
     }
 }
 
