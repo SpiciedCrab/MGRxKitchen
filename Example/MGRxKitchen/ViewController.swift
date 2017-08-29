@@ -10,9 +10,11 @@ import UIKit
 import MGRxKitchen
 import RxSwift
 import RxCocoa
+import RxSwiftUtilities
 
 class ViewController: UIViewController , HaveRequestRx , NeedHandleRequestError {
 
+    var loadingActivity : ActivityIndicator = ActivityIndicator()
     var errorProvider: PublishSubject<RxMGError> = PublishSubject<RxMGError>()
     
     override func viewDidLoad() {

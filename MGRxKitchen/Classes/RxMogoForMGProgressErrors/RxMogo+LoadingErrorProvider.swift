@@ -54,11 +54,26 @@ public extension Reactive where Base : UIView
     var isLoadingOnMe: UIBindingObserver<Base, Bool> {
         return UIBindingObserver(UIElement: self.base) { view, isVisible in
             if isVisible {
-                MGProgressHUD.showProgressLoadingView(view, message: nil)
+                MGProgressHUD.showLoadingView(view, message: nil)
             } else {
                 MGProgressHUD.hiddenAllhubToView(view, animated: true)
             }
         }
     }
+}
+
+public extension MGProgressHUD{
+    
+    @discardableResult
+    public class func  showLoadingView(_ toView:UIView!,message:String?)->MGProgressHUD?{
+        var arr  = [String]()
+        for index in 1..<10 {
+            arr.append("loading" + String(index))
+        }
+        let progressView = MGProgressHUD.showView(toView, icons: arr, message: nil, messageColor: nil, showBgView: false, detailText: nil, detailColor: nil, loationMode: nil)
+        progressView?.marginEdgeInsets = UIEdgeInsetsMake(5, UIScreen.main.bounds.width/2 - 50, 5, UIScreen.main.bounds.width/2 - 50)
+        return progressView
+    }
+    
 }
 
