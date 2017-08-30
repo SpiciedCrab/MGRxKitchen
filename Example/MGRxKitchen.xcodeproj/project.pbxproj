@@ -8,6 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		250254B665DA59D18E67F3D0 /* Pods_MGRxKitchen_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D004967567A8BA0ADC45B6BA /* Pods_MGRxKitchen_Example.framework */; };
+		4740CD441F55B75100A9219F /* ButtonRefreshController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4740CD3E1F55B75100A9219F /* ButtonRefreshController.swift */; };
+		4740CD451F55B75100A9219F /* PullDownRefreshController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4740CD401F55B75100A9219F /* PullDownRefreshController.swift */; };
+		4740CD461F55B75100A9219F /* PullUpRefreshController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4740CD421F55B75100A9219F /* PullUpRefreshController.swift */; };
+		4740CD471F55B75100A9219F /* TableViewTestViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4740CD431F55B75100A9219F /* TableViewTestViewModel.swift */; };
+		4740CD491F55B78C00A9219F /* MockService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4740CD481F55B78C00A9219F /* MockService.swift */; };
 		607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD51AFB9204008FA782 /* AppDelegate.swift */; };
 		607FACD81AFB9204008FA782 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD71AFB9204008FA782 /* ViewController.swift */; };
 		607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 607FACD91AFB9204008FA782 /* Main.storyboard */; };
@@ -30,7 +35,12 @@
 /* Begin PBXFileReference section */
 		312AC083080B8F18D549BB52 /* Pods_MGRxKitchen_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MGRxKitchen_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3E10AFA9A36F47AA4AA23543 /* Pods-MGRxKitchen_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MGRxKitchen_Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MGRxKitchen_Tests/Pods-MGRxKitchen_Tests.debug.xcconfig"; sourceTree = "<group>"; };
-		5A301C877C05AE07E5F56688 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; name = README.md; path = ../README.md; sourceTree = "<group>"; };
+		4740CD3E1F55B75100A9219F /* ButtonRefreshController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ButtonRefreshController.swift; sourceTree = "<group>"; };
+		4740CD401F55B75100A9219F /* PullDownRefreshController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PullDownRefreshController.swift; sourceTree = "<group>"; };
+		4740CD421F55B75100A9219F /* PullUpRefreshController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PullUpRefreshController.swift; sourceTree = "<group>"; };
+		4740CD431F55B75100A9219F /* TableViewTestViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewTestViewModel.swift; sourceTree = "<group>"; };
+		4740CD481F55B78C00A9219F /* MockService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockService.swift; sourceTree = "<group>"; };
+		5A301C877C05AE07E5F56688 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		607FACD01AFB9204008FA782 /* MGRxKitchen_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MGRxKitchen_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACD41AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		607FACD51AFB9204008FA782 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -42,9 +52,9 @@
 		607FACEA1AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		607FACEB1AFB9204008FA782 /* Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests.swift; sourceTree = "<group>"; };
 		687FCD27AEE934C389782165 /* Pods-MGRxKitchen_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MGRxKitchen_Example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MGRxKitchen_Example/Pods-MGRxKitchen_Example.debug.xcconfig"; sourceTree = "<group>"; };
-		6C2C0572F969CBC1B3CD89EB /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
+		6C2C0572F969CBC1B3CD89EB /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		6E5062A459734055C70B8A11 /* Pods-MGRxKitchen_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MGRxKitchen_Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-MGRxKitchen_Tests/Pods-MGRxKitchen_Tests.release.xcconfig"; sourceTree = "<group>"; };
-		7C655CA845AE7BB0E4D7C9A9 /* MGRxKitchen.podspec */ = {isa = PBXFileReference; includeInIndex = 1; name = MGRxKitchen.podspec; path = ../MGRxKitchen.podspec; sourceTree = "<group>"; };
+		7C655CA845AE7BB0E4D7C9A9 /* MGRxKitchen.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = MGRxKitchen.podspec; path = ../MGRxKitchen.podspec; sourceTree = "<group>"; };
 		CCE8D193925EB0EDEC5E210B /* Pods-MGRxKitchen_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MGRxKitchen_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-MGRxKitchen_Example/Pods-MGRxKitchen_Example.release.xcconfig"; sourceTree = "<group>"; };
 		D004967567A8BA0ADC45B6BA /* Pods_MGRxKitchen_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MGRxKitchen_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -89,6 +99,40 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		4740CD3C1F55B75100A9219F /* TableViewSamples */ = {
+			isa = PBXGroup;
+			children = (
+				4740CD3D1F55B75100A9219F /* ButtonRefresh */,
+				4740CD3F1F55B75100A9219F /* PullDownRefresh */,
+				4740CD411F55B75100A9219F /* PullUpRefresh */,
+			);
+			path = TableViewSamples;
+			sourceTree = "<group>";
+		};
+		4740CD3D1F55B75100A9219F /* ButtonRefresh */ = {
+			isa = PBXGroup;
+			children = (
+				4740CD3E1F55B75100A9219F /* ButtonRefreshController.swift */,
+			);
+			path = ButtonRefresh;
+			sourceTree = "<group>";
+		};
+		4740CD3F1F55B75100A9219F /* PullDownRefresh */ = {
+			isa = PBXGroup;
+			children = (
+				4740CD401F55B75100A9219F /* PullDownRefreshController.swift */,
+			);
+			path = PullDownRefresh;
+			sourceTree = "<group>";
+		};
+		4740CD411F55B75100A9219F /* PullUpRefresh */ = {
+			isa = PBXGroup;
+			children = (
+				4740CD421F55B75100A9219F /* PullUpRefreshController.swift */,
+			);
+			path = PullUpRefresh;
+			sourceTree = "<group>";
+		};
 		607FACC71AFB9204008FA782 = {
 			isa = PBXGroup;
 			children = (
@@ -113,6 +157,9 @@
 		607FACD21AFB9204008FA782 /* Example for MGRxKitchen */ = {
 			isa = PBXGroup;
 			children = (
+				4740CD481F55B78C00A9219F /* MockService.swift */,
+				4740CD3C1F55B75100A9219F /* TableViewSamples */,
+				4740CD431F55B75100A9219F /* TableViewTestViewModel.swift */,
 				607FACD51AFB9204008FA782 /* AppDelegate.swift */,
 				607FACD71AFB9204008FA782 /* ViewController.swift */,
 				607FACD91AFB9204008FA782 /* Main.storyboard */,
@@ -362,6 +409,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				607FACD81AFB9204008FA782 /* ViewController.swift in Sources */,
+				4740CD441F55B75100A9219F /* ButtonRefreshController.swift in Sources */,
+				4740CD491F55B78C00A9219F /* MockService.swift in Sources */,
+				4740CD461F55B75100A9219F /* PullUpRefreshController.swift in Sources */,
+				4740CD451F55B75100A9219F /* PullDownRefreshController.swift in Sources */,
+				4740CD471F55B75100A9219F /* TableViewTestViewModel.swift in Sources */,
 				607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
