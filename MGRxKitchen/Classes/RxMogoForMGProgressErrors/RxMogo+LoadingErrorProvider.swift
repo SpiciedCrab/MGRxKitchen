@@ -19,7 +19,7 @@ public extension Reactive where Base : UIView
         
         return UIBindingObserver(UIElement: self.base, binding: { (view, message) in
             MGProgressHUD.hiddenAllhubToView(view, animated: true)
-            MGProgressHUD.showTextAndHiddenView(message)
+            MGProgressHUD.showTextAndHiddenView(view, message: message)
         })
     }
     
@@ -28,7 +28,7 @@ public extension Reactive where Base : UIView
         
         return UIBindingObserver(UIElement: self.base, binding: { (view, error) in
             MGProgressHUD.hiddenAllhubToView(view, animated: true)
-            MGProgressHUD.showTextAndHiddenView(error.apiError.message)
+            MGProgressHUD.showTextAndHiddenView(view, message: error.apiError.message)
         })
     }
 

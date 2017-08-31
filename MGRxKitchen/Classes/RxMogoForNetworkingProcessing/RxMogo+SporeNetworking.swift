@@ -75,7 +75,7 @@ public extension HaveRequestRx
     ///
     /// - Parameter signal: 信号
     /// - Returns: 原封不动还给你
-    func trackRequest<Element>(signal : Observable<Result<Element,MGAPIError>>) -> Observable<Result<Element,MGAPIError>>
+    func trackRequest<Element>(signal : Observable<Element>) -> Observable<Element>
     {
         return self.trackLoadMySelf() ? signal : signal.trackActivity(self.loadingActivity)
     }
@@ -104,7 +104,7 @@ public extension NeedHandleRequestError where Self : HaveRequestRx
         requestSignal : Observable<Result<Element,MGAPIError>> ,
                                   withFlag key : String? = nil) -> Observable<Element>
     {
-        let filteredResult = trackRequest(signal: requestSignal).trackActivity(self.loadingActivity).do(onNext: {[weak self]result in
+        let filteredResult = trackRequest(signal: requestSignal).do(onNext: {[weak self]result in
             
             guard let strongSelf = self else { return }
             
