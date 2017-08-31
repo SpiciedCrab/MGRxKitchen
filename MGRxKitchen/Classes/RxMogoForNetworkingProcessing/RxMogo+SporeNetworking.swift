@@ -112,7 +112,10 @@ public extension NeedHandleRequestError where Self : HaveRequestRx
                 
             case .failure(let error):
                 
-                strongSelf.errorProvider.onNext(RxMGError(identifier: key, apiError: error))
+                let t = DispatchTime.now() + 0.1
+                DispatchQueue.main.asyncAfter(deadline: t , execute: {
+                    strongSelf.errorProvider.onNext(RxMGError(identifier: key, apiError: error))
+                })
 
             default:
                 break
