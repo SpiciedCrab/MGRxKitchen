@@ -12,16 +12,41 @@ import RxSwift
 import MGProgressHUD
 import MGBricks
 
+public enum MessagePosition
+{
+    case top(message : String?)
+    case center(message : String?)
+    case bottom(message : String?)
+}
+
 public extension Reactive where Base : UIView
 {
     /// 展示个普通toast
-    var toastOnMe: UIBindingObserver<Base, String> {
+    var toastOnBottomToMe: UIBindingObserver<Base, String> {
         
         return UIBindingObserver(UIElement: self.base, binding: { (view, message) in
             MGProgressHUD.hiddenAllhubToView(view, animated: true)
-            MGProgressHUD.showTextAndHiddenView(view, message: message)
+            MGProgressHUD.showTextAndHiddenView(view, message: message , loationMode : .bottom)
+
         })
     }
+    
+    var toastOnTopToMe: UIBindingObserver<Base, String> {
+        
+        return UIBindingObserver(UIElement: self.base, binding: { (view, message) in
+            MGProgressHUD.hiddenAllhubToView(view, animated: true)
+            MGProgressHUD.showTextAndHiddenView(view, message: message , loationMode : .top)
+        })
+    }
+    
+    var toastOnCenterToMe: UIBindingObserver<Base, String> {
+        
+        return UIBindingObserver(UIElement: self.base, binding: { (view, message) in
+            MGProgressHUD.hiddenAllhubToView(view, animated: true)
+            MGProgressHUD.showTextAndHiddenView(view, message: message , loationMode : .center)
+        })
+    }
+
     
     /// 展示个错误toast
     var toastErrorOnMe: UIBindingObserver<Base, RxMGError> {

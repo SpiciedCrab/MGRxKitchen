@@ -1,0 +1,6 @@
+framework module RxPager {
+  umbrella header "RxPager-umbrella.h"
+
+  export *
+  module * { export * }
+}
