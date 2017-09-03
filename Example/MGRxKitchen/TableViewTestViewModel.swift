@@ -11,8 +11,10 @@ import RxCocoa
 import RxSwift
 import RxSwiftUtilities
 import MGRxKitchen
+import MGBricks
+import Result
 
-class TableViewTestViewModel : HaveRequestRx , NeedHandleRequestError
+class TableViewTestViewModel : HaveRequestRx , PagableRequest
 {
     var loadingActivity: ActivityIndicator = ActivityIndicator()
 
@@ -22,15 +24,11 @@ class TableViewTestViewModel : HaveRequestRx , NeedHandleRequestError
     
     let service = MockService()
     
-    let page = Variable<Int>(0)
-    
     let nextPage = PublishSubject<Void>()
     
     let refreshPage = PublishSubject<Void>()
     
     var serviceDriver : Observable<[Demo]>!
-    
-    var finalDemos = [Demo]()
     
     init() {
         
@@ -38,19 +36,16 @@ class TableViewTestViewModel : HaveRequestRx , NeedHandleRequestError
     
     func initial()
     {
-        let originResult = page.asObservable().flatMap { self.requestAfterErrorFilterd(withResultSignal: self.service.provideMock(on: $0)) }
-        
-        serviceDriver = originResult.map { (demos) -> [Demo] in
-            if self.page.value == 0
-            {
-                self.finalDemos = demos
-            }
-            else
-            {
-                self.finalDemos.append(contentsOf: demos)
-            }
-            return self.finalDemos
-        }
+        let originResult = self.pagedRequest(withResultSignal: { (page) -> Observable<Result<([Demo], MGPage), MGAPIError>> in
+            return self.service.provideMock(on: page)
+        }, withFlag: nil, withTrigger: self.nextPage.asObservable())
+
+        serviceDriver = originResult.scan([], accumulator: { (preDemos, demos) -> [Demo] in
+            var newDemos = [Demo]()
+            newDemos.append(contentsOf: preDemos)
+            newDemos.append(contentsOf: demos)
+            return newDemos
+        })
         
         //        serviceDriver = page.asObservable().flatMap{ self.service.provideMock(on: $0).map({ demo -> [Demo] in
 //            if self.page.value == 0
@@ -65,9 +60,11 @@ class TableViewTestViewModel : HaveRequestRx , NeedHandleRequestError
 //            return self.finalDemos
 //        }) }
         
-        nextPage.map { self.page.value + 1 }.bind(to: page).disposed(by: disposeBag)
+//        nextPage.subscribe(onNext: { (_) in
+//            self.page.currentPage = self.page.currentPage + 1
+//        })
         
-        refreshPage.map { 0 }.bind(to: page).disposed(by: disposeBag)
+//        refreshPage.map { 0 }.bind(to: page).disposed(by: disposeBag)
     }
     
     

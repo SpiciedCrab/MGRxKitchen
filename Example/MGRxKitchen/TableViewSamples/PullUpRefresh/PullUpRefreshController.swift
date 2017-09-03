@@ -61,8 +61,7 @@ extension PullUpRefreshController
             .bind(to: self.viewModel.refreshPage)
             .disposed(by: self.disposeBag)
         
-        Observable.merge([self.viewModel.nextPage,
-                          self.viewModel.refreshPage])
+        Observable.merge([self.viewModel.nextPage])
             .bind(to: dataRefresher)
             .disposed(by: disposeBag)
     }

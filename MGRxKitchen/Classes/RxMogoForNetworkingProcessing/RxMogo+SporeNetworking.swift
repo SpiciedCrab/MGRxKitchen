@@ -126,6 +126,40 @@ public extension NeedHandleRequestError where Self : HaveRequestRx
     }
 }
 
+//如果你想处理错误，那就一起接上他咯
+//MARK: - RxMogo Error Handle协议
+public protocol PagableRequest : class
+{
+    /// 返回纯洁的能量，当错误时候把能量会给到errorProvider
+    ///
+    /// - Parameters:
+    ///   - requestSignal: Wings层来的请求
+    ///   - key: 错误标识
+    /// - Returns: 你想要的请求
+    func pagedRequest<Element>(withResultSignal requestSignal : @escaping ((Int) -> Observable<Result<(Element , MGPage) , MGAPIError>>) , withFlag key : String? , withTrigger trigger: Observable<Void>) -> Observable<Element>
+}
+
+// 处理错误的方法
+public extension PagableRequest where Self : HaveRequestRx
+{
+    func pagedRequest<Element>(withResultSignal requestSignal : @escaping ((Int) -> Observable<Result<(Element , MGPage) , MGAPIError>>) , withFlag key : String? , withTrigger trigger: Observable<Void>) -> Observable<Element>
+    {
+        return Observable.page(make: { (initialPara) -> Observable<(Element , MGPage)> in
+            
+            let pagePara = initialPara?.1 ?? MGPage()
+            
+            return self.pureRequest(withResultSignal: requestSignal(pagePara.currentPage + 1))
+            
+        }, while: { (result) -> Bool in
+            
+            print("total : \(result.1.totalPage)")
+            print("current : \(result.1.currentPage)")
+            return result.1.currentPage <= result.1.totalPage
+            
+        }, when: trigger).map { $0.0 }
+    }
+}
+
 
 
 
