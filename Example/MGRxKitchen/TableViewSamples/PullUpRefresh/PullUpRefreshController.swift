@@ -12,6 +12,7 @@ import RxSwift
 import MJRefresh
 
 class PullUpRefreshController: UIViewController {
+    @IBOutlet weak var barItem: UIBarButtonItem!
     
     // MARK: - Xib items
     @IBOutlet weak var tableView: UITableView!
@@ -37,32 +38,50 @@ extension PullUpRefreshController
 {
     fileprivate func configRx()
     {
-        dataRefresher
-            .do(onNext: { (_) in
-                print("start")
-            })
-            .flatMap { self.viewModel.serviceDriver }
-            .do(onNext: { (_) in
-                self.tableView.mj_footer.endRefreshing()
-                self.tableView.mj_header.endRefreshing()
-            })
-            .bind(to: self.tableView.rx.items(cellIdentifier: "Cell")) {
-                (index, demo: Demo, cell) in
-                cell.textLabel?.text = demo.name
+//        dataRefresher
+//            .do(onNext: { (_) in
+//                print("start")
+//            })
+//            .flatMap { self.viewModel.serviceDriver }
+//            .do(onNext: { (_) in
+//                self.tableView.mj_footer.endRefreshing()
+//                self.tableView.mj_header.endRefreshing()
+//            })
+//            .bind(to: self.tableView.rx.items(cellIdentifier: "Cell")) {
+//                (index, demo: Demo, cell) in
+//                cell.textLabel?.text = demo.name
+//            }.disposed(by: disposeBag)
+//        
+//        tableView.rx
+//            .pullUpRefreshing
+//            .map { true }
+//            .bind(to: self.viewModel.nextPage)
+//            .disposed(by: disposeBag)
+        
+
+//        barItem.rx.tap.bind(to: self.viewModel.nextPage)
+//            .disposed(by: disposeBag)
+        
+        tableView.rx.pullDownRefreshing.map { false }
+            .bind(to: self.viewModel.nextPage)
+            .disposed(by: self.disposeBag)
+//
+//        Observable.merge([self.viewModel.nextPage])
+//            .bind(to: dataRefresher)
+//            .disposed(by: disposeBag)
+        
+        viewModel.serviceDriver.do(onNext: { (_) in
+            self.tableView.mj_footer.endRefreshing()
+            self.tableView.mj_header.endRefreshing()
+        }).bind(to: self.tableView.rx.items(cellIdentifier: "Cell")) {
+            (index, demo: Demo, cell) in
+            cell.textLabel?.text = "\(demo.name)"
             }.disposed(by: disposeBag)
         
         tableView.rx
-            .pullUpRefreshing
+            .pullUpRefreshing.map { true }
             .bind(to: self.viewModel.nextPage)
             .disposed(by: disposeBag)
-        
-
-        tableView.rx.pullDownRefreshing
-            .bind(to: self.viewModel.refreshPage)
-            .disposed(by: self.disposeBag)
-        
-        Observable.merge([self.viewModel.nextPage])
-            .bind(to: dataRefresher)
-            .disposed(by: disposeBag)
+//
     }
 }

@@ -19,7 +19,6 @@ extension Observable {
         // get next page and recurse
         func next(_ fromPage: E?) -> Observable<E> {
             return nextPage(fromPage).map { (page: E) -> Observable<E> in
-                
                 print(page)
                 guard hasNext(page) else { return Observable.just(page) }
                 return Observable.concat([
