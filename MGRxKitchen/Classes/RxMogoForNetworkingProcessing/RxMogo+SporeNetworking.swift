@@ -21,6 +21,16 @@ public struct RxMGError
     
     /// Error
     public var apiError : MGAPIError
+    
+    
+    /// 通过一个message生成一个error
+    ///
+    /// - Parameter message: message
+    /// - Returns: error
+    public static func buildErrorWithMessage(message : String) -> RxMGError
+    {
+        return RxMGError(identifier: nil, apiError: MGAPIError(object: ["resultMsg": message]))
+    }
 }
 
 //这是个有请求就必须带着的协议哟
