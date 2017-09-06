@@ -10,19 +10,13 @@ import Foundation
 
 public struct MGAPIError: Error {
     
-    public let message: String
-    public var code: Int
+    public var message: String?
+    public var code: String?
+    public var object: Any?
     
-    public init(object: Any) {
-        let dictionary = object as? [String: Any]
-        
-        code = 99999
-        if let statusStr = dictionary?["resultCode"] as? String,
-            let statusCode = Int(statusStr) {
-            code = statusCode
-        }
-        
-        message = dictionary?["resultMsg"] as? String ?? "Unknown error occurred"
+    public init(_ code: String?, message: String?) {
+        self.code = code
+        self.message = message
     }
 }
 

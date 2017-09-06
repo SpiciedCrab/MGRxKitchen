@@ -29,7 +29,7 @@ public struct RxMGError
     /// - Returns: error
     public static func buildErrorWithMessage(message : String) -> RxMGError
     {
-        return RxMGError(identifier: nil, apiError: MGAPIError(object: ["resultMsg": message]))
+        return RxMGError(identifier: nil, apiError: MGAPIError("-99", message: message))
     }
 }
 
