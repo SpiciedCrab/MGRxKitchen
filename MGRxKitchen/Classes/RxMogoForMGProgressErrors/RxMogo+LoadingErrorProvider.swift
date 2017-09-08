@@ -57,6 +57,16 @@ public extension Reactive where Base : UIView
         })
     }
 
+    /// 展示个成功toast
+    var successCheckOnMe: UIBindingObserver<Base, String> {
+        
+        return UIBindingObserver(UIElement: self.base, binding: { (view, message) in
+            MGProgressHUD.hiddenAllhubToView(view, animated: true)
+            MGProgressHUD.showSuccessAndHiddenView(view, message: message)
+            
+        })
+    }
+    
     /// 展示个空态页面
     var emptyViewOnMe: UIBindingObserver<Base, String> {
         
