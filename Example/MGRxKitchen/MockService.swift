@@ -40,7 +40,7 @@ class MockService: NSObject
         return Observable<Result<[Demo], MGAPIError>>.create({ (observer) -> Disposable in
             
             DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1, execute: {
-                observer.onNext(Result.init(error: MGAPIError(object: ["message" : "error lalala"])))
+//                observer.onNext(Result.init(error: MGAPIError(object: ["message" : "error lalala"])))
                 
 //                observer.onNext(Result.init(value: Demo.buildDemos(on: 0)))
                 observer.onCompleted()

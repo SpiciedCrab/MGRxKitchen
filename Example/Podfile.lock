@@ -4,31 +4,31 @@ PODS:
   - FBSnapshotTestCase/Core (2.1.4)
   - FBSnapshotTestCase/SwiftSupport (2.1.4):
     - FBSnapshotTestCase/Core
-  - HandyJSON (1.7.2)
+  - HandyJSON (1.8.0)
   - MGBricks (0.1.5):
     - HandyJSON
-  - MGProgressHUD (2.1.9)
-  - MGRxKitchen (1.0.17):
-    - MGRxKitchen/RxMogoForLoadingRefresher (= 1.0.17)
-    - MGRxKitchen/RxMogoForMGProgressErrors (= 1.0.17)
-    - MGRxKitchen/RxMogoForMJRefresher (= 1.0.17)
-    - MGRxKitchen/RxMogoForNetworkingProcessing (= 1.0.17)
+  - MGProgressHUD (2.1.13)
+  - MGRxKitchen (1.2.0):
+    - MGRxKitchen/RxMogoForLoadingRefresher (= 1.2.0)
+    - MGRxKitchen/RxMogoForMGProgressErrors (= 1.2.0)
+    - MGRxKitchen/RxMogoForMJRefresher (= 1.2.0)
+    - MGRxKitchen/RxMogoForNetworkingProcessing (= 1.2.0)
     - RxCocoa
     - RxSwift
-  - MGRxKitchen/RxMogoForLoadingRefresher (1.0.17):
+  - MGRxKitchen/RxMogoForLoadingRefresher (1.2.0):
     - RxCocoa
     - RxSwift
-  - MGRxKitchen/RxMogoForMGProgressErrors (1.0.17):
+  - MGRxKitchen/RxMogoForMGProgressErrors (1.2.0):
     - MGBricks
     - MGProgressHUD
     - MGRxKitchen/RxMogoForNetworkingProcessing
     - RxCocoa
     - RxSwift
-  - MGRxKitchen/RxMogoForMJRefresher (1.0.17):
+  - MGRxKitchen/RxMogoForMJRefresher (1.2.0):
     - MJRefresh
     - RxCocoa
     - RxSwift
-  - MGRxKitchen/RxMogoForNetworkingProcessing (1.0.17):
+  - MGRxKitchen/RxMogoForNetworkingProcessing (1.2.0):
     - HandyJSON
     - MGBricks
     - Result
@@ -65,10 +65,10 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   FBSnapshotTestCase: 094f9f314decbabe373b87cc339bea235a63e07a
-  HandyJSON: e7ad0483005826baba1d1c251cd98d0aa8bd8cce
+  HandyJSON: edaaa3278bf4c4c96d6f7382b80d6b91c88d3bf5
   MGBricks: 8ddb09cc9eee829f7987bdbdd20a1275ee71ce00
-  MGProgressHUD: a9bdbc7e7df39f691043af39d06fca4838144178
-  MGRxKitchen: 5d1d515a86074860637ed647db71776053114fa8
+  MGProgressHUD: e413ab5c8496723fe7d786b4e8fa6920ff6bed09
+  MGRxKitchen: 592dd0ba32ff35a054d9c83e3d2b0fd1ddb9d28e
   MJRefresh: b96cdb21c4aa75a7b07654311ab2f315c497e806
   Nimble: 415e3aa3267e7bc2c96b05fa814ddea7bb686a29
   Nimble-Snapshots: e743439f26c2fa99d8f7e0d7c01c99bcb40aa6f2

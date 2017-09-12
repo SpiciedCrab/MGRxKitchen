@@ -72,7 +72,7 @@ public extension Reactive where Base : UIView
         
         return UIBindingObserver(UIElement: self.base, binding: { (view, message) in
             MGProgressHUD.hiddenAllhubToView(view, animated: true)
-            MGProgressHUD.showFillView(view, icon: "", message: message, detailText: nil)
+            MGProgressHUD.showFillView(view, iconImage: nil, message: message, detailText: nil)
         })
     }
     
@@ -81,7 +81,7 @@ public extension Reactive where Base : UIView
         
         return UIBindingObserver(UIElement: self.base, binding: { (view, error) in
             MGProgressHUD.hiddenAllhubToView(view, animated: true)
-            MGProgressHUD.showFillView(view, icon: "", message: error.apiError.message, detailText: nil)
+            MGProgressHUD.showFillView(view, iconImage: nil, message: error.apiError.message, detailText: nil)
         })
     }
     
@@ -101,11 +101,14 @@ public extension MGProgressHUD{
     
     @discardableResult
     public class func  showLoadingView(_ toView:UIView!,message:String?)->MGProgressHUD?{
-        var arr  = [String]()
+        var arr  = [UIImage]()
+        let bundle = Bundle(for: MGProgressHUD.self)
         for index in 1..<10 {
-            arr.append("loading" + String(index))
+            if let image = UIImage(named: "loading" + String(index), in: bundle, compatibleWith: nil){
+                arr.append(image)
+            }
         }
-        let progressView = MGProgressHUD.showView(toView, icons: arr, message: nil, messageColor: nil, showBgView: false, detailText: nil, detailColor: nil, loationMode: nil)
+        let progressView = MGProgressHUD.showView(toView, iconImages: arr, message: nil, messageColor: nil, showBgView: false, detailText: nil, detailColor: nil, loationMode: nil)
         progressView?.marginEdgeInsets = UIEdgeInsetsMake(5, UIScreen.main.bounds.width/2 - 50, 5, UIScreen.main.bounds.width/2 - 50)
         return progressView
     }

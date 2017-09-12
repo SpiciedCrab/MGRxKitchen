@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'MGRxKitchen'
-  s.version          = '1.2.0'
+  s.version          = '1.2.1'
   s.summary          = 'Rx plugins for Mogo'
 
 # This description is used to generate tags and improve search results.
@@ -29,6 +29,7 @@ TODO: Add long description of the pod here.
   # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 
   s.ios.deployment_target = '8.0'
+  s.resources = 'MGRxKitchen/Assets/*.png'
   s.dependency 'RxSwift'
   s.dependency 'RxCocoa'
 

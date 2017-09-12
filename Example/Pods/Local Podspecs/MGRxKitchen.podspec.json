@@ -1,6 +1,6 @@
 {
   "name": "MGRxKitchen",
-  "version": "1.0.17",
+  "version": "1.2.0",
   "summary": "Rx plugins for Mogo",
   "description": "TODO: Add long description of the pod here.",
   "homepage": "https://github.com/SpiciedCrab/MGRxKitchen",
@@ -13,11 +13,12 @@
   },
   "source": {
     "git": "https://github.com/SpiciedCrab/MGRxKitchen.git",
-    "tag": "1.0.17"
+    "tag": "1.2.0"
   },
   "platforms": {
     "ios": "8.0"
   },
+  "resources": "MGRxKitchen/Assets/*.png",
   "dependencies": {
     "RxSwift": [
 
