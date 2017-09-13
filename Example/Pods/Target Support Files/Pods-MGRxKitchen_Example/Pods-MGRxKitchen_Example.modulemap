@@ -1,6 +1,0 @@
-framework module Pods_MGRxKitchen_Example {
-  umbrella header "Pods-MGRxKitchen_Example-umbrella.h"
-
-  export *
-  module * { export * }
-}

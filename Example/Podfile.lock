@@ -5,30 +5,30 @@ PODS:
   - FBSnapshotTestCase/SwiftSupport (2.1.4):
     - FBSnapshotTestCase/Core
   - HandyJSON (1.8.0)
-  - MGBricks (0.1.5):
+  - MGBricks (0.1.13):
     - HandyJSON
   - MGProgressHUD (2.1.13)
-  - MGRxKitchen (1.2.0):
-    - MGRxKitchen/RxMogoForLoadingRefresher (= 1.2.0)
-    - MGRxKitchen/RxMogoForMGProgressErrors (= 1.2.0)
-    - MGRxKitchen/RxMogoForMJRefresher (= 1.2.0)
-    - MGRxKitchen/RxMogoForNetworkingProcessing (= 1.2.0)
+  - MGRxKitchen (1.2.1):
+    - MGRxKitchen/RxMogoForLoadingRefresher (= 1.2.1)
+    - MGRxKitchen/RxMogoForMGProgressErrors (= 1.2.1)
+    - MGRxKitchen/RxMogoForMJRefresher (= 1.2.1)
+    - MGRxKitchen/RxMogoForNetworkingProcessing (= 1.2.1)
     - RxCocoa
     - RxSwift
-  - MGRxKitchen/RxMogoForLoadingRefresher (1.2.0):
+  - MGRxKitchen/RxMogoForLoadingRefresher (1.2.1):
     - RxCocoa
     - RxSwift
-  - MGRxKitchen/RxMogoForMGProgressErrors (1.2.0):
+  - MGRxKitchen/RxMogoForMGProgressErrors (1.2.1):
     - MGBricks
     - MGProgressHUD
     - MGRxKitchen/RxMogoForNetworkingProcessing
     - RxCocoa
     - RxSwift
-  - MGRxKitchen/RxMogoForMJRefresher (1.2.0):
+  - MGRxKitchen/RxMogoForMJRefresher (1.2.1):
     - MJRefresh
     - RxCocoa
     - RxSwift
-  - MGRxKitchen/RxMogoForNetworkingProcessing (1.2.0):
+  - MGRxKitchen/RxMogoForNetworkingProcessing (1.2.1):
     - HandyJSON
     - MGBricks
     - Result
@@ -51,6 +51,7 @@ PODS:
   - RxSwiftUtilities (1.0.1):
     - RxCocoa (~> 3.0)
     - RxSwift (~> 3.0)
+  - SwiftLinter (0.1)
 
 DEPENDENCIES:
   - FBSnapshotTestCase
@@ -58,17 +59,26 @@ DEPENDENCIES:
   - Nimble (~> 5.1.1)
   - Nimble-Snapshots
   - Quick (~> 1.0.0)
+  - SwiftLinter (from `http://git.mogo.com/NexT/SwiftLinter.git`, commit `849a576`)
 
 EXTERNAL SOURCES:
   MGRxKitchen:
     :path: ../
+  SwiftLinter:
+    :commit: 849a576
+    :git: http://git.mogo.com/NexT/SwiftLinter.git
+
+CHECKOUT OPTIONS:
+  SwiftLinter:
+    :commit: 849a576
+    :git: http://git.mogo.com/NexT/SwiftLinter.git
 
 SPEC CHECKSUMS:
   FBSnapshotTestCase: 094f9f314decbabe373b87cc339bea235a63e07a
   HandyJSON: edaaa3278bf4c4c96d6f7382b80d6b91c88d3bf5
-  MGBricks: 8ddb09cc9eee829f7987bdbdd20a1275ee71ce00
+  MGBricks: 80483fae3c7b272a962449f11c0101efeca539b3
   MGProgressHUD: e413ab5c8496723fe7d786b4e8fa6920ff6bed09
-  MGRxKitchen: 592dd0ba32ff35a054d9c83e3d2b0fd1ddb9d28e
+  MGRxKitchen: 6549e95ace660a78548e40ef4b92a731b394df5e
   MJRefresh: b96cdb21c4aa75a7b07654311ab2f315c497e806
   Nimble: 415e3aa3267e7bc2c96b05fa814ddea7bb686a29
   Nimble-Snapshots: e743439f26c2fa99d8f7e0d7c01c99bcb40aa6f2
@@ -77,7 +87,8 @@ SPEC CHECKSUMS:
   RxCocoa: 84a08739ab186248c7f31ce4ee92d6f8a947d690
   RxSwift: f9de85ea20cd2f7716ee5409fc13523dc638e4e4
   RxSwiftUtilities: 57e77c17b885931c37aa038f114f14fd1f478ac2
+  SwiftLinter: 094ff975810c0a392412619d190564e0f43c4aaf
 
-PODFILE CHECKSUM: a51ce962e7b4a14288f76a0994e71df7112a198f
+PODFILE CHECKSUM: f84ba4043153cd93dd66e76c9d367735fb63b77d
 
 COCOAPODS: 1.2.1

@@ -1,6 +1,0 @@
-framework module MGRxKitchen {
-  umbrella header "MGRxKitchen-umbrella.h"
-
-  export *
-  module * { export * }
-}

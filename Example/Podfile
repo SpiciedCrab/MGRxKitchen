@@ -5,7 +5,7 @@ source 'http://git.mogo.com/NexT/MGPod.git'
 
 target 'MGRxKitchen_Example' do
   pod 'MGRxKitchen', :path => '../'
-
+  pod 'SwiftLinter', :git => 'http://git.mogo.com/NexT/SwiftLinter.git', :commit => '849a576'
   target 'MGRxKitchen_Tests' do
     inherit! :search_paths
 
