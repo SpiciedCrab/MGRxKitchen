@@ -51,7 +51,7 @@ PODS:
   - RxSwiftUtilities (1.0.1):
     - RxCocoa (~> 3.0)
     - RxSwift (~> 3.0)
-  - SwiftLinter (0.1)
+  - SwiftLinter (0.3)
 
 DEPENDENCIES:
   - FBSnapshotTestCase
@@ -59,18 +59,17 @@ DEPENDENCIES:
   - Nimble (~> 5.1.1)
   - Nimble-Snapshots
   - Quick (~> 1.0.0)
-  - SwiftLinter (from `http://git.mogo.com/NexT/SwiftLinter.git`, commit `849a576`)
+  - SwiftLinter (from `http://git.mogo.com/NexT/SwiftLinter.git`)
 
 EXTERNAL SOURCES:
   MGRxKitchen:
     :path: ../
   SwiftLinter:
-    :commit: 849a576
     :git: http://git.mogo.com/NexT/SwiftLinter.git
 
 CHECKOUT OPTIONS:
   SwiftLinter:
-    :commit: 849a576
+    :commit: e076019c0dcaf77dd4de902ee84f9167479bd754
     :git: http://git.mogo.com/NexT/SwiftLinter.git
 
 SPEC CHECKSUMS:
@@ -87,8 +86,8 @@ SPEC CHECKSUMS:
   RxCocoa: 84a08739ab186248c7f31ce4ee92d6f8a947d690
   RxSwift: f9de85ea20cd2f7716ee5409fc13523dc638e4e4
   RxSwiftUtilities: 57e77c17b885931c37aa038f114f14fd1f478ac2
-  SwiftLinter: 094ff975810c0a392412619d190564e0f43c4aaf
+  SwiftLinter: c13a93fa839a9c370e121d01116134a71cc03341
 
-PODFILE CHECKSUM: f84ba4043153cd93dd66e76c9d367735fb63b77d
+PODFILE CHECKSUM: 399eea327f61141e20be080bdf8adb6d1d6a7a1d
 
 COCOAPODS: 1.2.1

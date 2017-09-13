@@ -11,15 +11,12 @@ import RxCocoa
 import RxSwift
 import MJRefresh
 
-//MARK : - Reactive to Handle pull refreshes
-public extension Reactive where Base : UITableView
-{
+// MARK: - Reactive to Handle pull refreshes
+public extension Reactive where Base : UITableView {
     /// PullDown request Driver
-    public var pullDownRefreshing : ControlEvent<Void>
-    {
+    public var pullDownRefreshing: ControlEvent<Void> {
         let pullDownDriver = PublishSubject<Void>()
-        if base.mj_header == nil
-        {
+        if base.mj_header == nil {
             let header = MJRefreshNormalHeader(refreshingBlock: {
 
                 pullDownDriver.onNext(())
@@ -27,28 +24,26 @@ public extension Reactive where Base : UITableView
             })
             base.mj_header = header
         }
-        
+
         let event = ControlEvent(events: pullDownDriver)
 
         return event
     }
-    
+
     /// PullUp request Driver
-    public var pullUpRefreshing : ControlEvent<Void>
-    {
+    public var pullUpRefreshing: ControlEvent<Void> {
         let pullUpDriver = PublishSubject<Void>()
-        if base.mj_footer == nil
-        {
+        if base.mj_footer == nil {
             let footer = MJRefreshAutoNormalFooter(refreshingBlock: {
-                
+
                 pullUpDriver.onNext(())
 
             })
             base.mj_footer = footer
         }
-        
+
         let event = ControlEvent(events: pullUpDriver)
-        
+
         return event
     }
 }

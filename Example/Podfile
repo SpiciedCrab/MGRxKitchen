@@ -1,11 +1,12 @@
 use_frameworks!
+inhibit_all_warnings!
 
 source 'https://github.com/CocoaPods/Specs.git'
 source 'http://git.mogo.com/NexT/MGPod.git'
 
 target 'MGRxKitchen_Example' do
   pod 'MGRxKitchen', :path => '../'
-  pod 'SwiftLinter', :git => 'http://git.mogo.com/NexT/SwiftLinter.git', :commit => '849a576'
+    pod 'SwiftLinter', :git => 'http://git.mogo.com/NexT/SwiftLinter.git'
   target 'MGRxKitchen_Tests' do
     inherit! :search_paths
 

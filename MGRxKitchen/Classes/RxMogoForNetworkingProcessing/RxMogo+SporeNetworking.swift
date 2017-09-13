@@ -12,118 +12,105 @@ import RxSwift
 import Result
 import MGBricks
 import RxSwiftUtilities
+import HandyJSON
 
-//MARK: - RxMogo自定义Error
-public struct RxMGError
-{
+// MARK: - RxMogo自定义Error
+public struct RxMGError {
     /// 标识
-    public var identifier : String?
-    
+    public var identifier: String?
+
     /// Error
-    public var apiError : MGAPIError
-    
-    
+    public var apiError: MGAPIError
+
     /// 通过一个message生成一个error
     ///
     /// - Parameter message: message
     /// - Returns: error
-    public static func buildErrorWithMessage(message : String) -> RxMGError
-    {
+    public static func buildErrorWithMessage(message: String) -> RxMGError {
         return RxMGError(identifier: nil, apiError: MGAPIError("-99", message: message))
     }
 }
 
 //这是个有请求就必须带着的协议哟
-//MARK: - RxMogoRequest协议
-public protocol HaveRequestRx : class
-{
+// MARK: - RxMogoRequest协议
+public protocol HaveRequestRx : class {
     /// 获取一个纯洁的请求，请求Error是不会走下去的，只会走成功的情况
     ///
     /// - Parameter requestSignal: Wings层来的请求
     /// - Returns: 你想要的请求砖头
-    func pureRequest<Element>(withResultSignal requestSignal : Observable<Result<Element,MGAPIError>>) -> Observable<Element>
-    
-    var loadingActivity : ActivityIndicator { get set }
-    
+    func pureRequest<Element>(withResultSignal requestSignal: Observable<Result<Element, MGAPIError>>) -> Observable<Element>
+
+    var loadingActivity: ActivityIndicator { get set }
+
     func trackLoadMySelf() -> Bool
 }
 
-
 // HaveRequestRx 实现咯
-public extension HaveRequestRx
-{
-    func trackLoadMySelf() -> Bool
-    {
+public extension HaveRequestRx {
+    func trackLoadMySelf() -> Bool {
         return false
     }
-    
-    func pureRequest<Element>(withResultSignal requestSignal : Observable<Result<Element,MGAPIError>>) -> Observable<Element>
-    {
+
+    func pureRequest<Element>(withResultSignal requestSignal: Observable<Result<Element, MGAPIError>>) -> Observable<Element> {
         return trackRequest(signal: requestSignal)
-            .filter({ (result) -> Bool in
-            switch result
-            {
+            .filter({ result -> Bool in
+            switch result {
             case .success :
                  return true
             case .failure :
                 return false
             }
-        }).map { (result) -> Element? in
-            switch result
-            {
+        }).map { result -> Element? in
+            switch result {
             case .success (let obj):
                 return obj
-                
+
             default:
                 return nil
             }
+        // swiftlint:disable:next force_unwrapping
         }.map { $0! }
     }
-    
-    
+
     /// 跟踪某个请求
     ///
     /// - Parameter signal: 信号
     /// - Returns: 原封不动还给你
-    func trackRequest<Element>(signal : Observable<Element>) -> Observable<Element>
-    {
+    func trackRequest<Element>(signal: Observable<Element>) -> Observable<Element> {
         return self.trackLoadMySelf() ? signal : signal.trackActivity(self.loadingActivity)
     }
 }
 
 //如果你想处理错误，那就一起接上他咯
-//MARK: - RxMogo Error Handle协议
-public protocol NeedHandleRequestError
-{
+// MARK: - RxMogo Error Handle协议
+public protocol NeedHandleRequestError {
     /// 错误能量之源呐
-    var errorProvider : PublishSubject<RxMGError> { get set }
-    
+    var errorProvider: PublishSubject<RxMGError> { get set }
+
     /// 返回纯洁的能量，当错误时候把能量会给到errorProvider
     ///
     /// - Parameters:
     ///   - requestSignal: Wings层来的请求
     ///   - key: 错误标识
     /// - Returns: 你想要的请求
-    func requestAfterErrorFilterd<Element>(withResultSignal requestSignal : Observable<Result<Element,MGAPIError>> , withFlag key : String?) -> Observable<Element>
+    func requestAfterErrorFilterd<Element>(withResultSignal requestSignal: Observable<Result<Element, MGAPIError>>, withFlag key: String?) -> Observable<Element>
 }
 
 // 处理错误的方法
-public extension NeedHandleRequestError where Self : HaveRequestRx
-{
-    func requestAfterErrorFilterd<Element>(withResultSignal
-        requestSignal : Observable<Result<Element,MGAPIError>> ,
-                                  withFlag key : String? = nil) -> Observable<Element>
-    {
+public extension NeedHandleRequestError where Self : HaveRequestRx {
+    func requestAfterErrorFilterd<Element>(
+        withResultSignal requestSignal: Observable<Result<Element, MGAPIError>> ,
+        withFlag key: String? = nil) -> Observable<Element> {
         let filteredResult = trackRequest(signal: requestSignal).do(onNext: {[weak self]result in
-            
+
             guard let strongSelf = self else { return }
-            
+
             switch result {
-                
+
             case .failure(let error):
-                
+
                 let t = DispatchTime.now() + 0.1
-                DispatchQueue.main.asyncAfter(deadline: t , execute: {
+                DispatchQueue.main.asyncAfter(deadline: t, execute: {
                     strongSelf.errorProvider.onNext(RxMGError(identifier: key, apiError: error))
                 })
 
@@ -131,13 +118,7 @@ public extension NeedHandleRequestError where Self : HaveRequestRx
                 break
             }
         })
-        
+
         return pureRequest(withResultSignal: filteredResult)
     }
 }
-
-
-
-
-
-

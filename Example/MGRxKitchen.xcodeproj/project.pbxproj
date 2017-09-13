@@ -219,6 +219,7 @@
 				607FACCE1AFB9204008FA782 /* Resources */,
 				7855D7C5779403F3EDA96CCE /* [CP] Embed Pods Frameworks */,
 				2A4A2DC089C02C583F6C593F /* [CP] Copy Pods Resources */,
+				477F8FCE1F691E270034ABB6 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -340,6 +341,19 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MGRxKitchen_Example/Pods-MGRxKitchen_Example-resources.sh\"\n";
 			showEnvVarsInLog = 0;
+		};
+		477F8FCE1F691E270034ABB6 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/SwiftLinter/swift-lint.sh\"";
 		};
 		76686DBEC1A5352AA912F85E /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
