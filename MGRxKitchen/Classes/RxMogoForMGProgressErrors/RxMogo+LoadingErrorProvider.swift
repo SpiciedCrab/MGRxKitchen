@@ -12,6 +12,22 @@ import RxSwift
 import MGProgressHUD
 import MGBricks
 
+/// 获取图片（其实是copy来的）
+///
+/// - Parameters:
+///   - name: name
+///   - inClass: class
+///   - resourceName: nil
+/// - Returns: image
+public func imageFetcher(name: String,
+                         bundle inClass: Swift.AnyClass,
+                         with resourceName: String? = nil) -> UIImage? {
+    
+    let imageBundle = bundle(for: inClass, withResource: resourceName)
+    return UIImage(named: name, in: imageBundle, compatibleWith: nil)
+}
+
+
 // MARK: - MGProgress Toast Extensions
 public enum MessagePosition {
     case top(message : String?)
@@ -21,6 +37,7 @@ public enum MessagePosition {
 
 // MARK: - MGProgress Toast Rxs
 public extension Reactive where Base : UIView {
+    
     /// 展示个普通toast
     var toastOnBottomToMe: UIBindingObserver<Base, String> {
 
@@ -71,6 +88,9 @@ public extension Reactive where Base : UIView {
 
         return UIBindingObserver(UIElement: self.base, binding: { view, message in
             MGProgressHUD.hiddenAllhubToView(view, animated: true)
+            
+            imageFetcher(name: "", bundle: view.self())
+            
             MGProgressHUD.showFillView(view, iconImage: nil, message: message, detailText: nil)
         })
     }
@@ -78,6 +98,7 @@ public extension Reactive where Base : UIView {
     /// 展示个空态页面
     var emptyErrorViewOnMe: UIBindingObserver<Base, RxMGError> {
 
+        
         return UIBindingObserver(UIElement: self.base, binding: { view, error in
             MGProgressHUD.hiddenAllhubToView(view, animated: true)
             MGProgressHUD.showFillView(view, iconImage: nil, message: error.apiError.message, detailText: nil)
