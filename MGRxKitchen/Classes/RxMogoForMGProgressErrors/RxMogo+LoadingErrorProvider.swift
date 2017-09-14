@@ -12,22 +12,6 @@ import RxSwift
 import MGProgressHUD
 import MGBricks
 
-/// 获取图片（其实是copy来的）
-///
-/// - Parameters:
-///   - name: name
-///   - inClass: class
-///   - resourceName: nil
-/// - Returns: image
-public func imageFetcher(name: String,
-                         bundle inClass: Swift.AnyClass,
-                         with resourceName: String? = nil) -> UIImage? {
-    
-    let imageBundle = bundle(for: inClass, withResource: resourceName)
-    return UIImage(named: name, in: imageBundle, compatibleWith: nil)
-}
-
-
 // MARK: - MGProgress Toast Extensions
 public enum MessagePosition {
     case top(message : String?)
@@ -37,7 +21,7 @@ public enum MessagePosition {
 
 // MARK: - MGProgress Toast Rxs
 public extension Reactive where Base : UIView {
-    
+
     /// 展示个普通toast
     var toastOnBottomToMe: UIBindingObserver<Base, String> {
 
@@ -84,24 +68,25 @@ public extension Reactive where Base : UIView {
     }
 
     /// 展示个空态页面
-    var emptyViewOnMe: UIBindingObserver<Base, String> {
+    var emptyViewOnMe: UIBindingObserver<Base, (message: String, icon: UIImage)> {
 
-        return UIBindingObserver(UIElement: self.base, binding: { view, message in
+        return UIBindingObserver(UIElement: self.base, binding: { view, info in
             MGProgressHUD.hiddenAllhubToView(view, animated: true)
-            
-            imageFetcher(name: "", bundle: view.self())
-            
-            MGProgressHUD.showFillView(view, iconImage: nil, message: message, detailText: nil)
+
+            MGProgressHUD.showFillView(view,
+                                       iconImage: info.icon,
+                                       message: info.message, detailText: nil)
         })
     }
 
     /// 展示个空态页面
-    var emptyErrorViewOnMe: UIBindingObserver<Base, RxMGError> {
+    var emptyErrorViewOnMe: UIBindingObserver<Base, (error: RxMGError, icon: UIImage)> {
 
-        
-        return UIBindingObserver(UIElement: self.base, binding: { view, error in
+        return UIBindingObserver(UIElement: self.base, binding: { view, info in
             MGProgressHUD.hiddenAllhubToView(view, animated: true)
-            MGProgressHUD.showFillView(view, iconImage: nil, message: error.apiError.message, detailText: nil)
+            MGProgressHUD.showFillView(view, iconImage: info.icon,
+                                       message: info.error.apiError.message,
+                                       detailText: nil)
         })
     }
 
@@ -127,28 +112,10 @@ public extension MGProgressHUD {
     ///   - message: muyou yong
     /// - Returns: MGProgress
     @discardableResult
-    public class func  showLoadingView(_ toView: UIView!, message: String?) -> MGProgressHUD? {
-        var arr  = [UIImage]()
-        let bundle = Bundle(for: MGProgressHUD.self)
-        for index in 1..<10 {
-            if let image = UIImage(named: "loading" + String(index), in: bundle, compatibleWith: nil) {
-                arr.append(image)
-            }
-        }
-        let progressView = MGProgressHUD.showView(toView,
-                                                  iconImages: arr,
-                                                  message: nil,
-                                                  messageColor: nil,
-                                                  showBgView: false,
-                                                  detailText: nil,
-                                                  detailColor: nil,
-                                                  loationMode: nil)
+    public class func showLoadingView(_ toView: UIView!, message: String?) -> MGProgressHUD? {
 
-        progressView?.marginEdgeInsets = UIEdgeInsets(top: 5,
-                                                      left: UIScreen.main.bounds.width / 2,
-                                                      bottom: 5,
-                                                      right: UIScreen.main.bounds.width / 2 - 50)
-        return progressView
+        assert(false, "去你自己的Lib里重写这个方法吧，你看到我就说明你是猪")
+        return MGProgressHUD()
     }
 
 }
