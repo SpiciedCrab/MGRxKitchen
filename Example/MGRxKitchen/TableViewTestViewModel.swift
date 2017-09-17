@@ -11,26 +11,24 @@ import RxCocoa
 import RxSwift
 import RxSwiftUtilities
 import MGRxKitchen
+import MGBricks
+import Result
 
-class TableViewTestViewModel : HaveRequestRx , NeedHandleRequestError
+class TableViewTestViewModel : HaveRequestRx , PagableRequest
 {
     var loadingActivity: ActivityIndicator = ActivityIndicator()
-
+    
     var errorProvider : PublishSubject<RxMGError> = PublishSubject<RxMGError>()
     
     let disposeBag = DisposeBag()
     
     let service = MockService()
     
-    let page = Variable<Int>(0)
-    
-    let nextPage = PublishSubject<Void>()
-    
-    let refreshPage = PublishSubject<Void>()
-    
     var serviceDriver : Observable<[Demo]>!
     
-    var finalDemos = [Demo]()
+    var firstPage : PublishSubject<Void> = PublishSubject()
+    
+    var nextPage : PublishSubject<Void> = PublishSubject()
     
     init() {
         
@@ -38,37 +36,10 @@ class TableViewTestViewModel : HaveRequestRx , NeedHandleRequestError
     
     func initial()
     {
-        let originResult = page.asObservable().flatMap { self.requestAfterErrorFilterd(withResultSignal: self.service.provideMock(on: $0)) }
+        serviceDriver = pagedRequest(request: { (page) -> Observable<([Demo], MGPage)> in
+            return self.pureRequest(withResultSignal: self.service.provideMock(on: page.currentPage + 1))
+        })
         
-        serviceDriver = originResult.map { (demos) -> [Demo] in
-            if self.page.value == 0
-            {
-                self.finalDemos = demos
-            }
-            else
-            {
-                self.finalDemos.append(contentsOf: demos)
-            }
-            return self.finalDemos
-        }
-        
-        //        serviceDriver = page.asObservable().flatMap{ self.service.provideMock(on: $0).map({ demo -> [Demo] in
-//            if self.page.value == 0
-//            {
-//                self.finalDemos = demo
-//            }
-//            else
-//            {
-//                self.finalDemos.append(contentsOf: demos)
-//            }
-//            
-//            return self.finalDemos
-//        }) }
-        
-        nextPage.map { self.page.value + 1 }.bind(to: page).disposed(by: disposeBag)
-        
-        refreshPage.map { 0 }.bind(to: page).disposed(by: disposeBag)
     }
-    
     
 }
