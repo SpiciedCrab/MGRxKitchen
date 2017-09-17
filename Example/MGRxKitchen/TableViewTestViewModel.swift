@@ -14,32 +14,30 @@ import MGRxKitchen
 import MGBricks
 import Result
 
-class TableViewTestViewModel : HaveRequestRx , PagableRequest
-{
+internal class TableViewTestViewModel: HaveRequestRx, PagableRequest {
     var loadingActivity: ActivityIndicator = ActivityIndicator()
-    
-    var errorProvider : PublishSubject<RxMGError> = PublishSubject<RxMGError>()
-    
-    let disposeBag = DisposeBag()
-    
-    let service = MockService()
-    
-    var serviceDriver : Observable<[Demo]>!
-    
-    var firstPage : PublishSubject<Void> = PublishSubject()
-    
-    var nextPage : PublishSubject<Void> = PublishSubject()
-    
+
+    var errorProvider: PublishSubject<RxMGError> = PublishSubject<RxMGError>()
+
+    let disposeBag: DisposeBag = DisposeBag()
+
+    let service: MockService = MockService()
+
+    var serviceDriver: Observable<[Demo]>!
+
+    var firstPage: PublishSubject<Void> = PublishSubject()
+
+    var nextPage: PublishSubject<Void> = PublishSubject()
+
     init() {
-        
+
     }
-    
-    func initial()
-    {
-        serviceDriver = pagedRequest(request: { (page) -> Observable<([Demo], MGPage)> in
-            return self.pureRequest(withResultSignal: self.service.provideMock(on: page.currentPage + 1))
+
+    func initial() {
+        serviceDriver = pagedRequest(request: { page -> Observable<([Demo], MGPage)> in
+            return self.pureRequest(withResultSignal: self.service.providePageMock(on: page.currentPage + 1))
         })
-        
+
     }
-    
+
 }
