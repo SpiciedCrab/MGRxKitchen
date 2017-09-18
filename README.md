@@ -141,8 +141,67 @@
 	  	
 	这里有个TableView的实例：
 [首页房源搜索](http://git.mogo.com/NexT/Partner_iOS/blob/develop/MogoPartner/RoomSearchModule/Controllers/MGRoomSearchViewController.swift)
-        
-## 2. 我想自己搞个能量接受者
+
+## 2. 特别加餐：RxMogo对应MJ上下拉刷新
+1. 我们约定含分页的接口返回数据应该是**`Result<([Elements],MGPage), MGApiError>`** 这样的类型，别问为什么，这是最科学的返回方式了。
+2. 你需要接上`PagableRequest`，然后你会收到个提示强迫你加三个东西：
+
+	    // MARK: - Inputs
+	    /// 全部刷新，上拉或者刚进来什么的
+	    var firstPage: PublishSubject<Void> { get set }
+	
+	    /// 下一页能量
+	    var nextPage: PublishSubject<Void> { get set }
+	
+	   	// MARK: - Outputs
+	    /// 最后一页超级能量
+	    var finalPageReached: PublishSubject<Void> { get set }
+	    
+	  楼上注释已经写的很清楚啦，这前两个是能量接受，你可以把vc中的上下拉刷新控件产生的能量绑定给它们，而最后这个是能量发送者，当页面到了最后时候，你需要在vc中订阅他并做些事情。
+	  
+3. 你需要在vc中调用`pageRequest方法`，
+	  ![](https://ws1.sinaimg.cn/large/006tNc79gy1fjntfphb1gj30im07nmy8.jpg)
+	  这样你就能获取到一个数据源了。
+	  
+	  > page自增需要你自己处理，但是这也是唯一一个你需要自己处理的地方了。
+4. 这时候你已经在vc中拥有了所有你想要的东西了，你只需要把它拼装起来：
+
+        tableView.rx.pullDownRefreshing
+            .bind(to: self.viewModel.firstPage)
+            .disposed(by: self.disposeBag)
+        //
+        tableView.rx
+            .pullUpRefreshing
+            .bind(to: self.viewModel.nextPage)
+            .disposed(by: disposeBag)
+
+        viewModel.loadingActivity.asObservable().filter { !$0 }.subscribe(onNext: { (_) in
+
+            self.tableView.mj_header.endRefreshing()
+
+            if self.tableView.mj_footer != nil {
+                self.tableView.mj_footer.endRefreshing()
+            }
+        }).disposed(by: disposeBag)
+
+        viewModel.finalPageReached.subscribe(onNext: { (_) in
+            if self.tableView.mj_footer != nil {
+                self.tableView.mj_footer.endRefreshingWithNoMoreData()
+            }
+        }).disposed(by: disposeBag)
+
+        viewModel.serviceDriver.bind(to: self.tableView.rx.items(cellIdentifier: "Cell")) {
+            (_, demo: Demo, cell) in
+            cell.textLabel?.text = "\(demo.name)"
+            }.disposed(by: disposeBag)
+
+        //
+    
+>设计师思路：其实我考虑过要不要把Page对象单独放出来便于访问，但是在实践过程中，封闭型的方案再次战胜了啥都能改的方案，所以现在对于调用者来说，他几乎根本不知道当前在第几页，一共有几页等操作，唯一知道的就是是不是到page上限了
+
+> 这个page的设计来源于Rx的原作者，不是RxPager，因为RxPager无法满足上下拉同时出现的情况，而原作者的思路更易于扩展及共通
+
+## 3. 我想自己搞个能量接受者
 1. MGProgressHUD接受系列
 
         

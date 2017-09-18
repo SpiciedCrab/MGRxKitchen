@@ -38,10 +38,10 @@ class PullUpRefreshController: UIViewController {
 
 extension PullUpRefreshController {
     fileprivate func configRx() {
-
-        requestBtn.rx.tap.map { () }
-            .bind(to : tableView.rx.makMePullDown)
-            .disposed(by: disposeBag)
+//
+//        requestBtn.rx.tap.map { () }
+//            .bind(to : tableView.rx.makMePullDown)
+//            .disposed(by: disposeBag)
 
         tableView.rx.pullDownRefreshing
             .bind(to: self.viewModel.firstPage)
@@ -51,10 +51,6 @@ extension PullUpRefreshController {
             .pullUpRefreshing
             .bind(to: self.viewModel.nextPage)
             .disposed(by: disposeBag)
-
-        //        Observable.merge([self.viewModel.nextPage])
-        //            .bind(to: dataRefresher)
-        //            .disposed(by: disposeBag)
 
         viewModel.loadingActivity.asObservable().filter { !$0 }.subscribe(onNext: { (_) in
 
