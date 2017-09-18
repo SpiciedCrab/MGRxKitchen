@@ -1,11 +1,4 @@
-# MGRxKitchen
-
-[![CI Status](http://img.shields.io/travis/magic_harly@hotmail.com/MGRxKitchen.svg?style=flat)](https://travis-ci.org/magic_harly@hotmail.com/MGRxKitchen)
-[![Version](https://img.shields.io/cocoapods/v/MGRxKitchen.svg?style=flat)](http://cocoapods.org/pods/MGRxKitchen)
-[![License](https://img.shields.io/cocoapods/l/MGRxKitchen.svg?style=flat)](http://cocoapods.org/pods/MGRxKitchen)
-[![Platform](https://img.shields.io/cocoapods/p/MGRxKitchen.svg?style=flat)](http://cocoapods.org/pods/MGRxKitchen)
-
-#### 简单运用小规则
+# MGRxKitchen运用
 
 ## 1. 我有个请求
  1. 前置条件是我从ApiWings中定义了一个请求。比如：
@@ -141,67 +134,8 @@
 	  	
 	这里有个TableView的实例：
 [首页房源搜索](http://git.mogo.com/NexT/Partner_iOS/blob/develop/MogoPartner/RoomSearchModule/Controllers/MGRoomSearchViewController.swift)
-
-## 2. 特别加餐：RxMogo对应MJ上下拉刷新
-1. 我们约定含分页的接口返回数据应该是**`Result<([Elements],MGPage), MGApiError>`** 这样的类型，别问为什么，这是最科学的返回方式了。
-2. 你需要接上`PagableRequest`，然后你会收到个提示强迫你加三个东西：
-
-	    // MARK: - Inputs
-	    /// 全部刷新，上拉或者刚进来什么的
-	    var firstPage: PublishSubject<Void> { get set }
-	
-	    /// 下一页能量
-	    var nextPage: PublishSubject<Void> { get set }
-	
-	   	// MARK: - Outputs
-	    /// 最后一页超级能量
-	    var finalPageReached: PublishSubject<Void> { get set }
-	    
-	  楼上注释已经写的很清楚啦，这前两个是能量接受，你可以把vc中的上下拉刷新控件产生的能量绑定给它们，而最后这个是能量发送者，当页面到了最后时候，你需要在vc中订阅他并做些事情。
-	  
-3. 你需要在vc中调用`pageRequest方法`，
-	  ![](https://ws1.sinaimg.cn/large/006tNc79gy1fjntfphb1gj30im07nmy8.jpg)
-	  这样你就能获取到一个数据源了。
-	  
-	  > page自增需要你自己处理，但是这也是唯一一个你需要自己处理的地方了。
-4. 这时候你已经在vc中拥有了所有你想要的东西了，你只需要把它拼装起来：
-
-        tableView.rx.pullDownRefreshing
-            .bind(to: self.viewModel.firstPage)
-            .disposed(by: self.disposeBag)
-        //
-        tableView.rx
-            .pullUpRefreshing
-            .bind(to: self.viewModel.nextPage)
-            .disposed(by: disposeBag)
-
-        viewModel.loadingActivity.asObservable().filter { !$0 }.subscribe(onNext: { (_) in
-
-            self.tableView.mj_header.endRefreshing()
-
-            if self.tableView.mj_footer != nil {
-                self.tableView.mj_footer.endRefreshing()
-            }
-        }).disposed(by: disposeBag)
-
-        viewModel.finalPageReached.subscribe(onNext: { (_) in
-            if self.tableView.mj_footer != nil {
-                self.tableView.mj_footer.endRefreshingWithNoMoreData()
-            }
-        }).disposed(by: disposeBag)
-
-        viewModel.serviceDriver.bind(to: self.tableView.rx.items(cellIdentifier: "Cell")) {
-            (_, demo: Demo, cell) in
-            cell.textLabel?.text = "\(demo.name)"
-            }.disposed(by: disposeBag)
-
-        //
-    
->设计师思路：其实我考虑过要不要把Page对象单独放出来便于访问，但是在实践过程中，封闭型的方案再次战胜了啥都能改的方案，所以现在对于调用者来说，他几乎根本不知道当前在第几页，一共有几页等操作，唯一知道的就是是不是到page上限了
-
-> 这个page的设计来源于Rx的原作者，不是RxPager，因为RxPager无法满足上下拉同时出现的情况，而原作者的思路更易于扩展及共通
-
-## 3. 我想自己搞个能量接受者
+        
+## 2. 我想自己搞个能量接受者
 1. MGProgressHUD接受系列
 
         
@@ -252,27 +186,61 @@
             .bind(to: self.rx.payHeaderConfiguration)
             .disposed(by: disposeBag)
    这样就行了，这样那些复杂的处理逻辑就会集中到统一的地方，而你调用的地方就会显得简洁，之后查看其实你就不用关心你的调用处了，因为Rx习惯后你会发现，你的调用链一般不会错的，错的经常就是很杂七杂八给值的地方，也就是上面extension中可能会出现的
+  
+## 3 TableView扩展
+4. 分组tableView
 
+	为了省去protocol的对接，我们还是被自愿的用对象进行定义吧，把你的数据源转换成`[MGSection<ItemElement>]`这样的数组，而里面的`ItemElement`随意发挥了，因为Section其实只起个title的作用，因此直接将它封装了，有需求的后续会放开～比如数据源：
+	
+	    func sectionableData() -> Observable<[MGSection<MGItem>]> {
+        let item1 = MGItem(str: "1")
+        let item2 = MGItem(str: "2")
+        let item3 = MGItem(str: "4")
+        let item4 = MGItem(str: "5")
 
-## Example
+        let section1 = MGSection(header: "header1", items: [item1, item2])
+        let section2 = MGSection(header: "header2", items: [item3, item4])
 
-To run the example project, clone the repo, and run `pod install` from the Example directory first.
+        return Observable.of([section1, section2])
+   	    }
+   	    
+   	 是这样来的，那其实你只需要在tableView中作最傻瓜的绑定：
+   	 
+   	 
+        viewModel
+            .sectionableData()
+            .bind(to: tableView) { (_, tableView, _, item) -> UITableViewCell in
+            let cell = tableView.dequeueReusableCell(withIdentifier: "cell")
+            cell?.textLabel?.text = item.name
+            return cell!
+        }
+        
+       具体这个闭包里传什么，大家可以拿到代码后再看
+       
+      > 因为Section是引入了`RxDatasources`这个扩展进行再封装的，所以原有的一些方法在这个库中得到了优化，因此我们的选中事件还可以这样：
+      
+         tableView.rx
+            .modelSelected(MGItem.self)
+            .bind(to: self.rx.selectedMGItem)
+            .disposed(by: disposeBag)
+            
+       这个好处就是你可以直接从调用链中获取到model了，而不是拿到个index然后再去找数组，其实就是不需要在viewModel中记录数组了～
+       
+       所以对于一维数组tableView，你还可以这么混搭着搞：
+       
+        viewModel
+            .sectionableData().map { $0.flatMap { $0.items } }
+            .bind(to: self.tableView.rx.items(cellIdentifier: "Cell")) {
+                (_, demo: MGItem, cell) in
+                cell.textLabel?.text = demo.name
+        }.disposed(by: disposeBag)
 
-## Requirements
-
-## Installation
-
-MGRxKitchen is available through [CocoaPods](http://cocoapods.org). To install
-it, simply add the following line to your Podfile:
-
-```ruby
-pod "MGRxKitchen"
-```
-
-## Author
-
-magic_harly@hotmail.com, magic_harly@hotmail.com
-
-## License
-
-MGRxKitchen is available under the MIT license. See the LICENSE file for more info.
+        tableView.rx
+            .modelSelected(MGItem.self)
+            .bind(to: self.rx.selectedMGItem)
+            .disposed(by: disposeBag)
+            
+     因为Datasource的建立实在太麻烦了，所以Rx原版的初始化+RxDatasources的选择是很好的选择
+    
+  
+    
