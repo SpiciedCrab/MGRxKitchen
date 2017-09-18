@@ -12,7 +12,7 @@ import RxSwift
 import MJRefresh
 
 // MARK: - Reactive to Handle pull refreshes
-public extension Reactive where Base : UITableView {
+extension Reactive where Base : UITableView {
     /// PullDown request Driver
     public var pullDownRefreshing: ControlEvent<Void> {
         let pullDownDriver = PublishSubject<Void>()
@@ -46,4 +46,29 @@ public extension Reactive where Base : UITableView {
 
         return event
     }
+
+    /// 上拉能量终点
+    public var makMePullDown: UIBindingObserver<Base, Void> {
+
+        return UIBindingObserver(UIElement: self.base, binding: { tableView, _ in
+            guard let header = tableView.mj_header else {
+                return
+            }
+
+            header.beginRefreshing()
+        })
+    }
+
+    /// 下拉能量终点
+    public var makMePullUp: UIBindingObserver<Base, Void> {
+
+        return UIBindingObserver(UIElement: self.base, binding: { tableView, _ in
+            guard let footer = tableView.mj_footer else {
+                return
+            }
+
+            footer.beginRefreshing()
+        })
+    }
+
 }

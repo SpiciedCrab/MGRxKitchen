@@ -29,6 +29,8 @@ internal class TableViewTestViewModel: HaveRequestRx, PagableRequest {
 
     var nextPage: PublishSubject<Void> = PublishSubject()
 
+    var finalPageReached: PublishSubject<Void> = PublishSubject()
+
     init() {
 
     }

@@ -23,7 +23,7 @@ internal class Demo {
     static func buildPage(on page: Int) -> MGPage {
         let pageInfo = MGPage()
         pageInfo.currentPage = page
-        pageInfo.totalPage = 10
+        pageInfo.totalPage = 3
         return pageInfo
     }
 }

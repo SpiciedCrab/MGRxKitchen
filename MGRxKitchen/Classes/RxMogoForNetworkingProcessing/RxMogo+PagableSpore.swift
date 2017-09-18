@@ -21,6 +21,9 @@ public protocol PagableRequest : class {
     /// 下一页能量
     var nextPage: PublishSubject<Void> { get set }
 
+    /// 最后一页超级能量
+    var finalPageReached: PublishSubject<Void> { get set }
+
     // MARK: - Outputs
     /// 获取page
     ///
@@ -33,7 +36,14 @@ public protocol PagableRequest : class {
 public extension PagableRequest {
     func pagedRequest<Element>(request : @escaping (MGPage) -> Observable<([Element], MGPage)>)-> Observable<[Element]> {
         let loadNextPageTrigger: (Driver<MGPageRepositoryState<Element>>) -> Driver<()> = { state in
-            return self.nextPage.asDriver(onErrorJustReturn: ()).withLatestFrom(state).flatMap({ state -> Driver<()> in
+            return self.nextPage.asDriver(onErrorJustReturn: ()).withLatestFrom(state).do(onNext: { state in
+
+                if let page = state.pageInfo ,
+                    page.currentPage >= page.totalPage {
+                    self.finalPageReached.onNext(())
+                }
+
+            }).flatMap({ state -> Driver<()> in
                 !state.shouldLoadNextPage
                     ? Driver.just(())
                     : Driver.empty()
