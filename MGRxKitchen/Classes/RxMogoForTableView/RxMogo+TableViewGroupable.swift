@@ -11,7 +11,7 @@ import RxCocoa
 import RxSwift
 import RxDataSources
 
-typealias DataSourceWithRequest<RowItem> = [MGSection<RowItem>]
+public typealias DataSourceWithRequest<RowItem> = [MGSection<RowItem>]
 
 // MARK: - Extension for section
 public extension Observable {
@@ -36,9 +36,10 @@ public extension Observable {
         UITableView,
         IndexPath,
         RowItem) -> UITableViewCell )
+        -> Disposable
         where E == DataSourceWithRequest<RowItem> {
 
-        var realDataSource = RxTableViewSectionedReloadDataSource<MGSection<RowItem>>()
+        let realDataSource = RxTableViewSectionedReloadDataSource<MGSection<RowItem>>()
 
         realDataSource.titleForHeaderInSection = { ds, index in
                 return ds.sectionModels[index].header
@@ -46,6 +47,6 @@ public extension Observable {
 
         realDataSource.configureCell = configCell
 
-        self.bind(to: tableView.rx.items(dataSource: realDataSource))
+        return self.bind(to: tableView.rx.items(dataSource: realDataSource))
     }
 }

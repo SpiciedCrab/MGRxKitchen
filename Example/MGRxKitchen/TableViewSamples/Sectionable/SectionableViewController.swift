@@ -22,10 +22,10 @@ internal class SectionableViewController: UIViewController {
         viewModel
             .sectionableData()
             .bind(to: tableView) { (_, tableView, _, item) -> UITableViewCell in
-            let cell = tableView.dequeueReusableCell(withIdentifier: "cell")
-            cell?.textLabel?.text = item.name
-            return cell!
-        }
+                let cell = tableView.dequeueReusableCell(withIdentifier: "cell")
+                cell?.textLabel?.text = item.name
+                return cell!
+        }.disposed(by: disposeBag)
 
         tableView.rx
             .modelSelected(MGItem.self)
