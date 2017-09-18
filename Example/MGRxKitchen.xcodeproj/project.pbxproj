@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		250254B665DA59D18E67F3D0 /* Pods_MGRxKitchen_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D004967567A8BA0ADC45B6BA /* Pods_MGRxKitchen_Example.framework */; };
+		47397C0B1F701DFD0039B6FF /* SectionableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47397C0A1F701DFD0039B6FF /* SectionableViewController.swift */; };
 		4740CD441F55B75100A9219F /* ButtonRefreshController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4740CD3E1F55B75100A9219F /* ButtonRefreshController.swift */; };
 		4740CD451F55B75100A9219F /* PullDownRefreshController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4740CD401F55B75100A9219F /* PullDownRefreshController.swift */; };
 		4740CD461F55B75100A9219F /* PullUpRefreshController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4740CD421F55B75100A9219F /* PullUpRefreshController.swift */; };
@@ -35,6 +36,7 @@
 /* Begin PBXFileReference section */
 		312AC083080B8F18D549BB52 /* Pods_MGRxKitchen_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MGRxKitchen_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3E10AFA9A36F47AA4AA23543 /* Pods-MGRxKitchen_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MGRxKitchen_Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MGRxKitchen_Tests/Pods-MGRxKitchen_Tests.debug.xcconfig"; sourceTree = "<group>"; };
+		47397C0A1F701DFD0039B6FF /* SectionableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SectionableViewController.swift; path = Sectionable/SectionableViewController.swift; sourceTree = "<group>"; };
 		4740CD3E1F55B75100A9219F /* ButtonRefreshController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ButtonRefreshController.swift; sourceTree = "<group>"; };
 		4740CD401F55B75100A9219F /* PullDownRefreshController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PullDownRefreshController.swift; sourceTree = "<group>"; };
 		4740CD421F55B75100A9219F /* PullUpRefreshController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PullUpRefreshController.swift; sourceTree = "<group>"; };
@@ -99,9 +101,18 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		47397C091F701D680039B6FF /* SectionableTableView */ = {
+			isa = PBXGroup;
+			children = (
+				47397C0A1F701DFD0039B6FF /* SectionableViewController.swift */,
+			);
+			name = SectionableTableView;
+			sourceTree = "<group>";
+		};
 		4740CD3C1F55B75100A9219F /* TableViewSamples */ = {
 			isa = PBXGroup;
 			children = (
+				47397C091F701D680039B6FF /* SectionableTableView */,
 				4740CD3D1F55B75100A9219F /* ButtonRefresh */,
 				4740CD3F1F55B75100A9219F /* PullDownRefresh */,
 				4740CD411F55B75100A9219F /* PullUpRefresh */,
@@ -424,6 +435,7 @@
 			files = (
 				607FACD81AFB9204008FA782 /* ViewController.swift in Sources */,
 				4740CD441F55B75100A9219F /* ButtonRefreshController.swift in Sources */,
+				47397C0B1F701DFD0039B6FF /* SectionableViewController.swift in Sources */,
 				4740CD491F55B78C00A9219F /* MockService.swift in Sources */,
 				4740CD461F55B75100A9219F /* PullUpRefreshController.swift in Sources */,
 				4740CD451F55B75100A9219F /* PullDownRefreshController.swift in Sources */,

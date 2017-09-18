@@ -134,6 +134,26 @@
                                             <segue destination="edH-uO-Zgb" kind="show" id="w8q-IW-AbP"/>
                                         </connections>
                                     </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" textLabel="wfQ-zO-u30" style="IBUITableViewCellStyleDefault" id="5Dr-5Y-EBH">
+                                        <rect key="frame" x="0.0" y="132" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="5Dr-5Y-EBH" id="c39-4X-Cwj">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="分组列表" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="wfQ-zO-u30">
+                                                    <rect key="frame" x="15" y="0.0" width="345" height="43.5"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="2Ue-nT-Hgy" kind="show" id="mjI-F0-aRx"/>
+                                        </connections>
+                                    </tableViewCell>
                                 </cells>
                             </tableViewSection>
                         </sections>
@@ -252,6 +272,49 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ezr-r3-PTN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2584.8000000000002" y="1402.8485757121441"/>
+        </scene>
+        <!--Sectionable View Controller-->
+        <scene sceneID="nZ0-L7-XfR">
+            <objects>
+                <viewController id="2Ue-nT-Hgy" customClass="SectionableViewController" customModule="MGRxKitchen_Example" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="agv-gj-qdA"/>
+                        <viewControllerLayoutGuide type="bottom" id="KgU-Hx-wbE"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Ud9-r6-JS1">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="Csd-zV-hMJ">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" id="jef-dv-EUC">
+                                        <rect key="frame" x="0.0" y="55.5" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="jef-dv-EUC" id="xLQ-VS-H2T">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="Csd-zV-hMJ" secondAttribute="trailing" id="YJi-nB-4Tc"/>
+                            <constraint firstItem="Csd-zV-hMJ" firstAttribute="top" secondItem="Ud9-r6-JS1" secondAttribute="top" id="s5H-mH-jsI"/>
+                            <constraint firstItem="KgU-Hx-wbE" firstAttribute="top" secondItem="Csd-zV-hMJ" secondAttribute="bottom" id="w8O-mx-SNu"/>
+                            <constraint firstItem="Csd-zV-hMJ" firstAttribute="leading" secondItem="Ud9-r6-JS1" secondAttribute="leading" id="zpg-rn-Sl5"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="tableView" destination="Csd-zV-hMJ" id="M5K-vu-EJW"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="9iA-Gu-ru2" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2584.8000000000002" y="2069.4152923538231"/>
         </scene>
         <!--按钮普通刷新-->
         <scene sceneID="fYR-7G-1b1">
