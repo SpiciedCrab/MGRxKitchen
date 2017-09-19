@@ -68,7 +68,7 @@ public extension Reactive where Base : UIView {
     }
 
     /// 展示个空态页面
-    var emptyViewOnMe: UIBindingObserver<Base, (message: String, icon: UIImage)> {
+    var emptyViewOnMe: UIBindingObserver<Base, (message: String, icon: UIImage?)> {
 
         return UIBindingObserver(UIElement: self.base, binding: { view, info in
             MGProgressHUD.hiddenAllhubToView(view, animated: true)
@@ -80,7 +80,7 @@ public extension Reactive where Base : UIView {
     }
 
     /// 展示个空态页面
-    var emptyErrorViewOnMe: UIBindingObserver<Base, (error: RxMGError, icon: UIImage)> {
+    var emptyErrorViewOnMe: UIBindingObserver<Base, (error: RxMGError, icon: UIImage?)> {
 
         return UIBindingObserver(UIElement: self.base, binding: { view, info in
             MGProgressHUD.hiddenAllhubToView(view, animated: true)
@@ -90,38 +90,38 @@ public extension Reactive where Base : UIView {
         })
     }
 
-    /// 是否需要loading呐
-    var isLoadingOnMe: UIBindingObserver<Base, Bool> {
-        return UIBindingObserver(UIElement: self.base) { view, isVisible in
-            if isVisible {
-
-                MGProgressHUD.showLoadingView(view, message: nil)
-            } else {
-                MGProgressHUD.hiddenAllhubToView(view, animated: true)
-            }
-        }
-    }
+//    /// 是否需要loading呐
+//    var isLoadingOnMe: UIBindingObserver<Base, Bool> {
+//        return UIBindingObserver(UIElement: self.base) { view, isVisible in
+//            if isVisible {
+//
+//                MGProgressHUD.showLoadingView(view, message: nil)
+//            } else {
+//                MGProgressHUD.hiddenAllhubToView(view, animated: true)
+//            }
+//        }
+//    }
 }
-
-/// 自己需要实现它啊啊啊啊
-public protocol MGCustomizing {
-    static func showLoadingView(_ toView: UIView!, message: String?) -> MGProgressHUD?
-}
-
-// MARK: - MGProgressView Extensions
-extension MGProgressHUD {
-
-    /// Show 一个loading
-    ///
-    /// - Parameters:
-    ///   - toView: view
-    ///   - message: muyou yong
-    /// - Returns: MGProgress
-    @discardableResult
-    public class func showLoadingView(_ toView: UIView!, message: String?) -> MGProgressHUD? {
-
-        assert(false, "去你自己的Lib里重写这个方法吧，你看到我就说明你是猪")
-        return MGProgressHUD()
-    }
-
-}
+//
+///// 自己需要实现它啊啊啊啊
+//public protocol MGCustomizing {
+//    static func showLoadingView(_ toView: UIView!, message: String?) -> MGProgressHUD?
+//}
+//
+//// MARK: - MGProgressView Extensions
+//extension MGProgressHUD {
+//
+//    /// Show 一个loading
+//    ///
+//    /// - Parameters:
+//    ///   - toView: view
+//    ///   - message: muyou yong
+//    /// - Returns: MGProgress
+//    @discardableResult
+//    public class func showLoadingView(_ toView: UIView!, message: String?) -> MGProgressHUD? {
+//
+//        assert(false, "去你自己的Lib里重写这个方法吧，你看到我就说明你是猪")
+//        return MGProgressHUD()
+//    }
+//
+//}

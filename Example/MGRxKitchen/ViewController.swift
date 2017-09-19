@@ -12,14 +12,14 @@ import RxCocoa
 import MGProgressHUD
 import MGRxKitchen
 
-extension MGProgressHUD : MGCustomizing {
-    @discardableResult
-    public static func showLoadingView(_ toView: UIView!, message: String?) -> MGProgressHUD? {
-
-        print("我来啦")
-        return MGProgressHUD()
-    }
-}
+//extension MGProgressHUD : MGCustomizing {
+//    @discardableResult
+//    public static func showLoadingView(_ toView: UIView!, message: String?) -> MGProgressHUD? {
+//
+//        print("我来啦")
+//        return MGProgressHUD()
+//    }
+//}
 
 class ViewController: UIViewController {
 
@@ -42,7 +42,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        MGProgressHUD.showLoadingView(self.view, message: "sss")
+//        MGProgressHUD.showLoadingView(self.view, message: "sss")
 
         //Button
 //        viewBtn.rx.tap.bind(to: vm.confirmAction).disposed(by: disposeBag)
