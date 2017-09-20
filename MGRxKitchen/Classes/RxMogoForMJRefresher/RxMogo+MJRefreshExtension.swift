@@ -71,6 +71,18 @@ extension Reactive where Base : UITableView {
         })
     }
     
+    /// 到达最后一页
+    public var makTouchLastPage: UIBindingObserver<Base, Void> {
+        
+        return UIBindingObserver(UIElement: self.base, binding: { tableView, _ in
+            guard let footer = tableView.mj_footer else {
+                return
+            }
+            
+            footer.endRefreshingWithNoMoreData()
+        })
+    }
+    
     /// 全部停止刷新节点
     public var makMeStopRefreshing: UIBindingObserver<Base, Bool> {
         
