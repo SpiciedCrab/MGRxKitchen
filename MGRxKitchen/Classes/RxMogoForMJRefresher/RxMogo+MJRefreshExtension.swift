@@ -70,5 +70,24 @@ extension Reactive where Base : UITableView {
             footer.beginRefreshing()
         })
     }
+    
+    /// 全部停止刷新节点
+    public var makMeStopRefreshing: UIBindingObserver<Base, Bool> {
+        
+        return UIBindingObserver(UIElement: self.base, binding: { tableView, isLoading in
+            
+            guard !isLoading else { return }
+            
+            if let footer = tableView.mj_footer
+            {
+                footer.endRefreshing()
+            }
+            
+            if let header = tableView.mj_header
+            {
+                header.endRefreshing()
+            }
+        })
+    }
 
 }
