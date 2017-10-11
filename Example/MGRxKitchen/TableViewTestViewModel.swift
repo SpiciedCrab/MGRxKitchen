@@ -27,17 +27,19 @@ internal class TableViewTestViewModel: HaveRequestRx, PagableRequest {
 
     var errorProvider: PublishSubject<RxMGError> = PublishSubject<RxMGError>()
 
-    let disposeBag: DisposeBag = DisposeBag()
-
-    let service: MockService = MockService()
-
-    var serviceDriver: Observable<[Demo]>!
-
     var firstPage: PublishSubject<Void> = PublishSubject()
 
     var nextPage: PublishSubject<Void> = PublishSubject()
 
+    
+    //Output
     var finalPageReached: PublishSubject<Void> = PublishSubject()
+    
+    let disposeBag: DisposeBag = DisposeBag()
+    
+    let service: MockService = MockService()
+    
+    var serviceDriver: Observable<[Demo]>!
 
     init() {
 

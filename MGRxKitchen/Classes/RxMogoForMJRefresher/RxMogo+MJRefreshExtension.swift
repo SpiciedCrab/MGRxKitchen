@@ -34,7 +34,7 @@ extension Reactive where Base : UITableView {
     public var pullUpRefreshing: ControlEvent<Void> {
         let pullUpDriver = PublishSubject<Void>()
         if base.mj_footer == nil {
-            let footer = MJRefreshAutoNormalFooter(refreshingBlock: {
+            let footer = MJRefreshBackNormalFooter(refreshingBlock: {
 
                 pullUpDriver.onNext(())
 
@@ -70,33 +70,31 @@ extension Reactive where Base : UITableView {
             footer.beginRefreshing()
         })
     }
-    
+
     /// 到达最后一页
     public var makTouchLastPage: UIBindingObserver<Base, Void> {
-        
+
         return UIBindingObserver(UIElement: self.base, binding: { tableView, _ in
             guard let footer = tableView.mj_footer else {
                 return
             }
-            
+
             footer.endRefreshingWithNoMoreData()
         })
     }
-    
+
     /// 全部停止刷新节点
     public var makMeStopRefreshing: UIBindingObserver<Base, Bool> {
-        
+
         return UIBindingObserver(UIElement: self.base, binding: { tableView, isLoading in
-            
+
             guard !isLoading else { return }
-            
-            if let footer = tableView.mj_footer
-            {
+
+            if let footer = tableView.mj_footer {
                 footer.endRefreshing()
             }
-            
-            if let header = tableView.mj_header
-            {
+
+            if let header = tableView.mj_header {
                 header.endRefreshing()
             }
         })
