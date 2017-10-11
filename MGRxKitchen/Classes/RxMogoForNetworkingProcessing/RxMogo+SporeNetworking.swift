@@ -31,6 +31,10 @@ public struct RxMGError {
     }
 }
 
+public protocol HaveListItems : class {
+    var isListEmpty: PublishSubject<Bool> { get set }
+}
+
 //这是个有请求就必须带着的协议哟
 // MARK: - RxMogoRequest协议
 public protocol HaveRequestRx : class {

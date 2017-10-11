@@ -20,7 +20,7 @@ internal class SectionableViewController: UIViewController {
         super.viewDidLoad()
 
         viewModel
-            .sectionableData()
+            .sectionableData().checkEmptyList()
             .bind(to: tableView) { (_, tableView, _, item) -> UITableViewCell in
                 let cell = tableView.dequeueReusableCell(withIdentifier: "cell")
                 cell?.textLabel?.text = item.name
