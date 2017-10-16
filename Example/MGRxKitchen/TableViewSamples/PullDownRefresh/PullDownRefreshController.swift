@@ -43,7 +43,7 @@ extension PullDownRefreshController {
             .do(onNext: { (_) in
                 self.tableView.mj_header.endRefreshing()
             })
-            .checkEmptyList()
+            .checkEmptyList(emptyAction: {}, notEmptyAction: {})
             .bind(to: self.tableView.rx.items(cellIdentifier: "Cell")) {
                 (_, demo: Demo, cell) in
                 cell.textLabel?.text = demo.name

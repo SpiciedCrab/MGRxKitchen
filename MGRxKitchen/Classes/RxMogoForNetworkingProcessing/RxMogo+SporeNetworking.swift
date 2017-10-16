@@ -44,6 +44,12 @@ public protocol HaveRequestRx : class {
     /// - Returns: 你想要的请求砖头
     func pureRequest<Element>(withResultSignal requestSignal: Observable<Result<Element, MGAPIError>>) -> Observable<Element>
 
+    /// 获取一个纯洁的请求，请求Error是不会走下去的，只会走成功的情况
+    ///
+    /// - Parameter requestAction: 请求block
+    /// - Returns: 你想要的请求砖头
+    func pureRequest<Element>(withResultAction requestAction: (() -> Observable<Result<Element, MGAPIError>>)) -> Observable<Element>
+
     var loadingActivity: ActivityIndicator { get set }
 
     func trackLoadMySelf() -> Bool
@@ -53,6 +59,11 @@ public protocol HaveRequestRx : class {
 public extension HaveRequestRx {
     func trackLoadMySelf() -> Bool {
         return false
+    }
+
+    func pureRequest<Element>(withResultAction
+        requestAction: (() -> Observable<Result<Element, MGAPIError>>)) -> Observable<Element> {
+        return pureRequest(withResultSignal: requestAction())
     }
 
     func pureRequest<Element>(withResultSignal requestSignal: Observable<Result<Element, MGAPIError>>) -> Observable<Element> {
@@ -98,10 +109,23 @@ public protocol NeedHandleRequestError {
     ///   - key: 错误标识
     /// - Returns: 你想要的请求
     func requestAfterErrorFilterd<Element>(withResultSignal requestSignal: Observable<Result<Element, MGAPIError>>, withFlag key: String?) -> Observable<Element>
+
+    /// 返回纯洁的能量，当错误时候把能量会给到errorProvider
+    ///
+    /// - Parameters:
+    ///   - requestAction: Wings层来的请求做的block哟
+    ///   - key: 错误标识
+    /// - Returns: 你想要的请求
+    func requestAfterErrorFilterd<Element>(withResultAction requestAction: (() -> Observable<Result<Element, MGAPIError>>), withFlag key: String?) -> Observable<Element>
 }
 
 // 处理错误的方法
 public extension NeedHandleRequestError where Self : HaveRequestRx {
+
+    func requestAfterErrorFilterd<Element>(withResultSignal requestAction: (() -> Observable<Result<Element, MGAPIError>>), withFlag key: String?) -> Observable<Element> {
+        return requestAfterErrorFilterd(withResultSignal: requestAction(), withFlag: key)
+    }
+
     func requestAfterErrorFilterd<Element>(
         withResultSignal requestSignal: Observable<Result<Element, MGAPIError>> ,
         withFlag key: String? = nil) -> Observable<Element> {
