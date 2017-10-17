@@ -116,13 +116,15 @@ public protocol NeedHandleRequestError {
     ///   - requestAction: Wings层来的请求做的block哟
     ///   - key: 错误标识
     /// - Returns: 你想要的请求
-    func requestAfterErrorFilterd<Element>(withResultAction requestAction: (() -> Observable<Result<Element, MGAPIError>>), withFlag key: String?) -> Observable<Element>
+    func requestAfterErrorFilterd<Element>(withResultAction
+        requestAction: (() -> Observable<Result<Element, MGAPIError>>), withFlag key: String?) -> Observable<Element>
 }
 
 // 处理错误的方法
 public extension NeedHandleRequestError where Self : HaveRequestRx {
 
-    func requestAfterErrorFilterd<Element>(withResultSignal requestAction: (() -> Observable<Result<Element, MGAPIError>>), withFlag key: String?) -> Observable<Element> {
+    func requestAfterErrorFilterd<Element>(withResultAction
+        requestAction: (() -> Observable<Result<Element, MGAPIError>>), withFlag key: String?) -> Observable<Element> {
         return requestAfterErrorFilterd(withResultSignal: requestAction(), withFlag: key)
     }
 
