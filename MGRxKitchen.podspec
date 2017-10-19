@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'MGRxKitchen'
-  s.version          = '2.0.3'
+  s.version          = '2.0.4'
   s.summary          = 'Rx plugins for Mogo'
 
 # This description is used to generate tags and improve search results.
@@ -67,6 +67,13 @@ TODO: Add long description of the pod here.
   s.subspec 'RxMogoForTableView' do |rxTable|
       rxTable.source_files = 'MGRxKitchen/Classes/RxMogoForTableView/**/*{.swift}'
       rxTable.dependency 'RxDataSources'
+  end
+
+  s.subspec 'RxMogoForActionStage' do |actor|
+      actor.source_files = 'MGRxKitchen/Classes/RxMogoForActionStage/**/*{.swift}'
+      actor.dependency 'MGProgressHUD'
+      actor.dependency 'RxSwiftUtilities'
+      actor.dependency 'ActionStageSwift' , '0.1.5'
   end
   
   # s.resource_bundles = {

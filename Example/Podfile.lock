@@ -1,4 +1,5 @@
 PODS:
+  - ActionStageSwift (0.1.5)
   - Differentiator (2.0.2)
   - FBSnapshotTestCase (2.1.4):
     - FBSnapshotTestCase/SwiftSupport (= 2.1.4)
@@ -9,39 +10,46 @@ PODS:
   - MGBricks (0.1.14):
     - HandyJSON
   - MGProgressHUD (2.1.15)
-  - MGRxKitchen (2.0.0):
-    - MGRxKitchen/RxMogoBinding (= 2.0.0)
-    - MGRxKitchen/RxMogoForLoadingRefresher (= 2.0.0)
-    - MGRxKitchen/RxMogoForMGProgressErrors (= 2.0.0)
-    - MGRxKitchen/RxMogoForMJRefresher (= 2.0.0)
-    - MGRxKitchen/RxMogoForNetworkingProcessing (= 2.0.0)
-    - MGRxKitchen/RxMogoForTableView (= 2.0.0)
+  - MGRxKitchen (2.0.3):
+    - MGRxKitchen/RxMogoBinding (= 2.0.3)
+    - MGRxKitchen/RxMogoForActionStage (= 2.0.3)
+    - MGRxKitchen/RxMogoForLoadingRefresher (= 2.0.3)
+    - MGRxKitchen/RxMogoForMGProgressErrors (= 2.0.3)
+    - MGRxKitchen/RxMogoForMJRefresher (= 2.0.3)
+    - MGRxKitchen/RxMogoForNetworkingProcessing (= 2.0.3)
+    - MGRxKitchen/RxMogoForTableView (= 2.0.3)
     - RxCocoa
     - RxSwift
-  - MGRxKitchen/RxMogoBinding (2.0.0):
+  - MGRxKitchen/RxMogoBinding (2.0.3):
     - RxCocoa
     - RxSwift
-  - MGRxKitchen/RxMogoForLoadingRefresher (2.0.0):
+  - MGRxKitchen/RxMogoForActionStage (2.0.3):
+    - ActionStageSwift (= 0.1.5)
+    - MGProgressHUD
     - RxCocoa
     - RxSwift
-  - MGRxKitchen/RxMogoForMGProgressErrors (2.0.0):
+    - RxSwiftUtilities
+  - MGRxKitchen/RxMogoForLoadingRefresher (2.0.3):
+    - RxCocoa
+    - RxSwift
+  - MGRxKitchen/RxMogoForMGProgressErrors (2.0.3):
     - MGBricks
     - MGProgressHUD
     - MGRxKitchen/RxMogoForNetworkingProcessing
     - RxCocoa
     - RxSwift
-  - MGRxKitchen/RxMogoForMJRefresher (2.0.0):
+  - MGRxKitchen/RxMogoForMJRefresher (2.0.3):
     - MJRefresh
     - RxCocoa
     - RxSwift
-  - MGRxKitchen/RxMogoForNetworkingProcessing (2.0.0):
+  - MGRxKitchen/RxMogoForNetworkingProcessing (2.0.3):
     - HandyJSON
     - MGBricks
     - Result
     - RxCocoa
     - RxSwift
     - RxSwiftUtilities
-  - MGRxKitchen/RxMogoForTableView (2.0.0):
+  - MGRxKitchen/RxMogoForTableView (2.0.3):
     - RxCocoa
     - RxDataSources
     - RxSwift
@@ -86,12 +94,13 @@ CHECKOUT OPTIONS:
     :git: http://git.mogo.com/NexT/SwiftLinter.git
 
 SPEC CHECKSUMS:
+  ActionStageSwift: a052a4f16e47ac02f8f90dc1079159bdbec663b1
   Differentiator: caa9b3957981a2ac8e6b2eac8a676af461caa604
   FBSnapshotTestCase: 094f9f314decbabe373b87cc339bea235a63e07a
   HandyJSON: edaaa3278bf4c4c96d6f7382b80d6b91c88d3bf5
   MGBricks: 3d6214ee3292c7a35106ddf7fca9a42fe9ee25b0
   MGProgressHUD: 2fda0d6e9f981c5f91a3479ba5022295d06d5dae
-  MGRxKitchen: e31ba7d37c9c2ed6bbc40bf977afd7ed8a157d9a
+  MGRxKitchen: 98f80b66625cbc4cfc3f5a073887af5064f844a4
   MJRefresh: 6642e35b3227a5447b9fd5e17c552c90196c9859
   Nimble: bfe1f814edabba69ff145cb1283e04ed636a67f2
   Nimble-Snapshots: f5459b5b091678dc942d03ec4741cacb58ba4a52
