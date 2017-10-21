@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'MGRxKitchen'
-  s.version          = '3.0.2'
+  s.version          = '3.0.3'
   s.summary          = 'Rx plugins for Mogo'
 
 # This description is used to generate tags and improve search results.
@@ -32,7 +32,7 @@ TODO: Add long description of the pod here.
   s.resources = 'MGRxKitchen/Assets/*.png'
   s.dependency 'RxSwift'
   s.dependency 'RxCocoa' , '3.6.1'
-  s.dependency 'NSObject+Rx', '3.0.1'
+  s.dependency 'NSObject+Rx', '3.0.0'
 
 
   s.subspec 'RxMogoForMGProgressErrors' do |mgProgress|
