@@ -118,10 +118,24 @@ public protocol NeedHandleRequestError {
     /// - Returns: 你想要的请求
     func requestAfterErrorFilterd<Element>(withResultAction
         requestAction: (() -> Observable<Result<Element, MGAPIError>>), withFlag key: String?) -> Observable<Element>
+
+    /// 返回纯洁的能量，当错误时候把能量会给到errorProvider
+    ///
+    /// - Parameters:
+    ///   - requestAction: Wings层来的请求做的block哟
+    ///   - key: 错误标识
+    /// - Returns: 你想要的请求
+    func requestAfterErrorFilterd<Element>(withResultAction
+        requestAction: (() -> Observable<Result<Element, MGAPIError>>), withFlag key: String?) -> Observable<RxBricks<Element>>
 }
 
 // 处理错误的方法
 public extension NeedHandleRequestError where Self : HaveRequestRx {
+
+    func requestAfterErrorFilterd<Element>(withResultAction
+        requestAction: (() -> Observable<Result<Element, MGAPIError>>), withFlag key: String?) -> Observable<RxBricks<Element>> {
+        return requestAfterErrorFilterd(withResultSignal: requestAction(), withFlag: key).map { RxBricks.finished(result: $0) }
+    }
 
     func requestAfterErrorFilterd<Element>(withResultAction
         requestAction: (() -> Observable<Result<Element, MGAPIError>>), withFlag key: String?) -> Observable<Element> {
