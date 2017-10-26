@@ -20,9 +20,11 @@ internal enum PagableRequestCommand<Element> {
     case responseRecieved(PageResponse<Element>)
 }
 
-public struct MGPageRepositoryState<RepositoryElement> : Mutable {
+public struct MGPageRepositoryState<RepositoryElement> : Mutable, Statable {
 
     var shouldLoadNextPage: Bool
+
+    public var isLoading: Bool
 
     public var repositories: Version<[RepositoryElement]>
 
@@ -32,6 +34,7 @@ public struct MGPageRepositoryState<RepositoryElement> : Mutable {
 
     init() {
 
+        isLoading = false
         shouldLoadNextPage = true
         repositories = Version([])
         failure = nil
@@ -49,8 +52,9 @@ extension MGPageRepositoryState {
         switch command {
         case .refreshAll:
             return MGPageRepositoryState().mutateOne {
-                    $0.failure = state.failure
-                    $0.pageInfo = MGPage()
+                $0.failure = state.failure
+                $0.pageInfo = MGPage()
+                $0.isLoading = false
             }
         case .responseRecieved(let result):
 
@@ -59,6 +63,7 @@ extension MGPageRepositoryState {
                 $0.shouldLoadNextPage = false
                 $0.failure = nil
                 $0.pageInfo = result.1
+                $0.isLoading = true
             }
 
         case .loadMoreItems:
@@ -66,6 +71,8 @@ extension MGPageRepositoryState {
                 if $0.failure == nil, let realPage = $0.pageInfo {
                     $0.shouldLoadNextPage = realPage.currentPage < realPage.totalPage
                 }
+
+                $0.isLoading = false
             }
         }
     }
@@ -112,7 +119,7 @@ public func pagableRepository<Element> (
     // * one that sends commands from user input
     return Driver.system(MGPageRepositoryState.buildNewState(),
                          accumulator: MGPageRepositoryState.reduce,
-                         feedback: searchPerformerFeedback, inputFeedbackLoop)
+                         feedback: searchPerformerFeedback, inputFeedbackLoop).filter { $0.isLoading }
 }
 
 internal func == (

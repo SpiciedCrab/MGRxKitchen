@@ -9,6 +9,10 @@
 import RxSwift
 import RxCocoa
 
+public protocol Statable {
+    var isLoading: Bool { get set }
+}
+
 extension Observable {
     /**
      Simulation of a discrete system with feedback loops.
@@ -17,12 +21,12 @@ extension Observable {
      - [fixpoint solver](https://en.wikipedia.org/wiki/Fixed_point)
      - [local equilibrium point calculator](https://en.wikipedia.org/wiki/Mechanical_equilibrium)
      - ....
-
+     
      System simulation will be started upon subscription and stopped after subscription is disposed.
-
+     
      System state is represented as a `State` parameter.
      Commands are represented by `Element` parameter.
-
+     
      - parameter initialState: Initial state of the system.
      - parameter accumulator: Calculates new system state from existing state and a transition command (system integrator, reducer).
      - parameter feedback: Feedback loops that produce commands depending on current system state.
@@ -57,18 +61,18 @@ extension SharedSequence {
      - [fixpoint solver](https://en.wikipedia.org/wiki/Fixed_point)
      - [local equilibrium point calculator](https://en.wikipedia.org/wiki/Mechanical_equilibrium)
      - ....
-
+     
      System simulation will be started upon subscription and stopped after subscription is disposed.
-
+     
      System state is represented as a `State` parameter.
      Commands are represented by `E` parameter.
-
+     
      - parameter initialState: Initial state of the system.
      - parameter accumulator: Calculates new system state from existing state and a transition command (system integrator, reducer).
      - parameter feedback: Feedback loops that produce commands depending on current system state.
      - returns: Current state of the system.
      */
-    public static func system<State>(
+    public static func system<State: Statable>(
         _ initialState: State,
         accumulator: @escaping (State, Element) -> State,
         feedback: (SharedSequence<S, State>) -> SharedSequence<S, Element>...
