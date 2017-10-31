@@ -12,7 +12,7 @@ import RxSwift
 import RxCocoa
 import MGBricks
 
-public typealias PageResponse<Element> = ([Element], MGPage)
+public typealias PageResponse<Element> = Result<([Element], MGPage), MGAPIError>
 
 internal enum PagableRequestCommand<Element> {
     case refreshAll
@@ -39,7 +39,6 @@ public struct MGPageRepositoryState<RepositoryElement> : Mutable, Statable {
         repositories = Version([])
         failure = nil
     }
-
 }
 
 extension MGPageRepositoryState {
@@ -58,12 +57,26 @@ extension MGPageRepositoryState {
             }
         case .responseRecieved(let result):
 
-            return state.mutate {
-                $0.repositories = Version($0.repositories.value + result.0)
-                $0.shouldLoadNextPage = false
-                $0.failure = nil
-                $0.pageInfo = result.1
-                $0.isLoading = true
+            switch result {
+            case .success(let realResult):
+                    return state.mutate {
+                        $0.repositories = Version($0.repositories.value + realResult.0)
+                        $0.shouldLoadNextPage = false
+                        $0.failure = nil
+                        $0.pageInfo = realResult.1
+                        $0.isLoading = true
+                    }
+                break
+
+            case .failure(let error):
+                return state.mutate {
+                    $0.repositories = Version([])
+                    $0.shouldLoadNextPage = false
+                    $0.failure = error
+                    $0.pageInfo = MGPage()
+                    $0.isLoading = true
+                }
+                break
             }
 
         case .loadMoreItems:
@@ -102,7 +115,7 @@ public func pagableRepository<Element> (
                 }
 
                 return performSearch(finalPage)
-                    .asDriver(onErrorJustReturn: ([], MGPage()))
+                    .asDriver(onErrorJustReturn: Result(error: MGAPIError("-998", message: "欧，架构炸了快跑啊")))
                     .map(PagableRequestCommand.responseRecieved)
         }
     }

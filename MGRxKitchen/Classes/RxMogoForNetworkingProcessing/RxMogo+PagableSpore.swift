@@ -29,12 +29,12 @@ public protocol PagableRequest : class {
     ///
     /// - Parameter request: pureRequest之类的
     /// - Returns: Observable T
-    func pagedRequest<Element>(request : @escaping (MGPage) -> Observable<([Element], MGPage)>)-> Observable<[Element]>
+    func pagedRequest<Element>(request : @escaping (MGPage) -> Observable<Result<([Element], MGPage), MGAPIError>>)-> Observable<[Element]>
 }
 
 // MARK: - Page
 public extension PagableRequest {
-    func pagedRequest<Element>(request : @escaping (MGPage) -> Observable<([Element], MGPage)>)-> Observable<[Element]> {
+    func pagedRequest<Element>(request : @escaping (MGPage) -> Observable<Result<([Element], MGPage), MGAPIError>>)-> Observable<[Element]> {
         let loadNextPageTrigger: (Driver<MGPageRepositoryState<Element>>) -> Driver<()> = { state in
             return self.nextPage.asDriver(onErrorJustReturn: ()).withLatestFrom(state).do(onNext: { state in
 
@@ -52,7 +52,7 @@ public extension PagableRequest {
 
         return pagableRepository(allRefresher: firstPage.asDriver(onErrorJustReturn: ()),
                                  loadNextPageTrigger:
-        loadNextPageTrigger) { page -> Observable<([Element], MGPage )> in
+        loadNextPageTrigger) { page -> Observable<Result<([Element], MGPage), MGAPIError>> in
                 return request(page)
             }.asObservable()
             .map { $0.repositories }

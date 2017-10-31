@@ -31,14 +31,13 @@ internal class TableViewTestViewModel: HaveRequestRx, PagableRequest {
 
     var nextPage: PublishSubject<Void> = PublishSubject()
 
-    
     //Output
     var finalPageReached: PublishSubject<Void> = PublishSubject()
-    
+
     let disposeBag: DisposeBag = DisposeBag()
-    
+
     let service: MockService = MockService()
-    
+
     var serviceDriver: Observable<[Demo]>!
 
     init() {
@@ -46,10 +45,7 @@ internal class TableViewTestViewModel: HaveRequestRx, PagableRequest {
     }
 
     func initial() {
-        serviceDriver = pagedRequest(request: { page -> Observable<([Demo], MGPage)> in
-            return self.pureRequest(withResultSignal: self.service.providePageMock(on: page.currentPage + 1))
-        })
-
+        serviceDriver = pagedRequest(request: { self.service.providePageMock(on: $0.currentPage + 1) })
     }
 
     func sectionableData() -> Observable<[MGSection<MGItem>]> {
