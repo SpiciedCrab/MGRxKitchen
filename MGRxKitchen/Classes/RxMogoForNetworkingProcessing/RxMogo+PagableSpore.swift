@@ -50,12 +50,19 @@ public extension PagableRequest {
             })
         }
 
-        return pagableRepository(allRefresher: firstPage.asDriver(onErrorJustReturn: ()),
-                                 loadNextPageTrigger:
-        loadNextPageTrigger) {[weak self] page -> Observable<Result<([Element], MGPage), MGAPIError>> in
+        let performSearch: ((MGPage) -> Observable<PageResponse<Element>>) = {[weak self] page -> Observable<Result<([Element], MGPage), MGAPIError>> in
             guard let strongSelf = self else { return Observable.empty() }
-                return strongSelf.trackRequest(signal: request(page))
-            }.asObservable()
+            return strongSelf.trackRequest(signal: request(page))
+        }
+
+        let repo = pagableRepository(allRefresher: firstPage.asDriver(onErrorJustReturn: ()),
+                                     loadNextPageTrigger: loadNextPageTrigger,
+                                     performSearch: performSearch) {[weak self] (error) in
+            guard let strongSelf = self else { return }
+            strongSelf.errorProvider
+                .onNext(RxMGError(identifier: "pageError", apiError: error))
+        }
+        return repo.asObservable()
             .map { $0.repositories }
             .map { $0.value }
     }

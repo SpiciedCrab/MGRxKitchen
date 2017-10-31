@@ -32,6 +32,10 @@ public struct MGPageRepositoryState<RepositoryElement> : Mutable, Statable {
 
     var pageInfo: MGPage?
 
+    public var isFailed: Bool {
+        return failure != nil
+    }
+
     init() {
 
         isLoading = false
@@ -94,7 +98,8 @@ extension MGPageRepositoryState {
 public func pagableRepository<Element> (
     allRefresher: Driver<Void>,
     loadNextPageTrigger: @escaping (Driver<MGPageRepositoryState<Element>>) -> Driver<()>,
-    performSearch: @escaping (MGPage) -> Observable<PageResponse<Element>>
+    performSearch: @escaping (MGPage) -> Observable<PageResponse<Element>> ,
+    errorTrigger: ((MGAPIError) -> Void)? = nil
     ) -> Driver<MGPageRepositoryState<Element>> {
 
     let searchPerformerFeedback: (Driver<MGPageRepositoryState<Element>>) -> Driver<PagableRequestCommand<Element>> = { state in
@@ -132,7 +137,13 @@ public func pagableRepository<Element> (
     // * one that sends commands from user input
     return Driver.system(MGPageRepositoryState.buildNewState(),
                          accumulator: MGPageRepositoryState.reduce,
-                         feedback: searchPerformerFeedback, inputFeedbackLoop).filter { $0.isLoading }
+                         feedback: searchPerformerFeedback, inputFeedbackLoop)
+        .do(onNext: { state in
+            guard let realError = state.failure else { return }
+            guard let errorSender = errorTrigger else { return }
+            errorSender(realError)
+        })
+        .filter { $0.isLoading || $0.isFailed }
 }
 
 internal func == (

@@ -11,6 +11,8 @@ import RxCocoa
 
 public protocol Statable {
     var isLoading: Bool { get set }
+
+    var isFailed: Bool { get }
 }
 
 extension Observable {
