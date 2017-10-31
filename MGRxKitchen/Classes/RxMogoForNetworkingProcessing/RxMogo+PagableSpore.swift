@@ -13,7 +13,7 @@ import RxCocoa
 import MGBricks
 
 /// 分页实现 
-public protocol PagableRequest : class {
+public protocol PagableRequest: NeedHandleRequestError, HaveRequestRx {
     // MARK: - Inputs
     /// 全部刷新，上拉或者刚进来什么的
     var firstPage: PublishSubject<Void> { get set }
@@ -52,8 +52,9 @@ public extension PagableRequest {
 
         return pagableRepository(allRefresher: firstPage.asDriver(onErrorJustReturn: ()),
                                  loadNextPageTrigger:
-        loadNextPageTrigger) { page -> Observable<Result<([Element], MGPage), MGAPIError>> in
-                return request(page)
+        loadNextPageTrigger) {[weak self] page -> Observable<Result<([Element], MGPage), MGAPIError>> in
+            guard let strongSelf = self else { return Observable.empty() }
+                return strongSelf.trackRequest(signal: request(page))
             }.asObservable()
             .map { $0.repositories }
             .map { $0.value }
