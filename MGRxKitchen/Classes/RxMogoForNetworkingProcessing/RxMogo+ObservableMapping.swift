@@ -62,3 +62,17 @@ public extension Observable where Element == RxBricks<Array<[String : Any]>> {
         }
     }
 }
+
+// MARK: - Error能量去重复，防止真的error和emptyMessage一起来
+public extension PublishSubject where Element == RxMGError
+{
+    /// 把后来的emtpyMessage去掉
+    ///
+    /// - Returns: realToBind
+    func distinctRubbish() -> Observable<Element>
+    {
+        return distinctUntilChanged({ (_, error) -> Bool in
+            return error.apiError.code ?? "" == MG_EmptyMessageErrorCode
+        })
+    }
+}

@@ -14,6 +14,8 @@ import MGBricks
 import RxSwiftUtilities
 import HandyJSON
 
+let MG_EmptyMessageErrorCode = "-698"
+
 // MARK: - RxMogo自定义Error
 public struct RxMGError {
     /// 标识
@@ -28,6 +30,14 @@ public struct RxMGError {
     /// - Returns: error
     public static func buildErrorWithMessage(message: String) -> RxMGError {
         return RxMGError(identifier: nil, apiError: MGAPIError("-99", message: message))
+    }
+    
+    /// 给数据为空特地做的error
+    ///
+    /// - Parameter message: message
+    /// - Returns: error
+    public static func buildEmptyMessage(message: String) -> RxMGError {
+        return RxMGError(identifier: nil, apiError: MGAPIError(MG_EmptyMessageErrorCode, message: message))
     }
 }
 
