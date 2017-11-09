@@ -10,6 +10,7 @@ import UIKit
 import RxCocoa
 import RxSwift
 import MJRefresh
+import MGRxKitchen
 
 class PullDownRefreshController: UIViewController {
 
@@ -33,6 +34,9 @@ class PullDownRefreshController: UIViewController {
 
         /// 初始刷新呐
         tableView.mj_header.beginRefreshing()
+
+        MGRxListWithApiMixer.createMixChain().mixListView(listView: tableView,
+                                                          togetherWith: viewModel)
     }
 }
 

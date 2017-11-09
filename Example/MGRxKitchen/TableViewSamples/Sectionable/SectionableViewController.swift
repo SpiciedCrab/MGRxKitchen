@@ -31,6 +31,7 @@ internal class SectionableViewController: UIViewController {
             .modelSelected(MGItem.self)
             .bind(to: self.rx.selectedMGItem)
             .disposed(by: disposeBag)
+
     }
 
     @IBOutlet private weak var tableView: UITableView!

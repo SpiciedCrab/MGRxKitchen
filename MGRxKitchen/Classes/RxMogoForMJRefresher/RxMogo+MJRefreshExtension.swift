@@ -12,7 +12,7 @@ import RxSwift
 import MJRefresh
 
 // MARK: - Reactive to Handle pull refreshes
-extension Reactive where Base : UITableView {
+extension Reactive where Base : UIScrollView {
     /// PullDown request Driver
     public var pullDownRefreshing: ControlEvent<Void> {
         let pullDownDriver = PublishSubject<Void>()
