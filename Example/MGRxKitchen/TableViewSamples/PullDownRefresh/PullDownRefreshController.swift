@@ -35,8 +35,7 @@ class PullDownRefreshController: UIViewController {
         /// 初始刷新呐
         tableView.mj_header.beginRefreshing()
 
-        MGRxListWithApiMixer.createMixChain().mixListView(listView: tableView,
-                                                          togetherWith: viewModel)
+        MGRxListWithApiMixer.createMixChain().mixView(view: tableView, togetherWith: viewModel)
     }
 }
 

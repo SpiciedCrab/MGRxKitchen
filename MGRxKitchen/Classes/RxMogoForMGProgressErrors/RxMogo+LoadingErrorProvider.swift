@@ -90,17 +90,17 @@ public extension Reactive where Base : UIView {
         })
     }
 
-//    /// 是否需要loading呐
-//    var isLoadingOnMe: UIBindingObserver<Base, Bool> {
-//        return UIBindingObserver(UIElement: self.base) { view, isVisible in
-//            if isVisible {
-//
-//                MGProgressHUD.showLoadingView(view, message: nil)
-//            } else {
-//                MGProgressHUD.hiddenAllhubToView(view, animated: true)
-//            }
-//        }
-//    }
+    /// 是否需要loading呐
+    var isLoading: UIBindingObserver<Base, Bool> {
+        return UIBindingObserver(UIElement: self.base) { view, isVisible in
+            if isVisible {
+
+                MGProgressHUD.showProgressLoadingView(view, message: "")
+            } else {
+                MGProgressHUD.hiddenAllhubToView(view, animated: true)
+            }
+        }
+    }
 }
 //
 ///// 自己需要实现它啊啊啊啊
