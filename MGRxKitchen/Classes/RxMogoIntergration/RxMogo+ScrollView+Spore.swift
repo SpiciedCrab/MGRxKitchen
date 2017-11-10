@@ -11,9 +11,6 @@ import RxSwift
 import NSObject_Rx
 
 // MARK: - Common Definitions
-public class MGRxKichenConfiguration {
-    public static var emptyImage: UIImage?
-}
 
 public typealias ErrorActionType = ((RxMGError) -> Void)
 
@@ -137,7 +134,7 @@ public class ShowErrorRequestMixer: MGRxListWithApiMixer {
 
         filterErrorViewModel.errorProvider
             .distinctRubbish()
-            .map { ( $0, MGRxKichenConfiguration.emptyImage) }
+            .map { ( $0, MGRxKichenConfiguration.shared.emptyImage) }
             .bind(to: view.rx.emptyErrorViewOnMe)
             .disposed(by: view.rx.disposeBag)
 
