@@ -15,7 +15,12 @@ import MGRxKitchen
 class PullDownRefreshController: UIViewController {
 
     // MARK: - Xib items
-    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var tableView: UITableView! {
+        didSet {
+            tableView.smoothlyRegister(forType: TempTableViewCell.self)
+        }
+
+    }
 
     // MARK: - Private items
     fileprivate let disposeBag = DisposeBag()
@@ -47,10 +52,9 @@ extension PullDownRefreshController {
                 self.tableView.mj_header.endRefreshing()
             })
             .checkEmptyList(emptyAction: {}, notEmptyAction: {})
-            .bind(to: self.tableView.rx.items(cellIdentifier: "Cell")) {
-                (_, demo: Demo, cell) in
+            .smoothlyBind(to: tableView, by: { (_, demo, cell: TempTableViewCell) in
                 cell.textLabel?.text = demo.name
-        }.disposed(by: disposeBag)
+            }).disposed(by: disposeBag)
 
         tableView.rx.pullDownRefreshing
             .bind(to: dataRefresher)

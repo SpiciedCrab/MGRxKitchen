@@ -9,9 +9,19 @@ import Foundation
 import RxCocoa
 import RxSwift
 
-public extension Observable where Element : Collection {
+extension Observable where Element : Collection {
 
-    func smoothlyBind(to tableView: UITableView, by configCell : @escaping
+    /// Binding
+    ///
+    /// - Parameters:
+    ///   - tableView: tableView
+    ///   - configCell: {(path, demo) in
+    //       let cell = smoothlyDequexxxxx
+    ///      cell.textLabel?.text = demo.name}
+    ///      return cell
+    ///   }
+    /// - Returns: dispose
+    public func smoothlyBind(to tableView: UITableView, by configCell : @escaping
         (IndexPath, E.Iterator.Element) -> UITableViewCell )
         -> Disposable {
 
@@ -20,10 +30,18 @@ public extension Observable where Element : Collection {
             }
     }
 
-    func smoothlyBind<Cell: UITableViewCell>(to tableView: UITableView, by configCell :        @escaping (IndexPath, E.Iterator.Element, Cell) -> Void )
+    /// Binding
+    ///
+    /// - Parameters:
+    ///   - tableView: tableView
+    ///   - configCell: {(path, demo, cell: TempTableViewCell) in
+    ///      cell.textLabel?.text = demo.name}
+    ///   }
+    /// - Returns: dispose
+    public func smoothlyBind<Cell: UITableViewCell>(to tableView: UITableView, by configCell :        @escaping (IndexPath, E.Iterator.Element, Cell) -> Void )
         -> Disposable {
         return bind(to: tableView.rx
-            .items(cellIdentifier: Cell.description())) {(path, item: E.Iterator.Element, cell) in
+            .items(cellIdentifier: Cell.reuseIdentifier)) {(path, item: E.Iterator.Element, cell) in
                 configCell(IndexPath(row: path, section: 0), item, cell)
         }
     }

@@ -94,8 +94,7 @@ public extension Reactive where Base : UIView {
     var isLoading: UIBindingObserver<Base, Bool> {
         return UIBindingObserver(UIElement: self.base) { view, isVisible in
             if isVisible {
-
-                MGProgressHUD.showProgressLoadingView(view, message: "")
+                MGProgressHUD.showLoadingView(view, message: nil)
             } else {
                 MGProgressHUD.hiddenAllhubToView(view, animated: true)
             }

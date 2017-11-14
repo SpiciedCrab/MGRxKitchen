@@ -34,9 +34,9 @@ internal class MockService: NSObject {
         return Observable<Result<[Demo], MGAPIError>>.create({ observer -> Disposable in
 
             DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1, execute: {
-             observer.onNext(Result(error: MGAPIError("errpr", message: "ssss")))
+//             observer.onNext(Result(error: MGAPIError("errpr", message: "ssss")))
 
-                //                observer.onNext(Result.init(value: Demo.buildDemos(on: 0)))
+                                observer.onNext(Result(value: Demo.buildDemos(on: 0)))
                 observer.onCompleted()
             })
 
@@ -52,8 +52,8 @@ internal class MockService: NSObject {
             DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1, execute: {
                 //                observer.onNext(Result.init(error: MGAPIError(object: ["message" : "error lalala"])))
                 print("request : \(page) times")
-                observer.onNext(Result(error: MGAPIError("errpr", message: "ssss")))
-//                observer.onNext(Result(value: (Demo.buildDemos(on: page), Demo.buildPage(on: page))))
+//                observer.onNext(Result(error: MGAPIError("errpr", message: "ssss")))
+                observer.onNext(Result(value: (Demo.buildDemos(on: page), Demo.buildPage(on: page))))
                 observer.onCompleted()
             })
 
