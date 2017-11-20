@@ -5,10 +5,12 @@
 //  Created by Harly on 2017/10/19.
 //
 
-import Foundation
-import ActionStageSwift
+import MGRxKitchen
+import MGProgressHUD
+import RxSwiftUtilities
 import RxSwift
 import RxCocoa
+import ActionStageSwift
 
 // MARK: - 发送一个Message to watchers
 extension Reactive where Base : LHWActionStage {
@@ -37,6 +39,35 @@ extension Reactive where Base : LHWActor {
             })
 
         })
+    }
+}
+
+// MARK: - 配置Actor的Rxs
+public protocol MGActorLoadingAvailable {
+    var loadingActivity: ActivityIndicator { get set }
+
+    /// 错误能量之源呐
+    var errorProvider: PublishSubject<RxMGError> { get set }
+
+    var disposeBag: DisposeBag { get set }
+}
+
+extension MGActorLoadingAvailable where Self : LHWActor {
+    public func configLoading() {
+        errorProvider.do(onNext: { error in
+            MGProgressHUD.showTextAndHiddenView(error.apiError.message)
+        }).map { _ in [self.path] }
+            .bind(to: rx.failedToAll)
+            .disposed(by: disposeBag)
+
+        guard let vc = UIApplication.shared.keyWindow?.rootViewController else {
+            return
+        }
+
+        loadingActivity
+            .asObservable()
+            .bind(to: vc.view.rx.isLoading)
+            .disposed(by: disposeBag)
     }
 }
 
