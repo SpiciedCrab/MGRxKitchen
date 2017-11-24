@@ -11,7 +11,7 @@ import RxCocoa
 import RxSwift
 import Result
 import MGBricks
-import RxSwiftUtilities
+import MGRxActivityIndicator
 import HandyJSON
 
 let MG_EmptyMessageErrorCode = "-698"
@@ -31,7 +31,7 @@ public struct RxMGError {
     public static func buildErrorWithMessage(message: String) -> RxMGError {
         return RxMGError(identifier: nil, apiError: MGAPIError("-99", message: message))
     }
-    
+
     /// 给数据为空特地做的error
     ///
     /// - Parameter message: message

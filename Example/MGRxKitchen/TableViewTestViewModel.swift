@@ -9,7 +9,7 @@
 import UIKit
 import RxCocoa
 import RxSwift
-import RxSwiftUtilities
+import MGRxActivityIndicator
 import MGRxKitchen
 import MGBricks
 import Result

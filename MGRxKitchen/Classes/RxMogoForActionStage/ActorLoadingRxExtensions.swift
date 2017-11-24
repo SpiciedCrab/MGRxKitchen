@@ -7,10 +7,10 @@
 
 import MGRxKitchen
 import MGProgressHUD
-import RxSwiftUtilities
+import MGRxActivityIndicator
 import RxSwift
 import RxCocoa
-import ActionStageSwift
+import MGActionStageSwift
 
 // MARK: - 发送一个Message to watchers
 extension Reactive where Base : LHWActionStage {
@@ -35,6 +35,7 @@ extension Reactive where Base : LHWActor {
         return UIBindingObserver(UIElement: base, binding: { (_, paths) in
 
             paths.forEach({ (path) in
+
                 ActionStageInstance.actionFailed(path, reason: .failed)
             })
 

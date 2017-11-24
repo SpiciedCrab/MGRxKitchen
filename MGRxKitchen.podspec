@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'MGRxKitchen'
-  s.version          = '3.1.7'
+  s.version          = '4.0.0'
   s.summary          = 'Rx plugins for Mogo'
 
 # This description is used to generate tags and improve search results.
@@ -30,9 +30,9 @@ TODO: Add long description of the pod here.
 
   s.ios.deployment_target = '8.0'
   s.resources = 'MGRxKitchen/Assets/*.png'
-  s.dependency 'RxSwift'
-  s.dependency 'RxCocoa' , '3.6.1'
-  s.dependency 'NSObject+Rx', '3.0.0'
+  s.dependency 'RxSwift' , '~>4.0.0'
+  s.dependency 'RxCocoa' , '~>4.0.0'
+  s.dependency 'NSObject+Rx'
 
 
   s.subspec 'RxMogoForMGProgressErrors' do |mgProgress|
@@ -47,7 +47,7 @@ TODO: Add long description of the pod here.
       networking.dependency 'Result'
       networking.dependency 'MGBricks'
       networking.dependency 'HandyJSON'
-      networking.dependency 'RxSwiftUtilities'
+      networking.dependency 'MGRxActivityIndicator'
   end
 
   s.subspec 'RxMogoForLoadingRefresher' do |loadingExtension|
@@ -67,14 +67,14 @@ TODO: Add long description of the pod here.
 
   s.subspec 'RxMogoForTableView' do |rxTable|
       rxTable.source_files = 'MGRxKitchen/Classes/RxMogoForTableView/**/*{.swift}'
-      rxTable.dependency 'RxDataSources' , '2.0.2'
+      rxTable.dependency 'RxDataSources' 
   end
 
   s.subspec 'RxMogoForActionStage' do |actor|
       actor.source_files = 'MGRxKitchen/Classes/RxMogoForActionStage/**/*{.swift}'
       actor.dependency 'MGProgressHUD'
-      actor.dependency 'RxSwiftUtilities'
-      actor.dependency 'ActionStageSwift' , '0.1.5'
+      actor.dependency 'MGRxActivityIndicator'
+      actor.dependency 'MGActionStageSwift'
       actor.dependency 'MGRxKitchen/RxMogoForMGProgressErrors'
   end
 

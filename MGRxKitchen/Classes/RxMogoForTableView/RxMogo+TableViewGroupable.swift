@@ -39,13 +39,11 @@ public extension Observable {
         -> Disposable
         where E == DataSourceWithRequest<RowItem> {
 
-        let realDataSource = RxTableViewSectionedReloadDataSource<MGSection<RowItem>>()
+            let realDataSource = RxTableViewSectionedReloadDataSource<MGSection<RowItem>>(configureCell: configCell)
 
         realDataSource.titleForHeaderInSection = { ds, index in
                 return ds.sectionModels[index].header
         }
-
-        realDataSource.configureCell = configCell
 
         return self.bind(to: tableView.rx.items(dataSource: realDataSource))
     }

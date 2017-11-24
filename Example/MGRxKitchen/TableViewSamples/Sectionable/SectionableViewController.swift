@@ -32,6 +32,8 @@ internal class SectionableViewController: UIViewController {
             .bind(to: self.rx.selectedMGItem)
             .disposed(by: disposeBag)
 
+        tableView.delegate = self
+
     }
 
     @IBOutlet private weak var tableView: UITableView!
@@ -43,5 +45,11 @@ extension Reactive where Base : SectionableViewController {
         return UIBindingObserver(UIElement: self.base, binding: { (_, item) in
             print(item.name + " selected ")
         })
+    }
+}
+
+extension SectionableViewController : UITableViewDelegate {
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        return UIView()
     }
 }
