@@ -22,7 +22,12 @@ internal class MGItem {
     }
 }
 
-internal class TableViewTestViewModel: HaveRequestRx, PagableRequest {
+internal class TableViewTestViewModel: HaveRequestRx, PagableRequest, PagableWings {
+
+    typealias PageJSONType = SuperDemo
+
+    var jsonOutputer: PublishSubject<SuperDemo> = PublishSubject<SuperDemo>()
+
     var loadingActivity: ActivityIndicator = ActivityIndicator()
 
     var errorProvider: PublishSubject<RxMGError> = PublishSubject<RxMGError>()
@@ -45,7 +50,19 @@ internal class TableViewTestViewModel: HaveRequestRx, PagableRequest {
     }
 
     func initial() {
-        serviceDriver = pagedRequest(request: { self.service.providePageMock(on: $0.currentPage + 1) })
+
+//        pagedRequest(request: <#T##(MGPage) -> Observable<Result<([Element], MGPage), MGAPIError>>#>)
+//        let requestObser: Observable<Result<([Demo], MGPage), MGAPIError>> = interuptPage(origin: self.service.providePageJSONMock(on: 1)) { json -> [Demo] in
+//            return json.demos
+//        }
+//
+//        serviceDriver = pagedRequest(request: { _ in requestObser })
+
+        serviceDriver = pagedRequest(request: { page -> Observable<Result<([String : Any], MGPage), MGAPIError>> in
+            return self.service.providePageJSONMock(on: page.currentPage)
+        }) { json -> [Demo] in
+            return json.demos
+        }
     }
 
     func sectionableData() -> Observable<[MGSection<MGItem>]> {

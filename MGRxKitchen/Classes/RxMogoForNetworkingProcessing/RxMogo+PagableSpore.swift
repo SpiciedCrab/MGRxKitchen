@@ -11,7 +11,7 @@ import Result
 import RxSwift
 import RxCocoa
 import MGBricks
-
+import HandyJSON
 /// 分页实现 
 public protocol PagableRequest: NeedHandleRequestError, HaveRequestRx {
     // MARK: - Inputs
@@ -66,4 +66,53 @@ public extension PagableRequest {
             .map { $0.repositories }
             .map { $0.value }
     }
+}
+
+/// Page Extension
+public protocol PagableWings : class {
+
+    associatedtype PageJSONType
+
+    /// 整个请求对象类型
+    var jsonOutputer: PublishSubject<PageJSONType> { get set }
+}
+
+extension PagableRequest where Self : PagableWings {
+    
+    /// page请求究极体
+    ///
+    /// - Parameters:
+    ///   - request: 你的request
+    ///   - resolver: resolver，告诉我你的list是哪个
+    /// - Returns: 原来的Observer
+    public func pagedRequest<Element>(
+        request : @escaping (MGPage) -> Observable<Result<([String : Any], MGPage), MGAPIError>>,
+        resolver : @escaping (PageJSONType) -> [Element])
+        -> Observable<[Element]> where PageJSONType : HandyJSON {
+        func pageInfo(page: MGPage)
+            -> Observable<Result<([Element], MGPage), MGAPIError>> {
+            let pageRequest = request(page).map({[weak self] result -> Result<([Element], MGPage), MGAPIError> in
+                guard let strongSelf = self else { return
+                    Result(error: MGAPIError("000", message: "")) }
+                switch result {
+                case .success(let obj) :
+                    let pageObj = PageJSONType.deserialize(from: obj.0 as NSDictionary) ?? PageJSONType()
+                    let pageArray = resolver(pageObj)
+                    strongSelf.jsonOutputer.onNext(pageObj)
+
+                    return Result(value: (pageArray, obj.1))
+                case .failure :
+                    return Result(error: result.error ??
+                        MGAPIError("000", message: "不明错误出现咯"))
+                }
+            })
+
+            return pageRequest
+        }
+
+        return pagedRequest(request: { page -> Observable<Result<([Element], MGPage), MGAPIError>> in
+            return pageInfo(page: page)
+        })
+    }
+
 }

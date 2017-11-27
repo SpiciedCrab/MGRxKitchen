@@ -1,9 +1,24 @@
 import MGBricks
 import RxSwift
 import Result
-
+import HandyJSON
 // MARK: - Demo api
-internal class Demo {
+
+internal final class SuperDemo: HandyJSON {
+    init() {
+
+    }
+    var title: String = ""
+
+    var demos: [Demo] = [Demo]()
+}
+
+internal final class Demo: HandyJSON {
+
+    init() {
+
+    }
+
     var name: String = ""
 
     static func buildDemos(on page: Int) -> [Demo] {
@@ -54,6 +69,23 @@ internal class MockService: NSObject {
                 print("request : \(page) times")
 //                observer.onNext(Result(error: MGAPIError("errpr", message: "ssss")))
                 observer.onNext(Result(value: (Demo.buildDemos(on: page), Demo.buildPage(on: page))))
+                observer.onCompleted()
+            })
+
+            return Disposables.create {
+
+            }
+        })
+    }
+
+    func providePageJSONMock(on page: Int) -> Observable<Result<([String : Any], MGPage), MGAPIError>> {
+        return Observable<Result<([String : Any], MGPage), MGAPIError>>.create({ observer -> Disposable in
+
+            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1, execute: {
+                //                observer.onNext(Result.init(error: MGAPIError(object: ["message" : "error lalala"])))
+                print("request : \(page) times")
+                //                observer.onNext(Result(error: MGAPIError("errpr", message: "ssss")))
+                observer.onNext(Result(value: (["title": "real", "demos": [["name": "sss"], ["name": "lalala"]]], Demo.buildPage(on: page))))
                 observer.onCompleted()
             })
 
