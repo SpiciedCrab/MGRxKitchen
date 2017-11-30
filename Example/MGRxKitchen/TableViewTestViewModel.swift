@@ -22,7 +22,9 @@ internal class MGItem {
     }
 }
 
-internal class TableViewTestViewModel: HaveRequestRx, PagableRequest, PagableWings {
+internal class TableViewTestViewModel: HaveRequestRx, PageableJSONRequest, PageExtensible {
+
+    var pageOutputer: PublishSubject<MGPage> = PublishSubject<MGPage>()
 
     typealias PageJSONType = SuperDemo
 

@@ -40,9 +40,9 @@ internal class SectionableViewController: UIViewController {
 }
 
 extension Reactive where Base : SectionableViewController {
-    var selectedMGItem: UIBindingObserver<Base, MGItem> {
+    var selectedMGItem: Binder<MGItem> {
 
-        return UIBindingObserver(UIElement: self.base, binding: { (_, item) in
+        return Binder(self.base, binding: { (_, item) in
             print(item.name + " selected ")
         })
     }
