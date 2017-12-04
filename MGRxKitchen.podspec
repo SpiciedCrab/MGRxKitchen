@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'MGRxKitchen'
-  s.version          = '4.0.5'
+  s.version          = '4.0.6'
   s.summary          = 'Rx plugins for Mogo'
 
 # This description is used to generate tags and improve search results.
@@ -35,6 +35,10 @@ TODO: Add long description of the pod here.
   s.dependency 'NSObject+Rx'
 
 
+  s.subspec 'RxMogoBaseConfiguration' do |base|
+      base.source_files = 'MGRxKitchen/Classes/RxMogoBaseConfiguration/**/*{.swift}'
+  end
+  
   s.subspec 'RxMogoForMGProgressErrors' do |mgProgress|
       mgProgress.source_files = 'MGRxKitchen/Classes/RxMogoForMGProgressErrors/**/*{.swift}'
       mgProgress.dependency 'MGProgressHUD'
@@ -63,6 +67,7 @@ TODO: Add long description of the pod here.
   s.subspec 'RxMogoForMJRefresher' do |mjExtension|
       mjExtension.source_files = 'MGRxKitchen/Classes/RxMogoForMJRefresher/**/*{.swift}'
       mjExtension.dependency 'MJRefresh'
+      mjExtension.dependency 'MGRxKitchen/RxMogoBaseConfiguration'
   end
 
   s.subspec 'RxMogoForTableView' do |rxTable|
@@ -85,6 +90,7 @@ TODO: Add long description of the pod here.
       mixer.dependency 'MGRxKitchen/RxMogoForNetworkingProcessing'
       mixer.dependency 'MGRxKitchen/RxMogoForMGProgressErrors'
       mixer.dependency 'MGRxKitchen/RxMogoForMJRefresher'
+      mixer.dependency 'MGRxKitchen/RxMogoBaseConfiguration'
   end
   
   # s.resource_bundles = {

@@ -15,23 +15,28 @@ PODS:
   - MGRxActivityIndicator (0.1.0):
     - RxCocoa (~> 4.0)
     - RxSwift (~> 4.0)
-  - MGRxKitchen (4.0.3):
-    - MGRxKitchen/RxMogoBinding (= 4.0.3)
-    - MGRxKitchen/RxMogoForActionStage (= 4.0.3)
-    - MGRxKitchen/RxMogoForLoadingRefresher (= 4.0.3)
-    - MGRxKitchen/RxMogoForMGProgressErrors (= 4.0.3)
-    - MGRxKitchen/RxMogoForMixer (= 4.0.3)
-    - MGRxKitchen/RxMogoForMJRefresher (= 4.0.3)
-    - MGRxKitchen/RxMogoForNetworkingProcessing (= 4.0.3)
-    - MGRxKitchen/RxMogoForTableView (= 4.0.3)
+  - MGRxKitchen (4.0.6):
+    - MGRxKitchen/RxMogoBaseConfiguration (= 4.0.6)
+    - MGRxKitchen/RxMogoBinding (= 4.0.6)
+    - MGRxKitchen/RxMogoForActionStage (= 4.0.6)
+    - MGRxKitchen/RxMogoForLoadingRefresher (= 4.0.6)
+    - MGRxKitchen/RxMogoForMGProgressErrors (= 4.0.6)
+    - MGRxKitchen/RxMogoForMixer (= 4.0.6)
+    - MGRxKitchen/RxMogoForMJRefresher (= 4.0.6)
+    - MGRxKitchen/RxMogoForNetworkingProcessing (= 4.0.6)
+    - MGRxKitchen/RxMogoForTableView (= 4.0.6)
     - NSObject+Rx
     - RxCocoa (~> 4.0.0)
     - RxSwift (~> 4.0.0)
-  - MGRxKitchen/RxMogoBinding (4.0.3):
+  - MGRxKitchen/RxMogoBaseConfiguration (4.0.6):
     - NSObject+Rx
     - RxCocoa (~> 4.0.0)
     - RxSwift (~> 4.0.0)
-  - MGRxKitchen/RxMogoForActionStage (4.0.3):
+  - MGRxKitchen/RxMogoBinding (4.0.6):
+    - NSObject+Rx
+    - RxCocoa (~> 4.0.0)
+    - RxSwift (~> 4.0.0)
+  - MGRxKitchen/RxMogoForActionStage (4.0.6):
     - MGActionStageSwift
     - MGProgressHUD
     - MGRxActivityIndicator
@@ -39,19 +44,20 @@ PODS:
     - NSObject+Rx
     - RxCocoa (~> 4.0.0)
     - RxSwift (~> 4.0.0)
-  - MGRxKitchen/RxMogoForLoadingRefresher (4.0.3):
+  - MGRxKitchen/RxMogoForLoadingRefresher (4.0.6):
     - NSObject+Rx
     - RxCocoa (~> 4.0.0)
     - RxSwift (~> 4.0.0)
-  - MGRxKitchen/RxMogoForMGProgressErrors (4.0.3):
+  - MGRxKitchen/RxMogoForMGProgressErrors (4.0.6):
     - MGBricks
     - MGProgressHUD
     - MGRxKitchen/RxMogoForNetworkingProcessing
     - NSObject+Rx
     - RxCocoa (~> 4.0.0)
     - RxSwift (~> 4.0.0)
-  - MGRxKitchen/RxMogoForMixer (4.0.3):
+  - MGRxKitchen/RxMogoForMixer (4.0.6):
     - MGProgressHUD
+    - MGRxKitchen/RxMogoBaseConfiguration
     - MGRxKitchen/RxMogoForMGProgressErrors
     - MGRxKitchen/RxMogoForMJRefresher
     - MGRxKitchen/RxMogoForNetworkingProcessing
@@ -59,12 +65,13 @@ PODS:
     - NSObject+Rx
     - RxCocoa (~> 4.0.0)
     - RxSwift (~> 4.0.0)
-  - MGRxKitchen/RxMogoForMJRefresher (4.0.3):
+  - MGRxKitchen/RxMogoForMJRefresher (4.0.6):
+    - MGRxKitchen/RxMogoBaseConfiguration
     - MJRefresh
     - NSObject+Rx
     - RxCocoa (~> 4.0.0)
     - RxSwift (~> 4.0.0)
-  - MGRxKitchen/RxMogoForNetworkingProcessing (4.0.3):
+  - MGRxKitchen/RxMogoForNetworkingProcessing (4.0.6):
     - HandyJSON
     - MGBricks
     - MGRxActivityIndicator
@@ -72,7 +79,7 @@ PODS:
     - Result
     - RxCocoa (~> 4.0.0)
     - RxSwift (~> 4.0.0)
-  - MGRxKitchen/RxMogoForTableView (4.0.3):
+  - MGRxKitchen/RxMogoForTableView (4.0.6):
     - NSObject+Rx
     - RxCocoa (~> 4.0.0)
     - RxDataSources
@@ -124,7 +131,7 @@ SPEC CHECKSUMS:
   MGBricks: 923e851b913d69674186d6ac2579bd2b6c09297d
   MGProgressHUD: 7602180f2b4e5933e47e7a44f54f368bb0cdf106
   MGRxActivityIndicator: 14e41d0670e28e95d7ef9096661bc3a9772269cc
-  MGRxKitchen: 6a28433d2d35b5b51faf71b2b198469f4ca065c5
+  MGRxKitchen: 75a3dab278e8104f958ca5bd640983398729ddaa
   MJRefresh: 5f8552bc25ca8751c010f621c1098dbdaacbccd6
   Nimble: 7f5a9c447a33002645a071bddafbfb24ea70e0ac
   Nimble-Snapshots: f5459b5b091678dc942d03ec4741cacb58ba4a52

@@ -17,12 +17,10 @@ extension Reactive where Base : UIScrollView {
     public var pullDownRefreshing: ControlEvent<Void> {
         let pullDownDriver = PublishSubject<Void>()
         if base.mj_header == nil {
-            let header = MJRefreshNormalHeader(refreshingBlock: {
 
+            base.mj_header = headerRefresher {
                 pullDownDriver.onNext(())
-//                pullUpDriver.onCompleted()
-            })
-            base.mj_header = header
+            }
         }
 
         let event = ControlEvent(events: pullDownDriver)
@@ -34,12 +32,10 @@ extension Reactive where Base : UIScrollView {
     public var pullUpRefreshing: ControlEvent<Void> {
         let pullUpDriver = PublishSubject<Void>()
         if base.mj_footer == nil {
-            let footer = MJRefreshBackNormalFooter(refreshingBlock: {
 
+            base.mj_footer = footRefresher {
                 pullUpDriver.onNext(())
-
-            })
-            base.mj_footer = footer
+            }
         }
 
         let event = ControlEvent(events: pullUpDriver)
@@ -99,5 +95,52 @@ extension Reactive where Base : UIScrollView {
             }
         })
     }
-
+    
+    fileprivate func headerRefresher(with refreshBlock : @escaping ()->())
+        -> MJRefreshStateHeader?
+    {
+        if let headerImages = MGRxKichenConfiguration.shared.mjLoadingImages
+        {
+            let header = MJRefreshGifHeader(refreshingBlock: {
+                refreshBlock()
+            })
+            
+            header?.setupRefresher(with: headerImages)
+            
+            header?.lastUpdatedTimeLabel.isHidden = true
+            header?.lastUpdatedTimeLabel.isHidden = true
+            header?.stateLabel.isHidden = true
+            
+            return header
+        }
+        
+        let header = MJRefreshNormalHeader(refreshingBlock: {
+            refreshBlock()
+        })
+        
+        return header
+    }
+    
+    fileprivate func footRefresher(with refreshBlock : @escaping ()->())
+        -> MJRefreshFooter?
+    {
+        if let footerImages = MGRxKichenConfiguration.shared.mjLoadingImages
+        {
+            let footer = MJRefreshBackGifFooter(refreshingBlock: {
+                refreshBlock()
+            })
+            
+            footer?.setupRefresher(with: footerImages)
+            
+            footer?.stateLabel.isHidden = true
+            
+            return footer
+        }
+        
+        let footer = MJRefreshBackNormalFooter(refreshingBlock: {
+            refreshBlock()
+        })
+        
+        return footer
+    }
 }
