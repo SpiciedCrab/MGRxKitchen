@@ -44,3 +44,26 @@ public class MGSection<ItemElement>: SectionModelType {
 
     }
 }
+
+/// 复杂的sectionModel
+public class MGComplexSection<SectionElement, ItemElement>: SectionModelType {
+    public var items: [ItemElement] = [ItemElement]()
+    
+    public typealias Item = ItemElement
+    public var section: SectionElement?
+    
+    init() {
+        //
+    }
+    public required init(original: MGComplexSection, items: [MGComplexSection.Item]) {
+        self.section = original.section
+        self.items = items
+    }
+    public convenience init(section: SectionElement, items: [MGComplexSection.Item]) {
+        let complexSection = MGComplexSection<SectionElement, Item>()
+        complexSection.section = section
+        complexSection.items = items
+        self.init(original: complexSection, items: items)
+        self.section = section
+    }
+}
