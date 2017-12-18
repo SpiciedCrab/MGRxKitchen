@@ -107,6 +107,7 @@ PODS:
     - Result
     - RxCocoa (~> 4.0.0)
     - RxSwift (~> 4.0.0)
+  - MGRxKitchen/RxMogoForTableView (4.0.7):
   - MGRxKitchen/RxMogoForSuperAlert (4.0.7):
     - MGRxKitchen/RxMogoBaseConfiguration
     - MGRxKitchen/RxMogoForMGProgressErrors
