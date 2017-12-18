@@ -21,11 +21,11 @@ internal class SectionableViewController: UIViewController {
 
         viewModel
             .sectionableData().checkEmptyList(emptyAction: {}, notEmptyAction: {})
-            .bind(to: tableView) { (_, tableView, _, item) -> UITableViewCell in
-                let cell = tableView.dequeueReusableCell(withIdentifier: "cell")
+            .bind(to: tableView, by: { (_, _, _, item) -> UITableViewCell in
+                let cell = self.tableView.dequeueReusableCell(withIdentifier: "cell")
                 cell?.textLabel?.text = item.name
                 return cell!
-        }.disposed(by: disposeBag)
+            }).disposed(by: disposeBag)
 
         tableView.rx
             .modelSelected(MGItem.self)

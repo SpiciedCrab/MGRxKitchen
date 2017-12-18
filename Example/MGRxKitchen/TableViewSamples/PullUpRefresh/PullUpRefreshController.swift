@@ -10,6 +10,8 @@ import UIKit
 import RxCocoa
 import RxSwift
 import MJRefresh
+import MGUIKit
+import MGRxKitchen
 
 class PullUpRefreshController: UIViewController {
     @IBOutlet weak var barItem: UIBarButtonItem!
@@ -43,29 +45,7 @@ extension PullUpRefreshController {
 //            .bind(to : tableView.rx.makMePullDown)
 //            .disposed(by: disposeBag)
 
-        tableView.rx.pullDownRefreshing
-            .bind(to: self.viewModel.firstPage)
-            .disposed(by: self.disposeBag)
-        //
-        tableView.rx
-            .pullUpRefreshing
-            .bind(to: self.viewModel.nextPage)
-            .disposed(by: disposeBag)
-
-        viewModel.loadingActivity.asObservable().filter { !$0 }.subscribe(onNext: { (_) in
-
-            self.tableView.mj_header.endRefreshing()
-
-            if self.tableView.mj_footer != nil {
-                self.tableView.mj_footer.endRefreshing()
-            }
-        }).disposed(by: disposeBag)
-
-        viewModel.finalPageReached.subscribe(onNext: { (_) in
-            if self.tableView.mj_footer != nil {
-                self.tableView.mj_footer.endRefreshingWithNoMoreData()
-            }
-        }).disposed(by: disposeBag)
+        MGRxListWithApiMixer.createMixAlertChain().mixView(view: view, togetherWith: viewModel)
 
         viewModel.serviceDriver.bind(to: self.tableView.rx.items(cellIdentifier: "Cell")) {
             (_, demo: Demo, cell) in
@@ -73,6 +53,13 @@ extension PullUpRefreshController {
             }.disposed(by: disposeBag)
 
         //
+        requestBtn.rx.tap
+            .map {}.subscribe(onNext: { (_) in
+                MGSwiftAlertCenter.showLazyTitleAlert("alert", message: "ss", cancelString: nil, actionTitleArr: ["请求他丫的"], complexMode: true, actionBlock: { (_) in
+                    self.viewModel.firstPage.onNext(())
+                })
+            })
+            .disposed(by: disposeBag)
 
 //        tableView.mj_header.beginRefreshing()
     }

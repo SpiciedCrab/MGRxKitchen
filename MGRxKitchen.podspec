@@ -92,6 +92,14 @@ TODO: Add long description of the pod here.
       mixer.dependency 'MGRxKitchen/RxMogoForMJRefresher'
       mixer.dependency 'MGRxKitchen/RxMogoBaseConfiguration'
   end
+
+  s.subspec 'RxMogoForSuperAlert' do |alertMixer|
+      alertMixer.source_files = 'MGRxKitchen/Classes/RxMogoForSuperAlert/**/*{.swift}'
+      alertMixer.dependency 'MGRxKitchen/RxMogoForNetworkingProcessing'
+      alertMixer.dependency 'MGRxKitchen/RxMogoForMGProgressErrors'
+      alertMixer.dependency 'MGRxKitchen/RxMogoBaseConfiguration'
+      alertMixer.dependency 'MGUIKit/MGAlertView'
+  end
   
   # s.resource_bundles = {
   #   'MGRxKitchen' => ['MGRxKitchen/Assets/*.png']

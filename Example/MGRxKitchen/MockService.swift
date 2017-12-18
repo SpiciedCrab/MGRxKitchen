@@ -69,7 +69,7 @@ internal class MockService: NSObject {
                 print("request : \(page) times")
 //                observer.onNext(Result(error: MGAPIError("errpr", message: "ssss")))
                 observer.onNext(Result(value: (Demo.buildDemos(on: page), Demo.buildPage(on: page))))
-                observer.onCompleted()
+//                observer.onCompleted()
             })
 
             return Disposables.create {
@@ -82,11 +82,12 @@ internal class MockService: NSObject {
         return Observable<Result<([String : Any], MGPage), MGAPIError>>.create({ observer -> Disposable in
 
             DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1, execute: {
-                //                observer.onNext(Result.init(error: MGAPIError(object: ["message" : "error lalala"])))
+                observer.onNext(Result(error: MGAPIError("ss", message: "sss")))
+
                 print("request : \(page) times")
                 //                observer.onNext(Result(error: MGAPIError("errpr", message: "ssss")))
-                observer.onNext(Result(value: (["title": "real", "demos": [["name": "sss"], ["name": "lalala"]]], Demo.buildPage(on: page))))
-                observer.onCompleted()
+//                observer.onNext(Result(value: (["title": "real", "demos": [["name": "sss"], ["name": "lalala"]]], Demo.buildPage(on: page))))
+//                observer.onCompleted()
             })
 
             return Disposables.create {

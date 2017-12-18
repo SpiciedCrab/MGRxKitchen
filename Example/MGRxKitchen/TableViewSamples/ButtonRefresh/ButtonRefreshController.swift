@@ -11,6 +11,8 @@ import RxCocoa
 import RxSwift
 import MJRefresh
 import MGBricks
+import MGRxKitchen
+import MGUIKit
 
 class ButtonRefreshController: UIViewController {
 
@@ -48,6 +50,8 @@ extension ButtonRefreshController {
 //            .bind(to: self.tableView.rx.isLoadingOnMe)
 //            .disposed(by: disposeBag)
 
+        MGRxListWithApiMixer.createMixAlertChain().mixView(view: view, togetherWith: viewModel)
+
         viewModel
             .errorProvider
             .bind(to: self.tableView.rx.toastErrorOnMe)
@@ -61,7 +65,11 @@ extension ButtonRefreshController {
             .disposed(by: self.disposeBag)
 
         refreshBtn.rx.tap
-            .bind(to : dataRefresher)
+            .map {}.subscribe(onNext: { (_) in
+                MGSwiftAlertCenter.showLazyTitleAlert("alert", message: "ss", cancelString: nil, actionTitleArr: ["请求他丫的"], complexMode: true, actionBlock: { (_) in
+                    self.dataRefresher.onNext(())
+                })
+            })
             .disposed(by: disposeBag)
     }
 }
