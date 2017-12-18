@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'MGRxKitchen'
-  s.version          = '4.0.10'
+  s.version          = '4.0.11'
   s.summary          = 'Rx plugins for Mogo'
 
 # This description is used to generate tags and improve search results.
@@ -95,10 +95,8 @@ TODO: Add long description of the pod here.
 
   s.subspec 'RxMogoForSuperAlert' do |alertMixer|
       alertMixer.source_files = 'MGRxKitchen/Classes/RxMogoForSuperAlert/**/*{.swift}'
-      alertMixer.dependency 'MGRxKitchen/RxMogoForNetworkingProcessing'
-      alertMixer.dependency 'MGRxKitchen/RxMogoForMGProgressErrors'
-      alertMixer.dependency 'MGRxKitchen/RxMogoBaseConfiguration'
       alertMixer.dependency 'MGUIKit/MGAlertView'
+      alertMixer.dependency 'MGUIKit/RxMogoForMixer'
   end
   
   # s.resource_bundles = {
