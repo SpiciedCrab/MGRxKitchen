@@ -16,7 +16,7 @@ public class MGSection<ItemElement>: SectionModelType {
 
     public typealias Item = ItemElement
 
-    var header: String = ""
+    public var header: String = ""
 
     public var items: [Item] = []
 
