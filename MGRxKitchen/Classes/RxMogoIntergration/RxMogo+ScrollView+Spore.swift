@@ -200,7 +200,7 @@ public class CustErrorRequestMixer: MGRxListWithApiMixer {
 public class PageRequestMixer: MGRxListWithApiMixer {
     override public func mixView(view: UIView,
                                   togetherWith viewModel: HaveRequestRx) {
-        guard let pageViewModel = viewModel as? PagableRequest ,
+        guard let pageViewModel = viewModel as? PageBase ,
             let listView = view as? UIScrollView else {
             super.mixView(view: view, togetherWith: viewModel)
             return

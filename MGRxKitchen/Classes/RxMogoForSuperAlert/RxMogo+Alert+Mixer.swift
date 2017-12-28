@@ -25,7 +25,7 @@ extension MGRxListWithApiMixer {
 
 // MARK: - Alert特有的搅拌器款
 /// 处理了alert的loading
-class AlertDefaultRequestMixer: MGRxListWithApiMixer {
+internal class AlertDefaultRequestMixer: MGRxListWithApiMixer {
     override public func mixView(view: UIView,
                                  togetherWith viewModel: HaveRequestRx) {
         viewModel.loadingActivity
