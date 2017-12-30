@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'MGRxKitchen'
-  s.version          = '4.0.14'
+  s.version          = '4.0.15'
   s.summary          = 'Rx plugins for Mogo'
 
 # This description is used to generate tags and improve search results.

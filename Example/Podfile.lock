@@ -12,59 +12,59 @@ PODS:
   - MGActionStageSwift/ActionStageSwift (0.0.3)
   - MGBricks (0.2.0):
     - HandyJSON (~> 4.0.0-beta.1)
-  - MGCore (1.1.7):
-    - MGCore/MGCoreBases (= 1.1.7)
-    - MGCore/MGCoreDefinitions (= 1.1.7)
-    - MGCore/MGCoreIdCard (= 1.1.7)
-    - MGCore/MGDialingCaller (= 1.1.7)
-    - MGCore/MGFoundationExtensions (= 1.1.7)
-    - MGCore/MGLogger (= 1.1.7)
-    - MGCore/MGReactive (= 1.1.7)
-    - MGCore/MGTools (= 1.1.7)
-    - MGCore/MGUIExtensions (= 1.1.7)
-  - MGCore/MGCoreBases (1.1.7)
-  - MGCore/MGCoreDefinitions (1.1.7):
+  - MGCore (1.1.12):
+    - MGCore/MGCoreBases (= 1.1.12)
+    - MGCore/MGCoreDefinitions (= 1.1.12)
+    - MGCore/MGCoreIdCard (= 1.1.12)
+    - MGCore/MGDialingCaller (= 1.1.12)
+    - MGCore/MGFoundationExtensions (= 1.1.12)
+    - MGCore/MGLogger (= 1.1.12)
+    - MGCore/MGReactive (= 1.1.12)
+    - MGCore/MGTools (= 1.1.12)
+    - MGCore/MGUIExtensions (= 1.1.12)
+  - MGCore/MGCoreBases (1.1.12)
+  - MGCore/MGCoreDefinitions (1.1.12):
     - MGCore/MGFoundationExtensions
-  - MGCore/MGCoreIdCard (1.1.7)
-  - MGCore/MGDialingCaller (1.1.7):
+  - MGCore/MGCoreIdCard (1.1.12)
+  - MGCore/MGDialingCaller (1.1.12):
     - MGProgressHUD
-  - MGCore/MGFoundationExtensions (1.1.7):
+  - MGCore/MGFoundationExtensions (1.1.12):
     - CryptoSwift
     - MGCore/MGTools
-  - MGCore/MGLogger (1.1.7):
+  - MGCore/MGLogger (1.1.12):
     - SwiftyBeaver
-  - MGCore/MGReactive (1.1.7)
-  - MGCore/MGTools (1.1.7):
+  - MGCore/MGReactive (1.1.12)
+  - MGCore/MGTools (1.1.12):
     - SSKeychain
-  - MGCore/MGUIExtensions (1.1.7):
+  - MGCore/MGUIExtensions (1.1.12):
     - MGCore/MGCoreDefinitions
   - MGProgressHUD (3.0.2)
   - MGRxActivityIndicator (0.1.0):
     - RxCocoa (~> 4.0)
     - RxSwift (~> 4.0)
-  - MGRxKitchen (4.0.7):
-    - MGRxKitchen/RxMogoBaseConfiguration (= 4.0.7)
-    - MGRxKitchen/RxMogoBinding (= 4.0.7)
-    - MGRxKitchen/RxMogoForActionStage (= 4.0.7)
-    - MGRxKitchen/RxMogoForLoadingRefresher (= 4.0.7)
-    - MGRxKitchen/RxMogoForMGProgressErrors (= 4.0.7)
-    - MGRxKitchen/RxMogoForMixer (= 4.0.7)
-    - MGRxKitchen/RxMogoForMJRefresher (= 4.0.7)
-    - MGRxKitchen/RxMogoForNetworkingProcessing (= 4.0.7)
-    - MGRxKitchen/RxMogoForSuperAlert (= 4.0.7)
-    - MGRxKitchen/RxMogoForTableView (= 4.0.7)
+  - MGRxKitchen (4.0.14):
+    - MGRxKitchen/RxMogoBaseConfiguration (= 4.0.14)
+    - MGRxKitchen/RxMogoBinding (= 4.0.14)
+    - MGRxKitchen/RxMogoForActionStage (= 4.0.14)
+    - MGRxKitchen/RxMogoForLoadingRefresher (= 4.0.14)
+    - MGRxKitchen/RxMogoForMGProgressErrors (= 4.0.14)
+    - MGRxKitchen/RxMogoForMixer (= 4.0.14)
+    - MGRxKitchen/RxMogoForMJRefresher (= 4.0.14)
+    - MGRxKitchen/RxMogoForNetworkingProcessing (= 4.0.14)
+    - MGRxKitchen/RxMogoForSuperAlert (= 4.0.14)
+    - MGRxKitchen/RxMogoForTableView (= 4.0.14)
     - NSObject+Rx
     - RxCocoa (~> 4.0.0)
     - RxSwift (~> 4.0.0)
-  - MGRxKitchen/RxMogoBaseConfiguration (4.0.7):
+  - MGRxKitchen/RxMogoBaseConfiguration (4.0.14):
     - NSObject+Rx
     - RxCocoa (~> 4.0.0)
     - RxSwift (~> 4.0.0)
-  - MGRxKitchen/RxMogoBinding (4.0.7):
+  - MGRxKitchen/RxMogoBinding (4.0.14):
     - NSObject+Rx
     - RxCocoa (~> 4.0.0)
     - RxSwift (~> 4.0.0)
-  - MGRxKitchen/RxMogoForActionStage (4.0.7):
+  - MGRxKitchen/RxMogoForActionStage (4.0.14):
     - MGActionStageSwift
     - MGProgressHUD
     - MGRxActivityIndicator
@@ -72,18 +72,18 @@ PODS:
     - NSObject+Rx
     - RxCocoa (~> 4.0.0)
     - RxSwift (~> 4.0.0)
-  - MGRxKitchen/RxMogoForLoadingRefresher (4.0.7):
+  - MGRxKitchen/RxMogoForLoadingRefresher (4.0.14):
     - NSObject+Rx
     - RxCocoa (~> 4.0.0)
     - RxSwift (~> 4.0.0)
-  - MGRxKitchen/RxMogoForMGProgressErrors (4.0.7):
+  - MGRxKitchen/RxMogoForMGProgressErrors (4.0.14):
     - MGBricks
     - MGProgressHUD
     - MGRxKitchen/RxMogoForNetworkingProcessing
     - NSObject+Rx
     - RxCocoa (~> 4.0.0)
     - RxSwift (~> 4.0.0)
-  - MGRxKitchen/RxMogoForMixer (4.0.7):
+  - MGRxKitchen/RxMogoForMixer (4.0.14):
     - MGProgressHUD
     - MGRxKitchen/RxMogoBaseConfiguration
     - MGRxKitchen/RxMogoForMGProgressErrors
@@ -93,13 +93,13 @@ PODS:
     - NSObject+Rx
     - RxCocoa (~> 4.0.0)
     - RxSwift (~> 4.0.0)
-  - MGRxKitchen/RxMogoForMJRefresher (4.0.7):
+  - MGRxKitchen/RxMogoForMJRefresher (4.0.14):
     - MGRxKitchen/RxMogoBaseConfiguration
     - MJRefresh
     - NSObject+Rx
     - RxCocoa (~> 4.0.0)
     - RxSwift (~> 4.0.0)
-  - MGRxKitchen/RxMogoForNetworkingProcessing (4.0.7):
+  - MGRxKitchen/RxMogoForNetworkingProcessing (4.0.14):
     - HandyJSON
     - MGBricks
     - MGRxActivityIndicator
@@ -107,32 +107,29 @@ PODS:
     - Result
     - RxCocoa (~> 4.0.0)
     - RxSwift (~> 4.0.0)
-  - MGRxKitchen/RxMogoForTableView (4.0.7):
-  - MGRxKitchen/RxMogoForSuperAlert (4.0.7):
-    - MGRxKitchen/RxMogoBaseConfiguration
-    - MGRxKitchen/RxMogoForMGProgressErrors
-    - MGRxKitchen/RxMogoForNetworkingProcessing
+  - MGRxKitchen/RxMogoForSuperAlert (4.0.14):
+    - MGRxKitchen/RxMogoForMixer
     - MGUIKit/MGAlertView
     - NSObject+Rx
     - RxCocoa (~> 4.0.0)
     - RxSwift (~> 4.0.0)
-  - MGRxKitchen/RxMogoForTableView (4.0.7):
+  - MGRxKitchen/RxMogoForTableView (4.0.14):
     - NSObject+Rx
     - RxCocoa (~> 4.0.0)
     - RxDataSources
     - RxSwift (~> 4.0.0)
-  - MGUIKit/MGAlertView (3.3.22):
+  - MGUIKit/MGAlertView (3.3.35):
     - MGCore
     - MGUIKit/MGBlurPresent
     - MGUIKit/MGImageFactory
     - pop
     - SnapKit
-  - MGUIKit/MGBlurPresent (3.3.22):
+  - MGUIKit/MGBlurPresent (3.3.35):
     - MGCore
     - MGCore/MGReactive
     - SnapKit
     - SwiftImageEffects
-  - MGUIKit/MGImageFactory (3.3.22):
+  - MGUIKit/MGImageFactory (3.3.35):
     - MGCore
     - SDWebImage
     - SnapKit
@@ -196,11 +193,11 @@ SPEC CHECKSUMS:
   HandyJSON: 428bb18e2c34c2a77361accebf90cf64e4f74118
   MGActionStageSwift: 56d2b19f8a35a5c7c90a17e156658aca7ba78759
   MGBricks: 923e851b913d69674186d6ac2579bd2b6c09297d
-  MGCore: 6ba945b533d8e7636fca4e7b1722cecbdde521c2
+  MGCore: c7835bbdc8aab19feec7a2757cfd7ac6598e2abe
   MGProgressHUD: afe0de75876a6b98b43efc4abc568af76df68c62
   MGRxActivityIndicator: 14e41d0670e28e95d7ef9096661bc3a9772269cc
-  MGRxKitchen: d4f7238162ebbc5161194a67252273dc8bbc69d7
-  MGUIKit: 14e2ba60aa20374a722bb4104d4027adf90f8ffc
+  MGRxKitchen: 0cebcf4678f1b04664d26c2cc8b284b7285f684a
+  MGUIKit: b6c1a7f037cdae1c792e5ef7fe62d761007fa44c
   MJRefresh: 5f8552bc25ca8751c010f621c1098dbdaacbccd6
   Nimble: 7f5a9c447a33002645a071bddafbfb24ea70e0ac
   Nimble-Snapshots: f5459b5b091678dc942d03ec4741cacb58ba4a52
