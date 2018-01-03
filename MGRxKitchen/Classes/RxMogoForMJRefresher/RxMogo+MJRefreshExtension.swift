@@ -86,7 +86,7 @@ extension Reactive where Base : UIScrollView {
 
             guard !isLoading else { return }
 
-            if let footer = tableView.mj_footer , footer.isRefreshing {
+            if let footer = tableView.mj_footer  {
                 footer.endRefreshing()
             }
 
