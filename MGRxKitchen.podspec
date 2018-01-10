@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'MGRxKitchen'
-  s.version          = '4.0.21'
+  s.version          = '4.0.22'
   s.summary          = 'Rx plugins for Mogo'
 
 # This description is used to generate tags and improve search results.
@@ -100,7 +100,7 @@ TODO: Add long description of the pod here.
   end
 
   s.subspec 'RxMogoForTexts' do |text|
-      text.source_files = 'MGRxKitchen/Classes/RxMogoForTexts/**/*{.swift}'
+      text.source_files = 'MGRxKitchen/Classes/RxMogoForText/**/*{.swift}'
   end
   
   # s.resource_bundles = {

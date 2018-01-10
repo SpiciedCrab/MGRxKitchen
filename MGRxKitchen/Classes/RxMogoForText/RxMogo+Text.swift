@@ -57,4 +57,16 @@ extension Reactive where Base: UITextField {
         }
         return ControlProperty(values: source, valueSink: bindingObserver)
     }
+    
+    public var placeholder: Binder<String> {
+        return Binder(self.base, binding: { (tf, str) in
+            tf.placeholder = str
+        })
+    }
+    
+    public var text: Binder<String> {
+        return Binder(self.base, binding: { (tf, str) in
+            tf.text = str
+        })
+    }
 }
