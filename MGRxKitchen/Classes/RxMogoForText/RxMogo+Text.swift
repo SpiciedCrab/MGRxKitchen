@@ -63,10 +63,4 @@ extension Reactive where Base: UITextField {
             tf.placeholder = str
         })
     }
-    
-    public var text: Binder<String> {
-        return Binder(self.base, binding: { (tf, str) in
-            tf.text = str
-        })
-    }
 }
