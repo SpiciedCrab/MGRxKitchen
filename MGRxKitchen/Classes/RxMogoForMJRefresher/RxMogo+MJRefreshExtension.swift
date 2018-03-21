@@ -10,6 +10,7 @@ import UIKit
 import RxCocoa
 import RxSwift
 import MJRefresh
+import MGProgressHUD
 
 // MARK: - Reactive to Handle pull refreshes
 extension Reactive where Base : UIScrollView {
@@ -86,61 +87,59 @@ extension Reactive where Base : UIScrollView {
 
             guard !isLoading else { return }
 
-            if let footer = tableView.mj_footer  {
+            MGProgressHUD.hiddenAllhubToView(tableView, animated: true)
+
+            if let footer = tableView.mj_footer {
                 footer.endRefreshing()
             }
 
-            if let header = tableView.mj_header , header.isRefreshing {
+            if let header = tableView.mj_header, header.isRefreshing {
                 header.endRefreshing()
             }
         })
     }
-    
-    fileprivate func headerRefresher(with refreshBlock : @escaping ()->())
-        -> MJRefreshStateHeader?
-    {
-        if let headerImages = MGRxKichenConfiguration.shared.mjLoadingImages
-        {
+
+    fileprivate func headerRefresher(with refreshBlock : @escaping () -> Void)
+        -> MJRefreshStateHeader? {
+        if let headerImages = MGRxKichenConfiguration.shared.mjLoadingImages {
             let header = MJRefreshGifHeader(refreshingBlock: {
                 refreshBlock()
             })
-            
+
             header?.setupRefresher(with: headerImages)
-            
+
             header?.lastUpdatedTimeLabel.isHidden = true
             header?.lastUpdatedTimeLabel.isHidden = true
             header?.stateLabel.isHidden = true
-            
+
             return header
         }
-        
+
         let header = MJRefreshNormalHeader(refreshingBlock: {
             refreshBlock()
         })
-        
+
         return header
     }
-    
-    fileprivate func footRefresher(with refreshBlock : @escaping ()->())
-        -> MJRefreshFooter?
-    {
-        if let footerImages = MGRxKichenConfiguration.shared.mjLoadingImages
-        {
+
+    fileprivate func footRefresher(with refreshBlock : @escaping () -> Void)
+        -> MJRefreshFooter? {
+        if let footerImages = MGRxKichenConfiguration.shared.mjLoadingImages {
             let footer = MJRefreshBackGifFooter(refreshingBlock: {
                 refreshBlock()
             })
-            
+
             footer?.setupRefresher(with: footerImages)
-            
+
             footer?.stateLabel.isHidden = true
-            
+
             return footer
         }
-        
+
         let footer = MJRefreshBackNormalFooter(refreshingBlock: {
             refreshBlock()
         })
-        
+
         return footer
     }
 }

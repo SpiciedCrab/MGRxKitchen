@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'MGRxKitchen'
-  s.version          = '4.0.24'
+  s.version          = '4.0.25'
   s.summary          = 'Rx plugins for Mogo'
 
 # This description is used to generate tags and improve search results.
@@ -68,6 +68,7 @@ TODO: Add long description of the pod here.
       mjExtension.source_files = 'MGRxKitchen/Classes/RxMogoForMJRefresher/**/*{.swift}'
       mjExtension.dependency 'MJRefresh'
       mjExtension.dependency 'MGRxKitchen/RxMogoBaseConfiguration'
+      mjExtension.dependency 'MGProgressHUD'
   end
 
   s.subspec 'RxMogoForTableView' do |rxTable|
