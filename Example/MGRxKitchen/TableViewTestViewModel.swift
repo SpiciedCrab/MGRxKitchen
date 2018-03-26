@@ -11,7 +11,7 @@ import RxCocoa
 import RxSwift
 import MGRxActivityIndicator
 import MGRxKitchen
-import MGBricks
+import MGRequest
 import Result
 
 internal class MGItem {

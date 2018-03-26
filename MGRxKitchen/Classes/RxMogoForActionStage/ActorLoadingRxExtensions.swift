@@ -72,5 +72,5 @@ extension MGActorLoadingAvailable where Self : LHWActor {
     }
 }
 
-extension LHWActor : ReactiveCompatible {  }
-extension LHWActionStage : ReactiveCompatible {  }
+extension LHWActor: ReactiveCompatible {  }
+extension LHWActionStage: ReactiveCompatible {  }

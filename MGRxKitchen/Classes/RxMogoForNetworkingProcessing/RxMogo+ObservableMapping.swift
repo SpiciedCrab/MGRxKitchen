@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import MGBricks
+import MGRequest
 import RxCocoa
 import RxSwift
 import HandyJSON
@@ -24,7 +24,7 @@ public extension Observable where Element == Dictionary<String, Any> {
 }
 
 // MARK: - Observable array转化
-public extension Observable where Element == Array<[String : Any]> {
+public extension Observable where Element == Array<[String: Any]> {
     /// 把你的[Json]变成[model]啦
     ///
     /// - Returns: 砖头
@@ -40,7 +40,7 @@ public extension Observable where Element == Array<[String : Any]> {
 }
 
 // MARK: - 砖头转化
-public extension Observable where Element == RxBricks<Array<[String : Any]>> {
+public extension Observable where Element == RxBricks<Array<[String: Any]>> {
     /// 把你的[Json]变成[model]啦
     ///
     /// - Returns: 砖头
@@ -70,7 +70,7 @@ public extension PublishSubject where Element == RxMGError {
     /// - Returns: realToBind
     func distinctRubbish() -> Observable<Element> {
         return distinctUntilChanged({ error1, error2 -> Bool in
-            error1.apiError.code != error2.apiError.code && error2.apiError.code ?? "" == MG_EmptyMessageErrorCode
+            error1.apiError.code != error2.apiError.code && error2.apiError.code ?? "" == emptyMessageErrorCode
         })
     }
 }

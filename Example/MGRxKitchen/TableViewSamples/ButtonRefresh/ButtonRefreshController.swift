@@ -10,7 +10,7 @@ import UIKit
 import RxCocoa
 import RxSwift
 import MJRefresh
-import MGBricks
+import MGRequest
 import MGRxKitchen
 import MGUIKit
 

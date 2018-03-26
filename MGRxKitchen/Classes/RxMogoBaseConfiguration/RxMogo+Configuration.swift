@@ -18,7 +18,7 @@ public class MGRxKichenConfiguration {
     /// 配置一个空态页啦
     ///
     /// - Parameter image: image
-    public func config(emptyImage image: UIImage? , mjLoadings : [UIImage]? = nil) {
+    public func config(emptyImage image: UIImage?, mjLoadings: [UIImage]? = nil) {
         emptyImage = image
         mjLoadingImages = mjLoadings
     }

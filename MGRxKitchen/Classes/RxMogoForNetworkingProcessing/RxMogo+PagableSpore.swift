@@ -10,7 +10,7 @@ import UIKit
 import Result
 import RxSwift
 import RxCocoa
-import MGBricks
+import MGRequest
 import HandyJSON
 
 public protocol PageBase: NeedHandleRequestError, HaveRequestRx {
@@ -106,9 +106,9 @@ extension PageableJSONRequest {
     ///   - resolver: resolver，告诉我你的list是哪个
     /// - Returns: 原来的Observer
     public func pagedRequest<Element>(
-        request : @escaping (MGPage) -> Observable<Result<([String : Any], MGPage), MGAPIError>>,
+        request : @escaping (MGPage) -> Observable<Result<([String: Any], MGPage), MGAPIError>>,
         resolver : @escaping (PageJSONType) -> [Element])
-        -> Observable<[Element]> where PageJSONType : HandyJSON {
+        -> Observable<[Element]> where PageJSONType: HandyJSON {
             func pageInfo(page: MGPage)
                 -> Observable<Result<([Element], MGPage), MGAPIError>> {
                     let pageRequest = request(page).map({[weak self] result -> Result<([Element], MGPage), MGAPIError> in

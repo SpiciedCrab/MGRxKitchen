@@ -10,7 +10,7 @@ import UIKit
 import Result
 import RxSwift
 import RxCocoa
-import MGBricks
+import MGRequest
 
 public typealias PageResponse<Element> = Result<([Element], MGPage), MGAPIError>
 

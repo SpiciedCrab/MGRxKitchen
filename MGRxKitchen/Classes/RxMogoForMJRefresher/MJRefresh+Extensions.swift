@@ -16,15 +16,12 @@ public struct MGPullConstraints {
     
 }
 
-protocol MGGifImageRefresher
-{
-    func setImages(_ images : [Any]!, duration : TimeInterval, for state: MJRefreshState)
+protocol MGGifImageRefresher {
+    func setImages(_ images: [Any]!, duration: TimeInterval, for state: MJRefreshState)
 }
 
-extension MGGifImageRefresher
-{
-    func setupRefresher(with images : [UIImage])
-    {
+extension MGGifImageRefresher {
+    func setupRefresher(with images: [UIImage]) {
         if images.count > 1 {
             setImages(images, duration: MGPullConstraints.pullingDuration, for: .pulling)
             setImages(images, duration: MGPullConstraints.refreshingDuration, for: .refreshing)
@@ -34,11 +31,8 @@ extension MGGifImageRefresher
     }
 }
 
-extension MJRefreshGifHeader : MGGifImageRefresher
-{
+extension MJRefreshGifHeader: MGGifImageRefresher {
 }
 
-extension MJRefreshBackGifFooter : MGGifImageRefresher
-{
+extension MJRefreshBackGifFooter: MGGifImageRefresher {
 }
-

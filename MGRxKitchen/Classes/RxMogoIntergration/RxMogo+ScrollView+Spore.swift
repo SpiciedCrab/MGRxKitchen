@@ -73,12 +73,9 @@ public class MGRxListWithApiMixer {
                 switch errorShownType {
                     case .custom(let action):
                         
-                        if mixerType == CustErrorRequestMixer.self
-                        {
+                        if mixerType == CustErrorRequestMixer.self {
                             mixer = CustErrorRequestMixer(action: action)
-                        }
-                        else
-                        {
+                        } else {
                             mixer = mixerType.init()
                         }
 

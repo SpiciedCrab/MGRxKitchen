@@ -10,11 +10,11 @@ import UIKit
 import RxCocoa
 import RxSwift
 import Result
-import MGBricks
+import MGRequest
 import MGRxActivityIndicator
 import HandyJSON
 
-let MG_EmptyMessageErrorCode = "-698"
+internal let emptyMessageErrorCode = "-698"
 
 // MARK: - RxMogo自定义Error
 public struct RxMGError {
@@ -37,17 +37,17 @@ public struct RxMGError {
     /// - Parameter message: message
     /// - Returns: error
     public static func buildEmptyMessage(message: String) -> RxMGError {
-        return RxMGError(identifier: nil, apiError: MGAPIError(MG_EmptyMessageErrorCode, message: message))
+        return RxMGError(identifier: nil, apiError: MGAPIError(emptyMessageErrorCode, message: message))
     }
 }
 
-public protocol HaveListItems : class {
+public protocol HaveListItems: class {
     var isListEmpty: PublishSubject<Bool> { get set }
 }
 
 //这是个有请求就必须带着的协议哟
 // MARK: - RxMogoRequest协议
-public protocol HaveRequestRx : class {
+public protocol HaveRequestRx: class {
     /// 获取一个纯洁的请求，请求Error是不会走下去的，只会走成功的情况
     ///
     /// - Parameter requestSignal: Wings层来的请求
