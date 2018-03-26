@@ -7,6 +7,10 @@ source 'http://git.mogo.com/NexT/MGPod.git'
 target 'MGRxKitchen_Example' do
   pod 'MGRxKitchen', :path => '../'
     pod 'SwiftLinter', :git => 'http://git.mogo.com/NexT/SwiftLinter.git'
+    pod 'MGCore', :git => 'http://git.mogo.com/NeXTPod/MGCore.git', :branch => 'chausson'
+    #  pod ‘MGRenterInsuranceModule’
+    pod 'MGWingsCenter', :git => 'http://git.mogo.com/NexT/MGWingKits.git', :branch => 'chausson'
+    pod 'MGUIKit', :git => 'http://git.mogo.com/NexT/MGUIKitchen.git', :branch => 'chausson'
   target 'MGRxKitchen_Tests' do
     inherit! :search_paths
 

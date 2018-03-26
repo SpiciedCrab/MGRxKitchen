@@ -30,8 +30,8 @@ TODO: Add long description of the pod here.
 
   s.ios.deployment_target = '8.0'
   s.resources = 'MGRxKitchen/Assets/*.png'
-  s.dependency 'RxSwift' , '~>4.0.0'
-  s.dependency 'RxCocoa' , '~>4.0.0'
+  s.dependency 'MGCore' 
+  s.dependency 'MGRequest'
   s.dependency 'NSObject+Rx'
 
 
@@ -42,15 +42,14 @@ TODO: Add long description of the pod here.
   s.subspec 'RxMogoForMGProgressErrors' do |mgProgress|
       mgProgress.source_files = 'MGRxKitchen/Classes/RxMogoForMGProgressErrors/**/*{.swift}'
       mgProgress.dependency 'MGProgressHUD'
-      mgProgress.dependency 'MGBricks'
+      mgProgress.dependency 'Request'
       mgProgress.dependency 'MGRxKitchen/RxMogoForNetworkingProcessing'
   end
 
   s.subspec 'RxMogoForNetworkingProcessing' do |networking|
       networking.source_files = 'MGRxKitchen/Classes/RxMogoForNetworkingProcessing/**/*{.swift}'
       networking.dependency 'Result'
-      networking.dependency 'MGBricks'
-      networking.dependency 'HandyJSON'
+      networking.dependency 'Request'
       networking.dependency 'MGRxActivityIndicator'
   end
 
