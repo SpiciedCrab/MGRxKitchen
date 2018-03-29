@@ -142,6 +142,7 @@ public class ShowErrorRequestMixer: MGRxListWithApiMixer {
 
         filterErrorViewModel.errorProvider
             .distinctRubbish()
+            .delay(0.2, scheduler: MainScheduler.instance)
             .map { ( $0, MGRxKichenConfiguration.shared.emptyImage) }
             .bind(to: view.rx.emptyErrorViewOnMe)
             .disposed(by: view.rx.disposeBag)
