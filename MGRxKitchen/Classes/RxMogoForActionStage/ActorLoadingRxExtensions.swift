@@ -12,6 +12,7 @@ import RxCocoa
 import MGActionStageSwift
 import MGRequest
 import MGCore
+import MGUIKit
 
 // MARK: - 发送一个Message to watchers
 extension Reactive where Base : LHWActionStage {

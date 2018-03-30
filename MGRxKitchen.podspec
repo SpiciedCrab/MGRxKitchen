@@ -34,55 +34,22 @@ TODO: Add long description of the pod here.
   s.dependency 'RxCocoa' , '~>4.0.0'
   s.dependency 'NSObject+Rx'
 
-
-  s.subspec 'RxMogoBaseConfiguration' do |base|
-      base.source_files = 'MGRxKitchen/Classes/RxMogoBaseConfiguration/**/*{.swift}'
-  end
-  
-  s.subspec 'RxMogoForMGProgressErrors' do |mgProgress|
-      mgProgress.source_files = 'MGRxKitchen/Classes/RxMogoForMGProgressErrors/**/*{.swift}'
-      mgProgress.dependency 'MGProgressHUD'
-      mgProgress.dependency 'MGCore'
-  end
-
-  s.subspec 'RxMogoForLoadingRefresher' do |loadingExtension|
-      loadingExtension.source_files = 'MGRxKitchen/Classes/RxMogoForLoadingRefresher/**/*{.swift}'
-
-  end
-
-  s.subspec 'RxMogoBinding' do |bindingRx|
-      bindingRx.source_files = 'MGRxKitchen/Classes/RxMogoBinding/**/*{.swift}'
-
-  end
-
-  s.subspec 'RxMogoForMJRefresher' do |mjExtension|
-      mjExtension.source_files = 'MGRxKitchen/Classes/RxMogoForMJRefresher/**/*{.swift}'
-      mjExtension.dependency 'MJRefresh'
-      mjExtension.dependency 'MGRxKitchen/RxMogoBaseConfiguration'
-      mjExtension.dependency 'MGProgressHUD'
-  end
-
-  s.subspec 'RxMogoForTableView' do |rxTable|
-      rxTable.source_files = 'MGRxKitchen/Classes/RxMogoForTableView/**/*{.swift}'
-      rxTable.dependency 'RxDataSources' 
-  end
-
   s.subspec 'RxMogoForActionStage' do |actor|
       actor.source_files = 'MGRxKitchen/Classes/RxMogoForActionStage/**/*{.swift}'
       actor.dependency 'MGProgressHUD'
       actor.dependency 'MGCore'
       actor.dependency 'MGActionStageSwift'
-      actor.dependency 'MGRxKitchen/RxMogoForMGProgressErrors'
+      actor.dependency 'MGUIKit/MGHudRxExtension'
   end
 
   s.subspec 'RxMogoForMixer' do |mixer|
       mixer.source_files = 'MGRxKitchen/Classes/RxMogoIntergration/**/*{.swift}'
       mixer.dependency 'MGProgressHUD'
-      mixer.dependency 'MGRxKitchen/RxMogoForTableView'
+      mixer.dependency 'MGUIKit/MGTableviewRxExtensions'
       mixer.dependency 'MGRequest'
-      mixer.dependency 'MGRxKitchen/RxMogoForMGProgressErrors'
-      mixer.dependency 'MGRxKitchen/RxMogoForMJRefresher'
-      mixer.dependency 'MGRxKitchen/RxMogoBaseConfiguration'
+      mixer.dependency 'MGUIKit/MGHudRxExtension'
+      mixer.dependency 'MGUIKit/MGMJRxExtension'
+      mixer.dependency 'MGCore'
   end
 
   s.subspec 'RxMogoForSuperAlert' do |alertMixer|

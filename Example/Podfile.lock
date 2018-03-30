@@ -41,24 +41,10 @@ PODS:
     - RxSwift
     - SporeNetworking
   - MGRxKitchen (5.0.0):
-    - MGRxKitchen/RxMogoBaseConfiguration (= 5.0.0)
-    - MGRxKitchen/RxMogoBinding (= 5.0.0)
     - MGRxKitchen/RxMogoForActionStage (= 5.0.0)
-    - MGRxKitchen/RxMogoForLoadingRefresher (= 5.0.0)
-    - MGRxKitchen/RxMogoForMGProgressErrors (= 5.0.0)
     - MGRxKitchen/RxMogoForMixer (= 5.0.0)
-    - MGRxKitchen/RxMogoForMJRefresher (= 5.0.0)
     - MGRxKitchen/RxMogoForSuperAlert (= 5.0.0)
-    - MGRxKitchen/RxMogoForTableView (= 5.0.0)
     - MGRxKitchen/RxMogoForTexts (= 5.0.0)
-    - NSObject+Rx
-    - RxCocoa (~> 4.0.0)
-    - RxSwift (~> 4.0.0)
-  - MGRxKitchen/RxMogoBaseConfiguration (5.0.0):
-    - NSObject+Rx
-    - RxCocoa (~> 4.0.0)
-    - RxSwift (~> 4.0.0)
-  - MGRxKitchen/RxMogoBinding (5.0.0):
     - NSObject+Rx
     - RxCocoa (~> 4.0.0)
     - RxSwift (~> 4.0.0)
@@ -66,34 +52,17 @@ PODS:
     - MGActionStageSwift
     - MGCore
     - MGProgressHUD
-    - MGRxKitchen/RxMogoForMGProgressErrors
-    - NSObject+Rx
-    - RxCocoa (~> 4.0.0)
-    - RxSwift (~> 4.0.0)
-  - MGRxKitchen/RxMogoForLoadingRefresher (5.0.0):
-    - NSObject+Rx
-    - RxCocoa (~> 4.0.0)
-    - RxSwift (~> 4.0.0)
-  - MGRxKitchen/RxMogoForMGProgressErrors (5.0.0):
-    - MGCore
-    - MGProgressHUD
+    - MGUIKit/MGHudRxExtension
     - NSObject+Rx
     - RxCocoa (~> 4.0.0)
     - RxSwift (~> 4.0.0)
   - MGRxKitchen/RxMogoForMixer (5.0.0):
+    - MGCore
     - MGProgressHUD
     - MGRequest
-    - MGRxKitchen/RxMogoBaseConfiguration
-    - MGRxKitchen/RxMogoForMGProgressErrors
-    - MGRxKitchen/RxMogoForMJRefresher
-    - MGRxKitchen/RxMogoForTableView
-    - NSObject+Rx
-    - RxCocoa (~> 4.0.0)
-    - RxSwift (~> 4.0.0)
-  - MGRxKitchen/RxMogoForMJRefresher (5.0.0):
-    - MGProgressHUD
-    - MGRxKitchen/RxMogoBaseConfiguration
-    - MJRefresh
+    - MGUIKit/MGHudRxExtension
+    - MGUIKit/MGMJRxExtension
+    - MGUIKit/MGTableviewRxExtensions
     - NSObject+Rx
     - RxCocoa (~> 4.0.0)
     - RxSwift (~> 4.0.0)
@@ -102,11 +71,6 @@ PODS:
     - MGUIKit/MGAlertView
     - NSObject+Rx
     - RxCocoa (~> 4.0.0)
-    - RxSwift (~> 4.0.0)
-  - MGRxKitchen/RxMogoForTableView (5.0.0):
-    - NSObject+Rx
-    - RxCocoa (~> 4.0.0)
-    - RxDataSources
     - RxSwift (~> 4.0.0)
   - MGRxKitchen/RxMogoForTexts (5.0.0):
     - NSObject+Rx
@@ -123,14 +87,17 @@ PODS:
     - MGUIKit/MGDatePicker (= 4.0.0)
     - MGUIKit/MGDatePickerViewController (= 4.0.0)
     - MGUIKit/MGDialingCaller (= 4.0.0)
+    - MGUIKit/MGHudRxExtension (= 4.0.0)
     - MGUIKit/MGImageFactory (= 4.0.0)
     - MGUIKit/MGInstructions (= 4.0.0)
+    - MGUIKit/MGMJRxExtension (= 4.0.0)
     - MGUIKit/MGPickerSelectKit (= 4.0.0)
     - MGUIKit/MGProgressView (= 4.0.0)
     - MGUIKit/MGRippleView (= 4.0.0)
     - MGUIKit/MGStarCommentCell (= 4.0.0)
     - MGUIKit/MGStarCommentView (= 4.0.0)
     - MGUIKit/MGSuperTitleView (= 4.0.0)
+    - MGUIKit/MGTableviewRxExtensions (= 4.0.0)
     - MGUIKit/MGUIColor (= 4.0.0)
     - MGUIKit/PasswordAlertView (= 4.0.0)
     - MGUIKit/TableSelectionViewController (= 4.0.0)
@@ -194,12 +161,21 @@ PODS:
     - MGCore
     - MGProgressHUD
     - SnapKit
+  - MGUIKit/MGHudRxExtension (4.0.0):
+    - MGCore
+    - MGProgressHUD
+    - SnapKit
   - MGUIKit/MGImageFactory (4.0.0):
     - MGCore
     - SDWebImage
     - SnapKit
   - MGUIKit/MGInstructions (4.0.0):
     - MGCore
+    - SnapKit
+  - MGUIKit/MGMJRxExtension (4.0.0):
+    - MGCore
+    - MGProgressHUD
+    - MJRefresh
     - SnapKit
   - MGUIKit/MGPickerSelectKit (4.0.0):
     - MGCore
@@ -224,6 +200,10 @@ PODS:
     - SnapKit
   - MGUIKit/MGSuperTitleView (4.0.0):
     - MGCore
+    - SnapKit
+  - MGUIKit/MGTableviewRxExtensions (4.0.0):
+    - MGCore
+    - RxDataSources
     - SnapKit
   - MGUIKit/MGUIColor (4.0.0):
     - MGCore
@@ -311,13 +291,13 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   MGCore:
-    :commit: bbfe62a4a1f36743dfd66310931f0555bc267b8f
+    :commit: 55c099f66aea6545bb0653d918a368cfb03f79d2
     :git: http://git.mogo.com/NeXTPod/MGCore.git
   MGRequest:
     :commit: cb76a705e0d9403d0173bebbe64b6262af1db98a
     :git: http://git.mogo.com/NeXTPod/MGRequest.git
   MGUIKit:
-    :commit: 587d18aef77464f2eb59f29f78077dccca1a3379
+    :commit: 815db6d17c457212350afc13d547e67f62f18aeb
     :git: http://git.mogo.com/NexT/MGUIKitchen.git
   SwiftLinter:
     :commit: f9774bd3f19e9e93b2717d1576e07022d0d0b2ea
@@ -340,8 +320,8 @@ SPEC CHECKSUMS:
   MGOCKit: 5241ef8bfde54acc2fa660e804810eff947a3e72
   MGProgressHUD: cf0ed7620da9b34cfcbb8409a20e157105c1192e
   MGRequest: 1c5b8e76b32d26cf4d406e8de765b34f23752bb6
-  MGRxKitchen: b0843c74e5c16bef10ac2a674c9984f3cde10a26
-  MGUIKit: 01c79d013dd714da31f52882730013dc7db1035f
+  MGRxKitchen: 239b75aa0c259ed5d50e13ba0d80b16306ee89bb
+  MGUIKit: fb476caa099ce86658bfb3ba63882f81c9cff3ce
   MJRefresh: b48380ae2b927b46c4ef000de9adb8dc748e1df7
   Nimble: 7f5a9c447a33002645a071bddafbfb24ea70e0ac
   Nimble-Snapshots: 438fb1a6fa3c655e246fc9ac375f6cd2964d759a

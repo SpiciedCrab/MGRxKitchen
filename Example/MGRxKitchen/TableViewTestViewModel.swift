@@ -13,6 +13,7 @@ import MGRxKitchen
 import MGCore
 import Result
 import MGRequest
+import MGUIKit
 
 internal class MGItem {
     var name: String = ""
