@@ -1,4 +1,4 @@
-import MGBricks
+import MGCore
 import RxSwift
 import Result
 import HandyJSON
