@@ -70,7 +70,7 @@ TODO: Add long description of the pod here.
   s.subspec 'RxMogoForActionStage' do |actor|
       actor.source_files = 'MGRxKitchen/Classes/RxMogoForActionStage/**/*{.swift}'
       actor.dependency 'MGProgressHUD'
-      actor.dependency 'MGRxActivityIndicator'
+      actor.dependency 'MGCore'
       actor.dependency 'MGActionStageSwift'
       actor.dependency 'MGRxKitchen/RxMogoForMGProgressErrors'
   end

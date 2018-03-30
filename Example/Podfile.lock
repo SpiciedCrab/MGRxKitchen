@@ -37,54 +37,50 @@ PODS:
   - MGRequest (0.0.10):
     - HandyJSON (~> 4.0.0-beta.1)
     - MGCore
-    - MGRxActivityIndicator
     - Result
     - RxSwift
     - SporeNetworking
-  - MGRxActivityIndicator (0.1.0):
-    - RxCocoa (~> 4.0)
-    - RxSwift (~> 4.0)
-  - MGRxKitchen (4.0.26):
-    - MGRxKitchen/RxMogoBaseConfiguration (= 4.0.26)
-    - MGRxKitchen/RxMogoBinding (= 4.0.26)
-    - MGRxKitchen/RxMogoForActionStage (= 4.0.26)
-    - MGRxKitchen/RxMogoForLoadingRefresher (= 4.0.26)
-    - MGRxKitchen/RxMogoForMGProgressErrors (= 4.0.26)
-    - MGRxKitchen/RxMogoForMixer (= 4.0.26)
-    - MGRxKitchen/RxMogoForMJRefresher (= 4.0.26)
-    - MGRxKitchen/RxMogoForSuperAlert (= 4.0.26)
-    - MGRxKitchen/RxMogoForTableView (= 4.0.26)
-    - MGRxKitchen/RxMogoForTexts (= 4.0.26)
+  - MGRxKitchen (5.0.0):
+    - MGRxKitchen/RxMogoBaseConfiguration (= 5.0.0)
+    - MGRxKitchen/RxMogoBinding (= 5.0.0)
+    - MGRxKitchen/RxMogoForActionStage (= 5.0.0)
+    - MGRxKitchen/RxMogoForLoadingRefresher (= 5.0.0)
+    - MGRxKitchen/RxMogoForMGProgressErrors (= 5.0.0)
+    - MGRxKitchen/RxMogoForMixer (= 5.0.0)
+    - MGRxKitchen/RxMogoForMJRefresher (= 5.0.0)
+    - MGRxKitchen/RxMogoForSuperAlert (= 5.0.0)
+    - MGRxKitchen/RxMogoForTableView (= 5.0.0)
+    - MGRxKitchen/RxMogoForTexts (= 5.0.0)
     - NSObject+Rx
     - RxCocoa (~> 4.0.0)
     - RxSwift (~> 4.0.0)
-  - MGRxKitchen/RxMogoBaseConfiguration (4.0.26):
+  - MGRxKitchen/RxMogoBaseConfiguration (5.0.0):
     - NSObject+Rx
     - RxCocoa (~> 4.0.0)
     - RxSwift (~> 4.0.0)
-  - MGRxKitchen/RxMogoBinding (4.0.26):
+  - MGRxKitchen/RxMogoBinding (5.0.0):
     - NSObject+Rx
     - RxCocoa (~> 4.0.0)
     - RxSwift (~> 4.0.0)
-  - MGRxKitchen/RxMogoForActionStage (4.0.26):
+  - MGRxKitchen/RxMogoForActionStage (5.0.0):
     - MGActionStageSwift
+    - MGCore
     - MGProgressHUD
-    - MGRxActivityIndicator
     - MGRxKitchen/RxMogoForMGProgressErrors
     - NSObject+Rx
     - RxCocoa (~> 4.0.0)
     - RxSwift (~> 4.0.0)
-  - MGRxKitchen/RxMogoForLoadingRefresher (4.0.26):
+  - MGRxKitchen/RxMogoForLoadingRefresher (5.0.0):
     - NSObject+Rx
     - RxCocoa (~> 4.0.0)
     - RxSwift (~> 4.0.0)
-  - MGRxKitchen/RxMogoForMGProgressErrors (4.0.26):
+  - MGRxKitchen/RxMogoForMGProgressErrors (5.0.0):
     - MGCore
     - MGProgressHUD
     - NSObject+Rx
     - RxCocoa (~> 4.0.0)
     - RxSwift (~> 4.0.0)
-  - MGRxKitchen/RxMogoForMixer (4.0.26):
+  - MGRxKitchen/RxMogoForMixer (5.0.0):
     - MGProgressHUD
     - MGRequest
     - MGRxKitchen/RxMogoBaseConfiguration
@@ -94,25 +90,25 @@ PODS:
     - NSObject+Rx
     - RxCocoa (~> 4.0.0)
     - RxSwift (~> 4.0.0)
-  - MGRxKitchen/RxMogoForMJRefresher (4.0.26):
+  - MGRxKitchen/RxMogoForMJRefresher (5.0.0):
     - MGProgressHUD
     - MGRxKitchen/RxMogoBaseConfiguration
     - MJRefresh
     - NSObject+Rx
     - RxCocoa (~> 4.0.0)
     - RxSwift (~> 4.0.0)
-  - MGRxKitchen/RxMogoForSuperAlert (4.0.26):
+  - MGRxKitchen/RxMogoForSuperAlert (5.0.0):
     - MGRxKitchen/RxMogoForMixer
     - MGUIKit/MGAlertView
     - NSObject+Rx
     - RxCocoa (~> 4.0.0)
     - RxSwift (~> 4.0.0)
-  - MGRxKitchen/RxMogoForTableView (4.0.26):
+  - MGRxKitchen/RxMogoForTableView (5.0.0):
     - NSObject+Rx
     - RxCocoa (~> 4.0.0)
     - RxDataSources
     - RxSwift (~> 4.0.0)
-  - MGRxKitchen/RxMogoForTexts (4.0.26):
+  - MGRxKitchen/RxMogoForTexts (5.0.0):
     - NSObject+Rx
     - RxCocoa (~> 4.0.0)
     - RxSwift (~> 4.0.0)
@@ -315,10 +311,10 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   MGCore:
-    :commit: 815c7fa117a4da57f1f5246ecd5989f6d5de7fe4
+    :commit: bbfe62a4a1f36743dfd66310931f0555bc267b8f
     :git: http://git.mogo.com/NeXTPod/MGCore.git
   MGRequest:
-    :commit: a7d07816bce1757c8d510a4534632a0cfd860614
+    :commit: cb76a705e0d9403d0173bebbe64b6262af1db98a
     :git: http://git.mogo.com/NeXTPod/MGRequest.git
   MGUIKit:
     :commit: 587d18aef77464f2eb59f29f78077dccca1a3379
@@ -343,9 +339,8 @@ SPEC CHECKSUMS:
   MGDeeplinkNavigator: 29299eb3fe8ac180827b1b245933eea3c11011fe
   MGOCKit: 5241ef8bfde54acc2fa660e804810eff947a3e72
   MGProgressHUD: cf0ed7620da9b34cfcbb8409a20e157105c1192e
-  MGRequest: b44609792a44b798253dadca0a9cfd174b6ae1ce
-  MGRxActivityIndicator: 14e41d0670e28e95d7ef9096661bc3a9772269cc
-  MGRxKitchen: 2c26bc9085a544474d100a309a6dbb4dbabe3359
+  MGRequest: 1c5b8e76b32d26cf4d406e8de765b34f23752bb6
+  MGRxKitchen: b0843c74e5c16bef10ac2a674c9984f3cde10a26
   MGUIKit: 01c79d013dd714da31f52882730013dc7db1035f
   MJRefresh: b48380ae2b927b46c4ef000de9adb8dc748e1df7
   Nimble: 7f5a9c447a33002645a071bddafbfb24ea70e0ac
