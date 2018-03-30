@@ -9,6 +9,9 @@ import Foundation
 import RxSwift
 import MGUIKit
 import NSObject_Rx
+import MGRequest
+import MGCore
+
 // MARK: - 为了Alert做的Vip
 extension MGRxListWithApiMixer {
 

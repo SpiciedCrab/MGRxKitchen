@@ -12,6 +12,7 @@ import RxSwift
 import MJRefresh
 import MGUIKit
 import MGRxKitchen
+import MGRequest
 
 class PullUpRefreshController: UIViewController {
     @IBOutlet weak var barItem: UIBarButtonItem!

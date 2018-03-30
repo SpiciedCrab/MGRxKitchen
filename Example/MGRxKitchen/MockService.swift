@@ -2,6 +2,8 @@ import MGCore
 import RxSwift
 import Result
 import HandyJSON
+import MGCore
+import MGRequest
 // MARK: - Demo api
 
 internal final class SuperDemo: HandyJSON {

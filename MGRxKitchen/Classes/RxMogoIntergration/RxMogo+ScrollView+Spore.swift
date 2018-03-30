@@ -9,6 +9,8 @@ import Foundation
 import RxCocoa
 import RxSwift
 import NSObject_Rx
+import MGRequest
+import MGCore
 
 // MARK: - Common Definitions
 
@@ -40,7 +42,7 @@ public class MGRxListWithApiMixer {
     ///   - view: 一只普通的view
     ///   - viewModel: viewModel
     public func mixView(view: UIView,
-                            togetherWith viewModel: HaveRequestRx) {
+                        togetherWith viewModel: HaveRequestRx) {
 
         guard let next = nextLink else { return }
 
@@ -71,18 +73,14 @@ public class MGRxListWithApiMixer {
                 let existingLink = mixer
 
                 switch errorShownType {
-                    case .custom(let action):
+                case .custom(let action):
                         
-                        if mixerType == CustErrorRequestMixer.self
-                        {
+                        if mixerType == CustErrorRequestMixer.self {
                             mixer = CustErrorRequestMixer(action: action)
-                        }
-                        else
-                        {
+                        } else {
                             mixer = mixerType.init()
                         }
-
-                    default:
+                default:
                         mixer = mixerType.init()
                 }
 
@@ -208,7 +206,7 @@ public class CustErrorRequestMixer: MGRxListWithApiMixer {
 /// 处理了一系列上下啦绑定
 public class PageRequestMixer: MGRxListWithApiMixer {
     override public func mixView(view: UIView,
-                                  togetherWith viewModel: HaveRequestRx) {
+                                 togetherWith viewModel: HaveRequestRx) {
         guard let pageViewModel = viewModel as? PageBase ,
             let listView = view as? UIScrollView else {
             super.mixView(view: view, togetherWith: viewModel)
@@ -218,7 +216,7 @@ public class PageRequestMixer: MGRxListWithApiMixer {
         listView.rx
             .pullDownRefreshing
             .bind(to: pageViewModel.firstPage)
-            .disposed(by:listView.rx.disposeBag)
+            .disposed(by: listView.rx.disposeBag)
 
         listView.rx
             .pullUpRefreshing

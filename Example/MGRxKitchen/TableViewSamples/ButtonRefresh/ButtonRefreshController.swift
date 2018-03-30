@@ -13,6 +13,7 @@ import MJRefresh
 import MGCore
 import MGRxKitchen
 import MGUIKit
+import MGRequest
 
 class ButtonRefreshController: UIViewController {
 

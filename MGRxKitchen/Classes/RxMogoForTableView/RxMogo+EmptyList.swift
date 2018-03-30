@@ -17,8 +17,8 @@ public extension Observable where Element : Collection {
     ///   - emptyAction: empty
     ///   - notEmptyAction: not empty
     /// - Returns: 啦啦啦
-    func checkEmptyList(emptyAction : @escaping ()->() ,
-                        notEmptyAction : @escaping ()->())
+    func checkEmptyList(emptyAction: @escaping () -> Void ,
+                        notEmptyAction: @escaping () -> Void)
         -> Observable {
         return self.do(onNext: { items in
             if items.isEmpty {

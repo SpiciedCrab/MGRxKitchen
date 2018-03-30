@@ -27,7 +27,9 @@ public extension Reactive where Base : UIView {
 
         return UIBindingObserver(UIElement: self.base, binding: { view, message in
             MGProgressHUD.hiddenAllhubToView(view, animated: true)
-            MGProgressHUD.showTextAndHiddenView(view, message: message, loationMode : .bottom)
+            MGProgressHUD.showTextAndHiddenView(view,
+                                                message: message,
+                                                loationMode: .bottom)
 
         })
     }
@@ -36,7 +38,9 @@ public extension Reactive where Base : UIView {
 
         return UIBindingObserver(UIElement: self.base, binding: { view, message in
             MGProgressHUD.hiddenAllhubToView(view, animated: true)
-            MGProgressHUD.showTextAndHiddenView(view, message: message, loationMode : .top)
+            MGProgressHUD.showTextAndHiddenView(view,
+                                                message: message,
+                                                loationMode: .top)
         })
     }
 
@@ -44,7 +48,9 @@ public extension Reactive where Base : UIView {
 
         return UIBindingObserver(UIElement: self.base, binding: { view, message in
             MGProgressHUD.hiddenAllhubToView(view, animated: true)
-            MGProgressHUD.showTextAndHiddenView(view, message: message, loationMode : .center)
+            MGProgressHUD.showTextAndHiddenView(view,
+                                                message: message,
+                                                loationMode: .center)
         })
     }
 
@@ -75,7 +81,8 @@ public extension Reactive where Base : UIView {
 
             MGProgressHUD.showFillView(view,
                                        iconImage: info.icon,
-                                       message: info.message, detailText: nil)
+                                       message: info.message,
+                                       detailText: nil)
         })
     }
 
@@ -84,7 +91,8 @@ public extension Reactive where Base : UIView {
 
         return UIBindingObserver(UIElement: self.base, binding: { view, info in
             MGProgressHUD.hiddenAllhubToView(view, animated: true)
-            MGProgressHUD.showFillView(view, iconImage: info.icon,
+            MGProgressHUD.showFillView(view,
+                                       iconImage: info.icon,
                                        message: info.error.apiError.message,
                                        detailText: nil)
         })

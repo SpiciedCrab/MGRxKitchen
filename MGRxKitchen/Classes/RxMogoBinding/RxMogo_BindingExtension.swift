@@ -40,7 +40,7 @@ public func <-> <Base: UITextInput>(textInput: TextInput<Base>, variable: Variab
     let bindToUIDisposable = variable.asObservable()
         .bind(to: textInput.text)
     let bindToVariable = textInput.text
-        .subscribe(onNext: { [weak base = textInput.base] n in
+        .subscribe(onNext: { [weak base = textInput.base] _ in
             guard let base = base else {
                 return
             }
@@ -60,7 +60,7 @@ public func <-> <Base: UITextInput>(textInput: TextInput<Base>, variable: Variab
             if let nonMarkedTextValue = nonMarkedTextValue, nonMarkedTextValue != variable.value {
                 variable.value = nonMarkedTextValue
             }
-            }, onCompleted:  {
+            }, onCompleted: {
                 bindToUIDisposable.dispose()
         })
     
@@ -81,9 +81,9 @@ public func <-> <T>(property: ControlProperty<T>, variable: Variable<T>) -> Disp
     let bindToUIDisposable = variable.asObservable()
         .bind(to: property)
     let bindToVariable = property
-        .subscribe(onNext: { n in
-            variable.value = n
-        }, onCompleted:  {
+        .subscribe(onNext: { value in
+            variable.value = value
+        }, onCompleted: {
             bindToUIDisposable.dispose()
         })
     

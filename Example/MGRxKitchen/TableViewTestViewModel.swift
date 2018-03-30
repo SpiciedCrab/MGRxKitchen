@@ -13,6 +13,7 @@ import MGRxActivityIndicator
 import MGRxKitchen
 import MGCore
 import Result
+import MGRequest
 
 internal class MGItem {
     var name: String = ""

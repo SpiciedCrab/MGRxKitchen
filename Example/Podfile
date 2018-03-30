@@ -8,6 +8,8 @@ target 'MGRxKitchen_Example' do
   pod 'MGRxKitchen', :path => '../'
     pod 'SwiftLinter', :git => 'http://git.mogo.com/NexT/SwiftLinter.git'
   pod 'MGCore', :git => 'http://git.mogo.com/NeXTPod/MGCore.git', :branch => 'chausson'
+pod 'MGUIKit', :git => 'http://git.mogo.com/NexT/MGUIKitchen.git', :branch => 'chausson'
+pod 'MGRequest', :git => 'http://git.mogo.com/NeXTPod/MGRequest.git'
   target 'MGRxKitchen_Tests' do
     inherit! :search_paths
 

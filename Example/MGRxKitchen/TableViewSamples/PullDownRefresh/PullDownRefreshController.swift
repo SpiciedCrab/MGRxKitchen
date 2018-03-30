@@ -11,6 +11,7 @@ import RxCocoa
 import RxSwift
 import MJRefresh
 import MGRxKitchen
+import MGRequest
 
 class PullDownRefreshController: UIViewController {
 
