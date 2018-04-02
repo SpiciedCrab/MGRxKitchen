@@ -11,6 +11,7 @@ import RxCocoa
 import RxSwift
 import MGProgressHUD
 import MGRequest
+import MGCore
 
 // MARK: - MGProgress Toast Extensions
 public enum MessagePosition {

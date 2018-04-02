@@ -9,6 +9,8 @@ import Foundation
 import RxCocoa
 import RxSwift
 import NSObject_Rx
+import MGRequest
+import MGCore
 
 // MARK: - Common Definitions
 
