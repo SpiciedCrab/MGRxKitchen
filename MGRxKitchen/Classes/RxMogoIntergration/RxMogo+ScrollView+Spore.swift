@@ -9,6 +9,8 @@ import Foundation
 import RxCocoa
 import RxSwift
 import NSObject_Rx
+import MGRequest
+import MGCore
 
 // MARK: - Common Definitions
 
@@ -73,12 +75,9 @@ public class MGRxListWithApiMixer {
                 switch errorShownType {
                     case .custom(let action):
                         
-                        if mixerType == CustErrorRequestMixer.self
-                        {
+                        if mixerType == CustErrorRequestMixer.self {
                             mixer = CustErrorRequestMixer(action: action)
-                        }
-                        else
-                        {
+                        } else {
                             mixer = mixerType.init()
                         }
 

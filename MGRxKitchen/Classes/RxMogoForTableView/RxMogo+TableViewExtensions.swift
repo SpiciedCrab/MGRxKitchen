@@ -21,7 +21,7 @@ internal func rxBundle(for aClass: Swift.AnyClass,
     return bundle
 }
 
-func nameForClass(classObj : Any) -> String {
+func nameForClass(classObj: Any) -> String {
     return String(describing: classObj)
 }
 

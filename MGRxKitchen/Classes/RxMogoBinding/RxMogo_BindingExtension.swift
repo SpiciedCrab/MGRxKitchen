@@ -60,7 +60,7 @@ public func <-> <Base: UITextInput>(textInput: TextInput<Base>, variable: Variab
             if let nonMarkedTextValue = nonMarkedTextValue, nonMarkedTextValue != variable.value {
                 variable.value = nonMarkedTextValue
             }
-            }, onCompleted:  {
+            }, onCompleted: {
                 bindToUIDisposable.dispose()
         })
     
@@ -83,7 +83,7 @@ public func <-> <T>(property: ControlProperty<T>, variable: Variable<T>) -> Disp
     let bindToVariable = property
         .subscribe(onNext: { n in
             variable.value = n
-        }, onCompleted:  {
+        }, onCompleted: {
             bindToUIDisposable.dispose()
         })
     

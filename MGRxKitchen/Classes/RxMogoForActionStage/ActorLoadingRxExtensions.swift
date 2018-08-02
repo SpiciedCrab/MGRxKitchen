@@ -5,12 +5,13 @@
 //  Created by Harly on 2017/10/19.
 //
 
-import MGRxKitchen
 import MGProgressHUD
-import MGRxActivityIndicator
 import RxSwift
 import RxCocoa
 import MGActionStageSwift
+import MGRequest
+import MGCore
+
 
 // MARK: - 发送一个Message to watchers
 extension Reactive where Base : LHWActionStage {
@@ -72,5 +73,5 @@ extension MGActorLoadingAvailable where Self : LHWActor {
     }
 }
 
-extension LHWActor : ReactiveCompatible {  }
-extension LHWActionStage : ReactiveCompatible {  }
+extension LHWActor: ReactiveCompatible {  }
+extension LHWActionStage: ReactiveCompatible {  }
